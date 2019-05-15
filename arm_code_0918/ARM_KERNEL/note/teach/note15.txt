@@ -1,0 +1,126 @@
+
+<linux/dma-mapping.h>
+
+void *dma_alloc_coherent(struct device *dev, size_t size, dma_addr_t *dma_handle,
+		   gfp_t flag)  //申请出来的缓冲区禁用data cache, write buffer
+	size指申请多大, dma_handle用来存放物理地址, GFP_KERNEL
+	函数返回值为申请的缓冲区的虚拟地址
+
+void dma_free_coherent(struct device *dev, size_t size, void *cpu_addr,
+		    dma_addr_t dma_handle)
+	释放空间. cpu_addr为虚拟地址, dma_handle为物理地址
+
+////////
+void *dma_alloc_writecombine(struct device *dev, size_t size, dma_addr_t *handle, gfp_t gfp)
+     此函数与dma_alloc_cohernet一样都是申请dma专用的缓冲区. 禁用data cache,
+不禁用write buffer
+
+dma_free_writecombine(dev,size,cpu_addr,handle)//实际上也是调用dma_free_coherent(...);
+
+
+2. //////////// mmap的实现 ///
+
+
+vm->vm_page_prot = pgprot_noncached(vm->vm_page_prot);//去掉vm的cache属性
+
+使用remap_pfn_range函数来把缓冲区的物理地址映射到用户进程的虚地址上
+int remap_pfn_range(struct vm_area_struct *vma, unsigned long addr,
+		    unsigned long pfn, unsigned long size, pgprot_t prot)
+/**
+ * remap_pfn_range - remap kernel memory to userspace
+ * @vma: user vma to map to
+ * @addr: target user address to start at
+ * @pfn: physical address of kernel memory //页地址 phys>>PAGE_SHIFT
+ * @size: size of map area
+ * @prot: page protection flags for this mapping
+ *
+**/
+
+
+
+
+
+3. struct fb_info 的一个对象表示一个framebuffer设备
+int register_framebuffer(struct fb_info *fb_info);
+int unregister_framebuffer(struct fb_info *fb_info);
+
+/**
+ * framebuffer_alloc - creates a new frame buffer info structure
+ *
+ * @size: size of driver private data, can be zero
+ * @dev: pointer to the device for this fb, this can be NULL
+ *
+ * Creates a new frame buffer info structure. Also reserves @size bytes
+ * for driver private data (info->par). info->par (if any) will be
+ * aligned to sizeof(long).
+ *
+ * Returns the new structure, or NULL if an error occured.
+ *
+ */
+struct fb_info *framebuffer_alloc(size_t size, struct device *dev)
+
+
+void framebuffer_release(struct fb_info *info)
+
+//////////////
+
+
+struct fb_info fbi {
+	...
+	struct fb_var_screeninfo var;	/* Current var */
+	struct fb_fix_screeninfo fix;	/* Current fix */ 
+	...
+	struct fb_ops *fbops;
+	char __iomem *screen_base;	/* Virtual address */
+	unsigned long screen_size;	/* Amount of ioremapped VRAM or 0 */ 
+	void *pseudo_palette;		/* Fake palette of 16 colors	
+	....
+};
+struct fb_var_screeninfo {
+	__u32 xres;			/* visible resolution		*/
+	__u32 yres;
+	__u32 xres_virtual;		/* virtual resolution		*/
+	__u32 yres_virtual;
+	__u32 bits_per_pixel;		/* guess what			*/
+
+	struct fb_bitfield red;		/* bitfield in fb mem if true color, */
+	struct fb_bitfield green;	/* else only length is significant */
+	struct fb_bitfield blue;
+	struct fb_bitfield transp;	/* transparency	
+	....
+}
+
+struct fb_fix_screeninfo {
+	char id[16];			/* identification string eg "TT Builtin" */
+	unsigned long smem_start;	/* Start of frame buffer mem */
+					/* (physical address) */
+	__u32 smem_len;			/* Length of frame buffer mem */
+	__u32 type;			/* see FB_TYPE_*		*/
+	__u32 visual;			/* see FB_VISUAL_*		*/ 
+	__u32 line_length;		/* length of a line in bytes    */
+	....
+}
+
+在struct fb_ops里
+	fb_open/release/read/write 在fbmem.c里有实现
+	fb_fillrect  在cfbfillrect.c
+	fb_copyarea   在cfbcopyarea.c
+	fb_imageblit  在cfbimgblt.c
+	fb_cursor     在softcursor.c
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

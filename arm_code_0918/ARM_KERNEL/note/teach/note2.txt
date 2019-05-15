@@ -1,0 +1,87 @@
+
+1. 模块机制
+	静态加载, 把驱动模块编进内核， 在内核启动时加载
+	动态加载, 把驱动模块编为ko, 在内核启动后，需要用时加载
+
+2. 编写内核驱动
+	#include <linux/module.h>
+	#include <linux/init.h>
+	
+	static int __init test_init(void)  
+	{
+		return 0; //返回0表示成功, 返加负数退出加载模块
+	}
+	//__init 当内核把驱动初始化完后， 释放此函数的代码指令空间
+
+	static void __exit test_exit(void)
+	{
+		....
+	}
+	//__exit 指定此函数只在驱动卸载时使用， 用完后释放
+
+	module_init(test_init); //指定test_init为模块初始化函数
+	module_exit(test_exit); //指定test_exit为模块退出时卸载函数
+	
+	MODULE_LICENSE("GPL"); //指定所支持的协议
+	MODULE_AUTHOR("作者");
+	MODULE_DESCRIPTION("描述");
+	MODULE_VERSION("版本");
+
+#define __init		__section(.init.text)
+#define __initdata	__section(.init.data)
+char __initdata buf[] = "hello world";
+
+#define __exitdata	__section(.exit.data)
+#define __exit		__section(.exit.text)
+
+/////////////
+modinfo test.ko 查看模块的信息
+
+cat /proc/modules 查看当前系统的动态加载模块  相当于lsmod
+test 1768 0 - Live 0xbf03c000
+模块名, 使用的内存大小, 调用次数,  有效 , 模块所在的内存地址 
+
+ls /sys/module 查看所有模块
+
+3. 驱动模块的Makefile
+	
+	obj-m  += test.o   //源码文件为test.c
+
+	modules:
+		make -C 内核源码目录 M=驱动代码所在目录 modules
+
+	modules install:
+		make -C 内核源码目录 M=驱动代码所在目录 modules_install      INSTALL_MOD_PATH=/文件系统路径
+
+	clean:
+		make -C 内核源码目录 M=驱动代码所在目录 modules clean
+	
+
+4. 查看驱动输出的消息
+	cat /var/log/messages
+	tail /var/log/messages
+
+5. printk的级别控制
+	<linux/kernel.h>
+#define	KERN_EMERG	"<0>"	/* system is unusable			*/
+#define	KERN_ALERT	"<1>"	/* action must be taken immediately	*/
+#define	KERN_CRIT	"<2>"	/* critical conditions			*/
+#define	KERN_ERR	"<3>"	/* error conditions			*/
+#define	KERN_WARNING	"<4>"	/* warning conditions			*/
+#define	KERN_NOTICE	"<5>"	/* normal but significant condition	*/
+#define	KERN_INFO	"<6>"	/* informational			*/
+#define	KERN_DEBUG	"<7>"	/* debug-level messages			*/
+
+默认的级别为 KERN_WARNING "<4>"
+
+使用 : printk(KERN_INFO"内容");
+
+查看当前内核的输出级别 cat /proc/sys/kernel/printk
+	7       4       1       7
+ 	7:console_loglevel 
+	4:default_message_loglevel 
+	1:minimum_console_loglevel
+	7:default_console_loglevel
+	当printk函数使用的级别小于当前console_loglevel级别时， 则可以输出， 否则不输出
+
+修改级别输出  echo 8 > /proc/sys/kernel/printk	

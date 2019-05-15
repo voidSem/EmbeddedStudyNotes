@@ -1,0 +1,239 @@
+
+1. ioctl的命令组成
+cmd :   每个cmd占用32位, 分成以下四个部分 
+				 'k'
+_IOC_DIRBITS << 30 | _IOC_SIZEBITS << 16 | _IOC_TYPEBITS << 8 | _IOC_NRBITS
+#define _IOC_NRBITS	8    //顺序号   0 --- 7
+#define _IOC_TYPEBITS	8    //magic number  8 --- 15
+#define _IOC_SIZEBITS	14   //ioctl第三个参数的大小 16 --- 29
+#define _IOC_DIRBITS	2    //方向， 有没有参数， 读/写  30 --- 31
+
+///方向位 ////
+# define _IOC_NONE	0U
+# define _IOC_WRITE	1U
+# define _IOC_READ	2U
+
+#define _IOC(dir,type,nr,size) \
+	(((dir)  << _IOC_DIRSHIFT) | \
+	 ((type) << _IOC_TYPESHIFT) | \
+	 ((nr)   << _IOC_NRSHIFT) | \
+	 ((size) << _IOC_SIZESHIFT))
+
+如：#define LED_ON _IOC(_IOC_WRITE, 'L', 99, 0);
+			//方向,     类型, 第99个命令， ioctl的第三个参数大小为0
+
+#define MYMAGIC  'k'
+
+_IO(type,nr)  //定义一个意思为没有第三个参数的ioctl命令
+如：_IO(MYMAGIC, 0); 
+
+_IOR(type,nr,size) //应用ioctl(fd, cmd, void *addr), 通过addr把参数返回
+			应用层
+	size表示参数的大小
+
+_IOW(type,nr,size) //表示写的命写， 应用层通过ioctl的第三个参数传进来
+
+
+_IOWR(type,nr,size)
+/////////////////////////////检查CMD里的信息
+
+_IOC_DIR(nr)  //获取nr命令里的方向值
+_IOC_TYPE(nr) //获取nr命令里的magic number
+_IOC_NR(nr)   //获取nr命令里的顺序号
+_IOC_SIZE(nr) //获取nr命令里的参数大小
+
+
+2. 原子数操作 <asm/atomic.h>
+typedef struct { 
+	volatile int counter; 
+} atomic_t;
+
+#define ATOMIC_INIT(i)		( { (i) } ) //初始化
+exam:	 
+	atomic_t myat = ATOMIC_INIT(1);	
+
+v为atomic_t 变量的地址
+
+#define atomic_read(v)	(*(volatile int *)&(v)->counter) //取atomic的值
+#define atomic_set(v,i)	(((v)->counter) = (i) //设atomic的值
+
+void atomic_add(int i, atomic_t * v) //让v指向的原子数加上i的值
+void atomic_sub(int i, atomic_t * v) //让v指向的原子数减去i的值
+atomic_inc(atomic_t *v) //自增
+atomic_dec(atomic_t *v) //自减
+
+3. 原子位操作 <asm/bitops.h>
+set_bit(nr,p) //在p指向的变量的第nr位设1
+clear_bit(nr,p) //在p指向的变量的第nr位设0
+change_bit(nr,p) //把第nr位的值取反
+
+test_and_set_bit(nr,p) 第nr位设1并返回修改后的值
+
+#define set_bit(nr,p)			ATOMIC_BITOP_LE(set_bit,nr,p)
+
+#define	ATOMIC_BITOP_LE(name,nr,p)		\
+	(__builtin_constant_p(nr) ?		\
+	 ____atomic_##name(nr, p) :		\
+	 _##name##_le(nr,p))
+
+static inline void ____atomic_set_bit(unsigned int bit, volatile unsigned long *p)
+{
+	unsigned long flags;
+	unsigned long mask = 1UL << (bit & 31);
+
+	p += bit >> 5;
+
+	raw_local_irq_save(flags);
+	*p |= mask;
+	raw_local_irq_restore(flags);
+}
+
+//////////////////////////////////////
+
+///////////
+#include <linux/sched.h>
+在内核里用struct task_struct 的一个对象描述一个进程或线程
+struct task_struct {
+	...
+	volatile long state;	/* -1 unrunnable, 0 runnable, >0 stopped */
+	void *stack;
+	atomic_t usage;
+
+	pid_t pid;
+	char comm[TASK_COMM_LEN]; //进程对应的程序名
+};
+
+#include <asm/current.h>
+#define current (get_current()) //获取当前进程的task_struct对象地址
+
+//////// mutex //////
+#include <linux/mutex.h>
+
+struct mutex {
+	/* 1: unlocked, 0: locked, negative: locked, possible waiters */
+	atomic_t		count;
+	spinlock_t		wait_lock; //用于保护wait_list链表的操作
+	struct list_head	wait_list; //用于装载等待互斥锁的进程
+	....
+};
+
+struct mutex mymutex;
+
+mutex_init(&mymutex);
+
+mutex_lock(&mymutex);
+mutex_unlock(&mymutex);
+
+///// 自旋锁 ////////
+4. 自旋锁是一直循环检查， 直到锁上为止。 锁上后确保执行的代码为原子操作,
+直到解锁为止. 注意不能长时间锁上自旋锁， 不能在执行的代码里休眠 
+spinlock_t 自旋锁  <linux/spinlock.h>
+
+spinlock_t  mylock = SPIN_LOCK_UNLOCKED;
+或者声明变量后调用 spin_lock_init(&mylock);  //初始化为未锁
+
+上锁:   
+	spin_lock(&mylock);  //spin_lock_irq 不让中断打断执行
+	...
+	保护执行的代码         //临界区
+	...
+	spin_unlock(&mylock); //spin_unlock_irq
+	
+当自旋锁锁上时， 拥有此锁的进程不能进入休眠
+
+///////////////
+5. 信号量, 当锁不上时， 当前进程会进入睡眠状态， 直到被up唤醒为止
+	<linux/semaphore.h>
+struct semaphore {
+	spinlock_t	 lock;  //用于保护对count, wait_list的操作
+	unsigned int	 count; //当大于0时空闲, 等于0时表示没有资源分配(再锁的话， 进程进入休眠)
+	struct list_head wait_list; //等待操作进程的链表
+};
+
+void sema_init(struct semaphore *sem, int val);
+//初始化信号量，count成员的值设为val
+
+void down(struct semaphore *sem); //上锁 count--
+int down_interruptible(struct semaphore *sem); //能被中断信号打断的上锁
+int down_trylock(struct semaphore *sem);
+int down_timeout(struct semaphore *sem, long jiffies);
+
+void up(struct semaphore *sem); //解锁  count++
+
+自旋锁与信号量的区别：
+	当要保护的临界区执行时间很短时， 则用自旋锁
+	长时间则用信号量
+
+6. 完成量， 功能与信号量差不多， 最大不同可以唤醒多个阻塞的进程
+	<linux/completion.h>
+struct completion {
+	unsigned int done; //当done为0时未完成, 大于0为已完成
+	wait_queue_head_t wait; //等待完成的进程链表
+};
+
+void init_completion(struct completion *x); //初始化done=0;
+
+void wait_for_completion(struct completion *); //等待完成，条件不满足时，
+当前进程则阻塞 done--
+int wait_for_completion_interruptible(struct completion *x);
+
+
+extern void complete(struct completion *); //完成 done++
+extern void complete_all(struct completion *); //唤醒所有等待的进程
+
+
+7.等待队列  <linux/wait.h>
+wait_queue_head_t 
+struct __wait_queue_head {
+	spinlock_t lock;     //保护对task_list的操作
+	struct list_head task_list; //等待队列的链表
+};
+typedef struct __wait_queue_head  wait_queue_head_t; //表示等待队列
+
+struct __wait_queue {
+	unsigned int flags;
+#define WQ_FLAG_EXCLUSIVE	0x01
+	void *private;
+	wait_queue_func_t func;
+	struct list_head task_list; //使用此等待队列的进程链表
+};
+typedef struct __wait_queue wait_queue_t; //表示等待队列中的一员
+
+
+void init_waitqueue_head(wait_queue_head_t *q); //初始化等待队列
+
+//wq 是等待队列头的变量, 根据condition定义初始化一个wait_queue_t对象，并增加到wq等待队列中 
+wait_event(wq, condition); //如果条件不满足， 则当前进程进入休眠， 直到被唤醒 
+wait_event_timeout(wq, condition, timeout)
+wait_event_interruptible(wq, condition);
+
+
+唤醒后， wait_event*还是要检查condition是否满足， 如不满足则继续睡眠. 
+所以在使用wake_up唤醒时注意condition
+wake_up(wait_queue_head_t *queue);
+wake_up_interruptible(wait_queue_head_t *queue);
+
+
+8. poll的实现  poll / select / epoll
+   
+   wait_queue_head_t queue; //定义一个等待队列头， 给poll_wait使用
+   
+初始化init_waitqueue_head(&queue)
+
+ 实现poll文件操作
+//内核调用实现的poll函数在fs/select.c, 745行处
+	mask = file->f_op->poll(file, pwait); 
+
+  unsigned int (*poll) (struct file *fl, struct poll_table_struct *tbl)
+ {
+	poll_wait(fl, &queue, tbl); //让操作fl文件描述的进程进入睡眠直到被唤醒
+	被唤醒后检查条件是否满足, 在其它地方用wake_up(&queue)唤醒
+	if (condition)
+		return POLLIN|POLLRDNORM(读), POLLOUT|POLLWRNORM(写)
+	else
+		return 0; 
+	用户进程要不要进入体眠， 根据此函数的返回值来确定
+ }
+
+ 需要靠自己唤醒， 当条件满足时调用wake_up(&queue)来唤醒	
+

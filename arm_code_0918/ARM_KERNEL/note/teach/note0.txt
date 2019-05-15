@@ -1,0 +1,144 @@
+execve("/sbin/modprobe", ["modprobe", "test"], [/* 52 vars */]) = 0
+brk(0)                                  = 0x21b9000
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e6000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+open("/etc/ld.so.cache", O_RDONLY)      = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=305933, ...}) = 0
+mmap(NULL, 305933, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f684f89b000
+close(3)                                = 0
+open("/lib64/libc.so.6", O_RDONLY)      = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\360\355a\221;\0\0\0"..., 832) = 832
+fstat(3, {st_mode=S_IFREG|0755, st_size=1918016, ...}) = 0
+mmap(0x3b91600000, 3741864, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x3b91600000
+mprotect(0x3b91789000, 2093056, PROT_NONE) = 0
+mmap(0x3b91988000, 20480, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x188000) = 0x3b91988000
+mmap(0x3b9198d000, 18600, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x3b9198d000
+close(3)                                = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f89a000
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f899000
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f898000
+arch_prctl(ARCH_SET_FS, 0x7f684f899700) = 0
+mprotect(0x3b91988000, 16384, PROT_READ) = 0
+mprotect(0x3b9101f000, 4096, PROT_READ) = 0
+munmap(0x7f684f89b000, 305933)          = 0
+uname({sys="Linux", node="dns.uplooking.com.", ...}) = 0
+fstat(2, {st_mode=S_IFREG|0644, st_size=1618, ...}) = 0
+brk(0)                                  = 0x21b9000
+brk(0x21da000)                          = 0x21da000
+open("/etc/modprobe.conf", O_RDONLY)    = -1 ENOENT (No such file or directory)
+open("/etc/modprobe.d", O_RDONLY|O_NONBLOCK|O_DIRECTORY|O_CLOEXEC) = 3
+fcntl(3, F_GETFD)                       = 0x1 (flags FD_CLOEXEC)
+getdents(3, /* 13 entries */, 32768)    = 472
+getdents(3, /* 0 entries */, 32768)     = 0
+close(3)                                = 0
+open("/etc/modprobe.d/anaconda.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=52, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "# Module options and blacklists "..., 4096) = 52
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/blacklist-kvm.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=25, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "#blacklisted kvm modules\n", 4096) = 25
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/blacklist-visor.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=16, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "blacklist visor\n", 4096)      = 16
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/blacklist.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=884, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "#\n# Listing a module here preven"..., 4096) = 884
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/dist-alsa.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=382, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "# ALSA Sound Support\n#\n# We want"..., 4096) = 382
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/dist-oss.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=473, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "# OSS Sound Support\n# This has b"..., 4096) = 473
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/dist.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=5596, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "# default modutils aliases\nalias"..., 4096) = 4096
+read(3, "\ninstall net-pf-6 /bin/true\ninst"..., 4096) = 1500
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/libcxgb3.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=79, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "install cxgb3 /sbin/modprobe --i"..., 4096) = 79
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/libmlx4.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=236, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "install mlx4_core /sbin/modprobe"..., 4096) = 236
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/openfwwf.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=30, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "options b43 nohwcrypt=1 qos=0\n", 4096) = 30
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/etc/modprobe.d/vmware-fuse.conf", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=49, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "# Added by VMware.\n\nalias char-m"..., 4096) = 49
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/proc/cmdline", O_RDONLY)         = 3
+fstat(3, {st_mode=S_IFREG|0444, st_size=0, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "ro root=UUID=27ce954b-f4de-4cd7-"..., 1024) = 146
+read(3, "", 1024)                       = 0
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/lib/modules/2.6.32-279.el6.x86_64/modules.dep.bin", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=284732, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "\260\7\364W\0\2\0\1 \4W\0324_cs\0\0\0\0\1\0\0\1\275kernel/"..., 4096) = 4096
+lseek(3, 282624, SEEK_SET)              = 282624
+read(3, "_socket\0\0\0\0\1\0\0\2\221kernel/drivers/p"..., 4096) = 2108
+lseek(3, 253952, SEEK_SET)              = 253952
+read(3, " kernel/drivers/media/video/vide"..., 4096) = 4096
+lseek(3, 245760, SEEK_SET)              = 245760
+read(3, "ko\0_\0fl\300\3\276\235\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\300"..., 4096) = 4096
+lseek(3, 249856, SEEK_SET)              = 249856
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+open("/lib/modules/2.6.32-279.el6.x86_64/modules.alias.bin", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=514309, ...}) = 0
+mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f684f8e5000
+read(3, "\260\7\364W\0\2\0\1 \7\327\333dev/ppp\0\0\0\0\1\0\0\2Jppp_"..., 4096) = 4096
+lseek(3, 512000, SEEK_SET)              = 512000
+read(3, "\4 \7\272\246 \7\274\237 \7\275\340\240\7\303] \7\305t\0\0\0\0\0\0\0\0\0\0\0"..., 4096) = 2309
+lseek(3, 266240, SEEK_SET)              = 266240
+read(3, "dmi\0\0\0\0\1\0\0\6Ysnd_hda_codec_hdmi\0\0"..., 4096) = 4096
+close(3)                                = 0
+munmap(0x7f684f8e5000, 4096)            = 0
+write(2, "FATAL: Module test not found.\n", 30FATAL: Module test not found.
+) = 30
+exit_group(1)                           = ?

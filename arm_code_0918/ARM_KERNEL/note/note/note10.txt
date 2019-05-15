@@ -1,0 +1,449 @@
+-------------------------------------
+/******************
+ * 中断处理
+ ******************/
+ 
+(1)中断和异常的概念 (陷入)
+中断
+中断是硬件设备和处理器间的通讯机制，是由外部硬件产生的异步事件。
+Linux处理中断的方式很大程度上与它在用户空间处理信号是一样的。
+驱动程序只需要为它自己设备的中断注册一个处理程序，并且在中断到达时进行正确的处理。
+由于中断处理程序运行方式的不同，它们所能执行的动作将会受到一定的限制。
+
+异常
+异常也常常被称为同步中断，是处理器自己产生的。
+在处理器执行到由于编程失误而导致的错误指令(例如被0除)的时候，或者是执行期间出现特殊情况(例如缺页)，必须靠内核处理的时候，处理器就会产生一个异常。
+
+异常和中断的处理方式是很类似的。
+
+(2)中断处理程序
+不同的设备对应不同的中断，在linux系统中通过中断请求(IRQ)线来区分不同的中断。
+例如在pc上，IRQ0是时钟中断，IRQ1是键盘中断。可以通过/proc/interrupts查看系统中使用的中断号。
+
+在响应一个硬件产生的中断的时候，内核会根据该硬件中断对应的IRQ号执行一个函数，这个函数称为中断处理程序 (interrupt handler)， 或中断服务例程 (interrupt service routine, ISR)。
+
+如果我们要支持的设备可以产生中断，那么我们就要在针对该设备的驱动程序中加入中断处理程序。
+中断处理程序将运行在中断上下文中。
+
+
+
+(3)中断处理程序的注册和释放
+中断处理程序是和中断请求线(IRQ)对应的，在linux内核中通过request_irq申请一个特定的中断请求IRQ号，在该中断发生后，调用指定的中断处理函数。
+
+a.注册
+#include <linux/interrupt.h>
+int request_irq(
+    unsigned int irq,
+    irqreturn_t (*handler)(int, void *),
+    unsigned long flags, 
+    const char *dev_name, 
+    void *dev_id);
+
+返回值为0表示申请成功，为负值表示错误。
+返回-EBUSY表示该中断请求线已经被别的驱动程序占据。
+irq
+要申请的中断号
+irqreturn_t (*handler)(...)
+要安装的中断处理函数的指针
+flags
+和中断管理相关的位掩码
+*dev_name
+中断的拥有者。可见/proc/interrupts
+*dev_id
+主要用于共享的中断信号线。常用它来指向设备的数据结构
+
+
+b.可以选择的flags定义在<linux/interrupt.h>
+
+IRQF_DISABLED
+快速中断标志。如果采用这个标志，则执行处理程序时当前处理器上的其他所有中断都被禁止。
+默认情况下(没有这个标志)，除了正在运行的中断处理程序所对应的那条中断线被屏蔽外，其他所有中断都是激活的。
+除了时钟中断外，绝大多数中断都不使用这个标志。
+IRQF_SHIRQ
+可以在多个中断处理程序之间共享中断线
+IRQF_SAMPLE_RAMDOM
+这个中断可以对熵池有贡献
+
+
+c.注销
+void free_irq(unsigned int irq, 
+              void *dev_id);
+如果中断是共享的，那么内核通过dev_id决定究竟释放共享中断中的哪一个。
+
+
+d.其他
+当前，x86体系中的中断IRQ数量是224。可以参考
+<asm-i386/irq.h>和<asm-i386/mach-generic/irq_vectors_limits.h>
+
+
+e.IRQ号的获得
+request_irq时采用的IRQ号可以预先选定，也可以通过一个探测过程动态获得。
+关于IRQ号的动态探测可以参考驱动开发一书的第10章。
+在嵌入式开发中，IRQ号都是明确定义好的，不用动态分配。
+在x86上，如果采用默认的并口地址0x378，则默认的irq号为7。
+
+
+
+(4)中断处理程序的实现
+中断处理程序是在中断期间运行的，因此行为要受到一些限制。主要有：
+a.不能和用户空间交换数据，因为此时不是在进程的上下文
+b.不能做任何可能发生休眠的操作。例如wait_event，使用不带GFP_ATOMIC标志的内存分配操作，或者锁住一个信号量等
+c.不能调用schedule()函数
+
+在中断处理函数的结尾常常要清除硬件寄存器中的中断挂起位(pending)，如果不清除这一位，硬件就不会产生新的中断。
+中断处理程序通常会标记为static，因为它从来不会被别的文件中的代码直接调用。中断处理程序是无需重入的。
+
+“可重入代码(reentrant-code)”是指这样的代码：
+代码中不使用任何全局变量来记录状态信息。
+状态信息既可以保存在驱动程序的局部变量中(使用进程的内核态堆栈)，也可以保存在filp的私有数据结构(private_data)中。
+由于同一个filp有时会被两个进程共享，所以最好使用局部变量。但局部变量不能太多，因为内核栈很有限。
+
+外围设备中断的常见任务是唤醒在该设备上睡眠的进程，这些进程通常在等待设备产生新的数据。
+
+
+(5)中断处理函数的参数和返回值
+a.中断处理函数的原型
+irqreturn_t (*handler)(
+      int irq, 
+      void *dev_id)
+
+irq:中断的irq号。可以在中断处理程序中通过printk等输出中断号信息。
+dev_id: 驱动程序的私有数据。通常传入设备结构体
+
+b.返回值
+返回值是一个特殊类型irqreturn_t。
+如果中断处理程序发现设备确实产生了一个中断，则返回IRQ_HANDLED，否则返回IRQ_NONE(针对中断号共享的情况)。
+
+
+
+(7)中断上下文
+当执行一个中断处理程序或下半部时，内核处于中断上下文(interruptcontext)。
+
+在进程上下文中，内核代表进程运行，例如执行系统调用或运行内核线程。
+而在中断上下文中，和具体的进程没有什么关系，current指向当前被中断的进程，这有可能是任意进程。
+因为没有进程背景，所以中断上下文不可以睡眠。
+
+中断上下文应迅速简洁，尽量不要用循环去处理繁重的工作。
+
+通常，中断处理程序和被它所中断的程序共享内核栈。
+
+
+
+(8)中断控制函数和中断状态查询函数
+为了保证内核数据的同步，系统在某些时候需要关闭某条中断线，或是把某个cpu的所有的中断都屏蔽掉。
+内核提供了一些函数用于这类操作，定义在<asm/system.h>和<asm/irq.h>中
+
+a.禁止当前处理器的中断1
+local_irq_disable(); /* 禁止中断..*/
+...
+local_irq_enable(); /* 启用中断 */
+禁止当前处理器的中断。但如果在中断已经禁止的情况下调用这些函数，可能带来潜在的危险
+
+b.禁止当前处理器的中断2
+unsigned long flags;
+local_irq_save(flags); /* 在禁止中断的同时保存当前的中断状态 */
+...
+local_irq_restore(flags); /* 在启用中断的同时恢复以前的中断状态 */
+
+这两个函数必须在同一个中调用。这几个函数既可以在中断上下文中调用，也可以在进程上下文中调用
+
+c.禁止所有的中断
+cli();
+sti();
+sti和cli函数用于启用和禁止所有处理器上的中断。内核在2.5版已经把这两个函数去掉了。
+如果使用这两个函数的话，对共享数据的保护将变得很简单，但对性能的影响很大。
+因此，2.6版强迫驱动开发人员使用锁机制保护共享数据。
+
+d.根据IRQ号启用和禁用中断
+在头文件<asm/irq.h>中声明：
+void disable_irq(unsigned int irq);
+根据irq禁止某个中断线。只有在当前正在执行的所有中断处理程序完成后才返回。
+
+void disable_irq_nosync(unsigned int irq);
+不会等待当前中断处理程序执行完毕
+
+void enable_irq(unsigned int irq);
+开启中断。
+
+这些函数的调用可以嵌套，但enable和disable的次数必须要一致。可以在中断和进程上下文中调用。
+
+e.判断当前的中断状态
+#include <asm/system.h>
+int irqs_disable(void);
+如果本地处理器上的中断被禁止，则返回非0值，否则返回0
+
+#include <asm/hardirq.h> /* 包括<linux/interupt.h>就可以 */
+int in_interrupt(void);
+如果内核处于中断上下文，则返回非0，否则返回0
+
+
+
+-------------------------------------
+/*****************
+ * 中断的下半部
+ *****************/
+
+(1)为什么中断处理流程要分成两部分
+中断处理程序是内核必不可少的一部分，但由于一些局限，它只能完成整个中断处理流程的前半部分.
+这些局限包括：
+*中断处理程序以异步方式执行，可能会打断其他重要代码(甚至其他中断程序的执行)。因此，中断处理程序应该执行的越快越好
+*中断处理程序会引起其他中断的屏蔽(同级别的或所有中断)，这个屏蔽时间必须短
+*中断处理程序需要对硬件操作，通常有很高的时间要求，需要尽快响应
+*中断处理程序不在进程上下文中运行，所以不能阻塞，也就不能调用那些可能引起阻塞的函数
+
+因此，中断处理程序必须快速，异步，简单。
+那些中断处理流程中对时间要求不严格的部分，应该推后到中断被激活后运行。
+
+这样，整个中断处理流程就被分成两部分，或叫两半。第一个部分是中断处理程序(上半部)，就是我们前面讲的通过request_irq注册的函数；
+第二个部分是下半部bottom half.
+
+
+(2)下半部的特点
+下半部的任务就是执行与中断处理密切相关但中断处理程序本身不执行的工作。
+理想情况下，我们希望把尽可能多的工作都交给下半部去做。
+这样中断处理程序就能尽可能短，从而尽快响应硬件的中断并解除对其他中断的屏蔽。
+
+如何划分上下半部：
+*如果一个任务对时间非常敏感，放在中断处理程序中执行
+*如果一个任务和硬件相关，放在中断处理程序中执行
+*如果一个任务要保证不被其他中断(特别是相同的中断打断)，放在中断处理程序中执行
+*其他所有任务，考虑放在下半部执行
+
+为什么要用下半部：
+中断处理程序运行时当前的中断会被屏蔽，如果处理程序是IRQF_DISABLED类型的，还会禁止所有本地中断。
+
+如果这个中断处理程序运行10秒钟，那么系统看上去就死机了10秒。所以，缩短中断被屏蔽的时间对系统的响应能力和性能都至关重要。
+
+下半部仅仅是强调不是马上执行，通常下半部在中断处理程序一返回就会马上运行，下半部的关键在于当他们运行的时候，允许响应所有的中断。
+
+实现中断处理程序的方法只有一种，而下半部有多种实现方法。
+在linux的发展过程中曾经出现过多种下半部的实现，极容易引起混淆。主要介绍2.6支持的下半部实现方法。
+
+2.6中支持的下半部：
+a.软中断(softirq)
+不能睡眠
+b.tasklet
+基于软中断实现，不能睡眠
+c.工作队列(work queue)
+基于内核线程，可以睡眠，可以调度，但不能访问用户空间
+
+
+
+(3)软中断的实现
+软中断(softirqs)和系统调用时提到的软件中断(用INT 0x80或SWI实现)不是一个概念。 softirqs是一种延迟执行的方法。
+
+软中断是在编译期间静态分配的，共有32个。只有在对性能要求非常高的情况下才需要使用软中断(例如网络处理)。
+软中断可以在所有的cpu上同时进行，即使是两个完全相同的软中断也可以。
+一个软中断不会抢占另外一个软中断，实际上，唯一可以抢占软中断的是中断处理程序。
+软中断的这种实现方式对任何共享数据都要求严格的锁保护。
+
+a.软中断的处理程序
+软中断在kernel/softirq.c中实现，用softirq_action结构表示，定义在<linux/interrupt.h>中：
+struct softirq_action {
+	/* 待执行的函数 */
+	void (*action) (struct softirq_action *); 
+	/* 传递给函数的参数 */
+	void *data;
+}
+
+在kernel/softirq.c中定义了一个包含32个结构体的数组：
+static struct softirq-action softirq_vec[32];
+每个被注册的软中断都占据该数组的一项，因此最多可能有32个软中断。
+当前只用了其中的6个，见linux/interrupt.h。
+软中断保留给系统中对时间要求最严格和最重要的下半部使用。目前只有网络和SCSI直接使用软中断。
+
+
+b.执行软中断
+软中断在执行前需要先触发(通常在中断处理程序退出前触发)。
+在下列地方，待处理的软中断会被检查和执行：
+*从一个硬件中断代码返回时
+*在ksoftirqd内核线程中
+*在显式检查和执行待处理的软中断的代码中，如网络子系统(实际上，可以在软中断的处理函数中重新触发自己)
+
+所有的软中断都通过do_softirq()执行，核心内容如下；
+u32 pending = softirq_pending(cpu);
+
+if(pending){
+	struct softirq_action *h = softirq_vec;
+	
+	softirq_pending(cpu) = 0;
+	
+	do{
+		if(pending & 1)
+			h->action(h);
+		h++;
+		pending >>=1;
+	}while(pending);
+/* 局部变量pending保存了要处理的软中断 */
+
+
+
+(4)如何加入自己的软中断
+a.添加声明
+在编译期间，通过<linux/interrupt.h>中定义的枚举类型来静态地声明软中断。
+HI_SOFTIRQ	0(优先级) 
+优先级高的tasklet
+TIMER_SOFTIRQ	1
+定时器的下半部
+NET_TX_SOFTIRQ	2
+发送网络数据包
+NET_RX_SOFTIRQ	3
+接收网络数据包
+SCSI_SOFTIRQ	4
+SCSI的下半部
+TASKLET_SOFTIRQ	5
+tasklet
+
+根据优先级决定我们自己软中断的在枚举类型列表中的加入位置
+
+b.注册软中断
+如：
+open_softirq(NET_TX_SOFTIRQ, net_tx_action, NULL);
+
+c.触发软中断
+raise_softirq(NET_TX_SOFTIRQ);
+最常见的情况是在中断处理程序中触发软中断
+
+例子可见网络部分的源代码
+
+(5)tasklet的实现
+tasklet是通过软中断实现的，所以它们本身也是软中断。
+takslet和软中断的不同点在于它可以是动态创建的，不同的tasklet可以在不同的处理器上同时运行，但相同的不可以。
+
+a.其结构体在<linux/interrupt.h>中定义：
+struct tasklet_struct{
+	struct tasklet_struct *next; /*链表中的下一个tasklet*/
+	unsigned long state; /*tasklet的状态 */
+	atomic_t count; /* 引用计数器 */
+	void (*func) (unsigned long); /* tasklet处理函数 */
+	unsigned long data; /* 给tasklet处理函数的参数 */
+}
+state: 0或TASKLET_STATE_SCHED
+count: 不为0则tasklet 被禁止, 为0时tasklet 激活
+
+b.调度tasklet
+已调度(schdule)的tasklet(等同于被触发raise的软中断)存放在两个单处理器数据结构中：
+tasklet_vec和tasklet_hi_vec
+这两个是由tasklet构成的链表。
+
+通过tasklet_schedule()和tasklet_hi_schedule()进行调度
+
+
+
+(6)如何创建我们自己的tasklet
+a.声明
+静态声明(见<linux/interrupt.h>)
+DECLARE_TASKLET(name, func, data)
+DECLARE_TASKLET_DISABLED(name, func, data)
+
+动态声明
+struct tasklet_struct *t = kmalloc(sizeof(tasklet_struct), GFP_KENEL);
+tasklet_init(t, tasklet_handler, dev);
+
+b.编写自己的tasklet处理程序
+void tasklet_handler(unsigned long data){ ; }
+tasklet不能睡眠，且运行在开中断时。要注意对共享数据的保护。
+
+c.调度自己的tasklet
+通常在中断处理函数结束前进行调度：
+tasklet_schedule(&my_tasklet);
+
+如果一个tasklet在调度后但还没有运行前又被调度了，第二次调度作废，tasklet只运行一次。
+为了更好地利用cache，一个tasklet总在调度它的cpu上运行。
+
+d.其他的tasklet处理函数
+tasklet_disable()
+tasklet_disable_nosync()
+tasklet_enable()
+tasklet_kill()
+
+
+
+(7)工作队列work_queue的实现
+work_queue是另一种下半部实现方式，它可以把工作推后，交给一个内核线程执行。
+这样，work_queue将在进程上下文中运行，从而允许重新调度甚至睡眠。
+
+如果推后执行的任务需要睡眠，那么就选择work_queue，如果不需要睡眠，那么就选择软中断或tasklet。
+工作队列可以用内核线程替换，但不提倡这样做。
+
+内核中为每个cpu建立了一个默认的工作者线程(worker thread)enents/n.
+单cpu只有enents/0这样一个线程，而双cpu会多一个enents/1。
+许多驱动都把自己的下半部work_queue交给这个默认线程处理。
+如果下半部要完成的工作对性能要求比较严格，也可以创建自己的工作队列。
+
+工作队列在kernel/workqueue.c中实现
+
+
+
+(8)使用默认的工作队列
+<linux/workqueue.h>
+
+a.创建我们要完成的工作(work_struct)
+静态
+DECLARE_WORK(name, void(*func) (void *));
+动态
+struct work_struct *mywork = kmalloc(...);
+INIT_WORK(struct work_struct *mywork, void(*func) (void *));
+
+b.提供工作队列的处理函数
+void work_handler(void *data)
+该函数会由一个工作者线程执行，运行在进程上下文。
+默认情况下，可以响应中断，并且不持有任何锁。
+如果需要，函数可以睡眠。
+注意！尽管允许在进程上下文，但不能访问用户空间。
+
+d.对工作进行调度
+我们的工作将被提交给默认的events工作线程，调用:
+    schedule_work(&mywork);
+work马上会被调度，一旦其所在的cpu上的enents线程被唤醒，它就会被执行。
+
+schedule_delayed_work(&work, delay);
+延迟delay个时钟节拍后执行工作
+
+e.刷新工作队列
+void flush_scheduled_work(void);
+函数会一直等待，直到队列中所有的对象(除了那些需要延迟的)都被执行以后才返回。
+可能在模块卸载时调用。
+
+f.取消延迟执行的操作
+int cancel_delayed_work(struct work_struct *work);
+
+
+
+(9)创建我们自己的工作队列
+<linux/workqueue.h>
+
+a.创建新的工作队列
+如果默认的队列不能满足性能要求，可以创建一个新的工作队列和相应的工作者线程。
+每个cpu上都会创建一个工作者线程。
+struct workqueue_struct *create_workqueue(const char *name);
+在每个cpu上创建一个名为name/n的线程
+struct workqueue_struct *create_singlethread_workqueue(const char *name);
+只在当前cpu上创建线程
+
+比如默认的events队列的创建就调用：
+struct workqueue_struct *keventd_wq;
+keventd_wq = create_workqueue("events");
+
+b.创建要完成的工作和工作队列的处理函数和使用events队列是一样的
+
+c.对工作进行调度
+int queue_work(struct workqueue_struct *wq, struct work_struct *work);
+或：
+int queue_delayed_work(struct workqueue_struct *wq, struct work_struct *work, unsigned long delay);
+
+d.刷新指定的工作队列
+flush_work_queue(struct workqueue_struct *wq);
+
+
+(10)如何根据具体情况选择相应的下半部实现机制
+*软中断的执行速度最快,但必须小心处理数据共享. 
+*由于两个同种类型的tasklet不能同时执行(并发)，所以实现起来比软中断要简单。
+*使用最简单的是task queue，但它的开销也最大，因为涉及到内核线程和上下文切换
+
+
+
+作业：
+1.分辨清楚下半部和中断处理程序的关系
+2.区分几种不同的下半部机制，并熟悉用法
+3.自行实现tasklet和work_queue的例子

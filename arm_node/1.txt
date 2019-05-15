@@ -1,0 +1,418 @@
+
+指令集不一样  x86   CISC       ARM   RISC
+
+mkdir   /disk/A9 -p
+
+ls   /disk/A9
+arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz    交叉编译器
+
+
+1.配置交叉编译器
+	1>  解压
+	tar -xvf  arm-linux-gcc-4.5.1-v6-vfp-20120301.tgz
+	==>生成
+	opt
+	
+	2>
+	cp	 opt/*   /opt  -r
+
+	3.ls   /opt/FriendlyARM/toolschain/4.5.1/bin/
+	拷: /opt/FriendlyARM/toolschain/4.5.1/bin/
+	
+	4.编辑文件    ~/.bash_profile
+	
+	如：
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+PATH=$PATH:/opt/FriendlyARM/toolschain/4.5.1/bin/
+
+export PATH
+
+	5.保存退出并且ctl+Alt+backspace(注销)
+
+	6.查看是否已经安装好
+	arm-   tab   tab  是否出现
+	[root@localhost A9]# arm-
+arm-linux-addr2line               arm-none-linux-gnueabi-addr2line
+arm-linux-ar                      arm-none-linux-gnueabi-ar
+arm-linux-as                      arm-none-linux-gnueabi-as
+arm-linux-c++                     arm-none-linux-gnueabi-c++
+arm-linux-cc                      arm-none-linux-gnueabi-cc
+arm-linux-c++filt                 arm-none-linux-gnueabi-c++filt
+arm-linux-cpp                     arm-none-linux-gnueabi-cpp
+arm-linux-g++                     arm-none-linux-gnueabi-g++
+arm-linux-gcc                     arm-none-linux-gnueabi-gcc
+arm-linux-gcc-4.5.1               arm-none-linux-gnueabi-gcc-4.5.1
+arm-linux-gccbug                  arm-none-linux-gnueabi-gccbug
+arm-linux-gcov                    arm-none-linux-gnueabi-gcov
+arm-linux-gprof                   arm-none-linux-gnueabi-gprof
+arm-linux-ld                      arm-none-linux-gnueabi-ld
+arm-linux-ldd                     arm-none-linux-gnueabi-ldd
+arm-linux-nm                      arm-none-linux-gnueabi-nm
+arm-linux-objcopy                 arm-none-linux-gnueabi-objcopy
+arm-linux-objdump                 arm-none-linux-gnueabi-objdump
+arm-linux-populate                arm-none-linux-gnueabi-populate
+arm-linux-ranlib                  arm-none-linux-gnueabi-ranlib
+arm-linux-readelf                 arm-none-linux-gnueabi-readelf
+arm-linux-size                    arm-none-linux-gnueabi-size
+arm-linux-strings                 arm-none-linux-gnueabi-strings
+arm-linux-strip                   arm-none-linux-gnueabi-strip
+	成功
+
+2.编译uboot
+	cd  /disk/A9
+	ls  uboot_tiny4412-master.zip
+	1>解压
+	unzip   uboot_tiny4412-master.zip
+	==>  uboot_tiny4412-master
+	
+	2>
+	cd    uboot_tiny4412-master
+
+	3>
+	make clean
+	
+	4> 
+	make tiny4412_config
+
+	5>
+	make
+	
+	==>
+
+	ELF文件
+	u-boot   u-boot.bin   u-boot.map
+	
+3.做启动盘
+	D盘
+	1>
+	先将SD卡插入电脑
+	有可能会自动挂载，解挂   umount /media/*
+
+	2>
+	fdisk -l  查看SD卡的盘符 确定是/dev/sdb /dev/sdc /dev/mmcblk0p1
+
+	3>确定盘符之后就可以D盘
+	bs ==>  blocksize  每次D的大小
+	count ==> D的次数
+
+	dd  if=/dev/zero of=/dev/'盘符'    bs=1024  count=102400  
+	
+	4>fdisk -l 确定该磁盘的分区已经被D掉
+	
+	做盘
+	5>
+	cd /disk/A9/uboot_tiny4412-master
+	确保在该目录下有  u-boot.bin  文件 如果没有返回2编译uboot
+
+	6.
+	cd  sd_fuse
+	make
+	cd  tiny4412
+	
+	//不可以写具体的哪个分区， 要写整个磁盘
+	./sd_fusing.sh    '盘符'   (注意：整个) 如: sdb  sdc mmcblk0
+
+4.安装minicom
+	1>
+	yum -y install minicom
+
+	2>
+	minicom -s
+	==>
+	
+            +-----[configuration]------+
+            | Filenames and paths      |
+            | File transfer protocols  |
+            | Serial port setup        |  ==>
+            | Modem and dialing        |
+            | Screen and keyboard      |
+            | Save setup as dfl        |
+            | Save setup as..          |
+            | Exit                     |
+            | Exit from Minicom        |
+            +--------------------------+
+
+	==>
+
+    +--------------------------------------------+
+    | A -    Serial Device      : /dev/ttyUSB0   |
+    | B - Lockfile Location     : /var/lock      |
+    | C -   Callin Program      :                |
+    | D -  Callout Program      :                |
+    | E -    Bps/Par/Bits       : 115200 8N1     |
+    | F - Hardware Flow Control : No             |
+    | G - Software Flow Control : No             |
+    |                                            |
+    |    Change which setting?                   |
+    +--------------------------------------------+
+            | Screen and keyboard      |
+            | Save setup as dfl        |
+            | Save setup as..          |
+            | Exit                     |
+            | Exit from Minicom        |
+            +--------------------------+
+
+	配置成跟上图一致
+	
+	
+            +-----[configuration]------+
+            | Filenames and paths      |
+            | File transfer protocols  |
+            | Serial port setup        |
+            | Modem and dialing        |
+            | Screen and keyboard      |
+            | Save setup as dfl        |  ==> 保存成默认
+            | Save setup as..          |
+            | Exit                     |
+            | Exit from Minicom        |
+            +--------------------------+
+
+	最终退出
+	minicom设置完毕
+	如果要退出minicom    ctl+a  q  退出minicom
+	
+	启动板子 
+	1> 先将烧好的SD卡插入板子
+	2> 将OM角(开机启动选择开关NAND  SD)拔到SD卡启动
+	3> 上电(启动板子)
+
+minicom中会出现 :
+U-Boot 2010.12 (Dec 23 2015 - 11:42:34) for TINY4412
+
+
+CPU:    S5PC220 [Samsung SOC on SMP Platform Base on ARM CortexA9]
+        APLL = 1400MHz, MPLL = 800MHz
+
+Board:  TINY4412
+DRAM:   1023 MiB
+
+vdd_arm: 1.2
+vdd_int: 1.0
+vdd_mif: 1.1
+
+BL1 version:  N/A (TrustZone Enabled BSP)
+
+
+Checking Boot Mode ... SDMMC
+REVISION: 1.1
+MMC Device 0: 3724 MB
+MMC Device 1: 3728 MB
+MMC Device 2: N/A
+*** Warning - using default environment
+
+Net:    No ethernet found.
+Hit any key to stop autoboot:  0 
+TINY4412 # 
+
+
+到这里uboot成功烧写到SD卡上
+
+5.编译内核
+
+	cd   /disk/A9
+	确保目录下有内核文件   linux-3.5-20150929.tgz
+	1>  解压
+	tar -xvf   linux-3.5-20150929.tgz
+	==>
+	linux-3.5
+
+	2>  
+	cd linux-3.5
+
+	3>
+	cp   tiny4412_linux_defconfig     .config 
+	
+	4>
+	make -j4
+
+	最终会生成内核镜像文件
+
+	ls  /disk/A9/linux-3.5/arch/arm/boot/zImage
+
+	如果有此文件生成，则编译完成。
+
+
+6.下载内核并且尝试启动内核
+
+	minicom:
+	dnw 0x40008000
+
+
+	pc:
+	cd /disk/A9/linux-3.5
+	dnw  arch/arm/boot/zImage
+
+	minicom:
+	bootm 0x40008000
+
+	如果看到minicom中有一大推数据喷出来,并且有四只企E
+
+
+7.两种方式启动内核(都是烧在SD卡上)
+	1>
+	插入SD卡  解挂   umount  /media/*
+
+	2>
+	fdisk -l    查看SD卡的盘符
+	
+	3>
+	dd if=/dev/zero  of=/dev/‘盘符’   bs=1024  count=10240
+
+	4>
+	直接分区
+	
+	fdisk   /dev/sdb
+
+	5>
+	第一个主分区必须偏移（起始地址5）
+	最主要分两个分区  第一个分区  FAT32    第二个分区  EXT3
+	
+	6>
+	格式化两个分区
+	例如：
+		ls /dev/sdb*   ==>  sdb1  sdb2
+	
+		mkfs.vfat  /dev/sdb1
+		mkfs.ext3  /dev/sdb2
+
+
+	6>
+	把内核镜像拷到第一个分区
+		mount  /dev/sdb1  /mnt	
+		cp  /disk/A9/linux-3.5/arch/arm/boot/zImage   /mnt
+		umount /mnt
+		umount /media*
+	
+	7>
+	将SD卡插入板中    开机进入minicom模式
+
+	8>
+	fatls mmc 0:1  /
+	查看输出中是否有zimage
+	
+	9> 将第一个分区中的zImage加载到内存
+	fatload mmc 0:1 0x40008000 zImage 
+
+	10> 将内存中的zImage写到SD卡上 用movi的形式
+	movi write kernel 0 0x40008000
+
+	11> 设置bootcmd先启动内核
+	set bootcmd "movi read kernel 0 0x40008000;bootm 0x40008000"
+	save
+	reset 
+	看是否内核启动
+
+	12> 设置另一个bootcmd
+	set movibootcmd $bootcmd
+	set bootcmd "fatload mmc 0:1 0x40008000 zImage;bootm 0x40008000"
+	save
+	reset
+	看是否内核启动
+	
+	
+//*************************************************************************
+
+8.网络文件系统
+	1>
+	cd /disk/A9
+	ls  busybox-1.17.2-20101120.tgz
+	tar -xvf  busybox-1.17.2-20101120.tgz
+
+
+	2>
+	cd  /disk/A9/busybox-1.17.2
+	make clean
+	make defconfig
+	make menuconfig     注意: 窗体大小必须大于19行80列
+	如果还出错，报curses.h的错误
+	yum -y install  ncurses*
+
+	make menuconfig
+	
+	选择:
+	    Busybox Settings  ---> 
+		    Build Options  ---> 
+			 [*]   Build BusyBox as a position independent executable (NEW)  
+			 [*] Build BusyBox as a static binary (no shared libs) 
+			 (arm-linux-) Cross Compiler prefix
+
+		退出保存
+
+	3>
+	make 
+	make install
+
+	4>执行创建文件系统的角本
+	cd /disk/A9   
+	./mkfs.sh  
+
+	5>
+	关掉防火墙   setup
+	setenforce  0
+	service NetworkManager stop
+	chkconfig NetworkManager off
+	service iptables stop
+	chkconfig iptables off
+
+
+	6>
+	查看是否已经发布文件系统
+	showmount -e 192.168.88.xx(自己PC的IP)
+	如果看到:
+	[root@localhost busybox-1.17.2]# showmount -e 192.168.88.254
+	Export list for 192.168.88.254:
+	/disk/A9/filesystem *
+
+	PC机操作完毕
+
+	板子端
+	minicom:
+		
+	开机
+	1> 设置IP
+	serverip    主机IP
+	ipaddr      板子IP
+	gatewayip   网关
+	
+	set serverip 192.168.88.254
+	set ipaddr 192.168.88.200         (自已定义)
+	set gatewayip 192.168.88.1
+
+	save
+
+	set bootargs "root=/dev/nfs nfsroot=192.168.88.254:/disk/A9/filesystem ip=192.168.88.200 console=ttySAC0,115200 lcd=S70 ctp=2"
+	save
+
+	
+	reset
+	看是否进入网络文件系统 
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

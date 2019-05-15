@@ -1,0 +1,472 @@
+/******************
+ * 高级字符设备驱动
+ ******************/
+ 
+(1)ioctl
+除了读取和写入设备外，大部分驱动程序还需要另外一种能力，
+即通过设备驱动程序执行各种类型的硬件控制。比如弹出介质，改变波特率等等。
+这些操作通过ioctl方法支持，该方法实现了同名的系统调用。
+
+在用户空间，ioctl系统调用的原型是：
+int ioctl(int fd, unsigned long cmd, ...);
+fd: 打开的设备文件描述符
+cmd: 命令
+第三个参数：根据不同的命令，可以是整数或指针，也可以没有。
+采用"..."的方式只是用于避免编译器报错。
+
+
+驱动程序的ioctl方法原型和用户空间的版本有一些不同：
+int (*ioctl) (struct inode *inode,    
+      struct file *filp, 
+      unsigned int cmd,
+      unsigned long arg);
+inode/filp: 对应用户空间的fd
+cmd: 对应用户空间传来的cmd
+arg: 对应传来的cmd参数
+
+大多数ioctl的实现中都包括一个switch语句，用于根据cmd参数选择对应的操作。
+用户空间和内核空间的命令号要一致。
+
+
+(2)选择ioctl的命令号
+在编写ioctl的代码之前，要选择对应不同命令的编号。
+不能简单地从0或1开始选择编号，因为linux要求这个命令号应该在系统范围内唯一。
+linux内核采用约定方法为驱动程序选择ioctl号，可以参考include/asm/ioctl.h和
+Documentation/ioctl-number.txt。
+
+一个ioctl号为32位，linux将其分成4个部分，
+构建一个ioctl号码所需要的宏都定义在<linux/ioctl.h>：
+type
+8位幻数。其实就是为你的驱动选定一个号码。参考ioctl-number.txt
+
+number
+8位序数。
+
+direction
+2位。定义了数据的传输方向。
+如_IOC_NONE(没有数据传输)，_IOC_READ|_IOC_WRITE(双向数据传输)。
+注意这个方向是对用户而言的，所以IOC_READ意味着从设备读取数据，驱动应该向用户空间写入数据。
+
+size
+14位。所涉及的用户数据大小。
+
+可以采用<linux/ioctl.h>中的宏构建一个ioctl号
+_IO(type, nr)
+_IOR(type,nr,datatype)
+_IOW(type,nr,datatype)
+
+返回值
+对于系统调用来说，正的返回值是首保护的，而负值被认为是一个错误，并被用来设置用户空间的error变量。
+如果在调用ioctl方法时传入了没有定义的ioctl号，则系统返回的错误值为-ENVAL和-ENOTTY
+
+
+(3)阻塞和非阻塞型操作
+对于read和write等操作，默认的操作是阻塞型的，其特性是：
+*如果一个进程调用了read但还没有数据可读，则此进程必须阻塞。
+数据到达时进程被唤醒，并把数据返回给调用者，即使数据数目少于count参数指定的数据也会返回。
+*如果一个进程调用了write但缓冲区没有空间，则此进程必须阻塞，
+而且必须休眠在与读进程不同的等待队列上。
+当向硬件设备写入一些数据，从而腾出了部分输出缓冲区后，进程即被唤醒，write调用成功。
+
+有时我们希望改变这一特性，将其改为非阻塞型的，
+这样，无论设备是否有数据可读写，read/write方法都马上返回。
+如果希望设定某个文件是非阻塞的，则应设定filp->f_flags的O_NONBLOCK标志。
+处理非阻塞型文件时，应用程序调用stdio函数必须非常小心，
+因为很容易把一个非阻塞型的返回误认为是EOF，所以必须始终检查errno。
+
+
+
+(4)异步通知
+a.异步通知的作用
+大多数时候阻塞型和非阻塞型操作的组合以及select方法可以有效查询设备，
+但有时候用这种技术效率就不高了。
+在面对某些随机或很少出现的情况时(如通过键盘输入CTRL+C)，
+则需要采用异步通知(asynchronous notification)。
+
+b.用户空间程序如何启动异步通知
+为了启动文件的异步通知机制，用户程序必须执行两个步骤:
+01.指定一个进程作为设备文件的 "属主(owner)"。
+当进程使用fcntl系统调用执行F_SETOWN命令时，
+属主进程的进程ID号就被保存在 filp->f_owner中。
+这一步是必需的，目的是让内核知道该通知谁。
+
+02.为了真正启动异步通知机制，用户程序还必须在设备中设置FASYNC标志，
+这是通过fchtl命令F_SETFL完成的。
+
+执行完这两步后，设备文件就可以在新数据到达时请求发送一个SIGIO信号。
+该信号被送到存放在file->f_owner中的进程（如果是负值就是进程组）。
+
+不是所有的设备都支持异步通知，应用程序通常假设只有套接字和终端才有异步通知能力.
+
+
+
+
+(5)驱动程序中如何实现异步通知
+a.用户空间操作在内核的对应
+01.当设定F_SETOWN时，对file->f_owner赋值
+
+02.执行F_SETFL以启动FASYNC时，调用驱动程序的fasync方法。
+只要filp->f_flags中的FASYNC标志
+(文件打开时，默认为清除)发生了变化，就会调用该方法。
+
+03.当数据到达时，由内核发送一个SIGIO信号给所有注册为异步通知的进程
+
+b.在设备结构体中加入fasync_struct的指针
+该结构在<linux/fs.h>中定义：
+struct fasync_struct {
+	int	magic;
+	int	fa_fd;
+	struct	fasync_struct *fa_next;
+	struct	file *fa_file;
+};
+
+c.驱动要调用的两个函数
+这两个函数在<linux/fs.h>中声明。
+定义在/fs/fcntl.c中。
+原型如下：
+01. int fasync_helper(int fd, struct file *filp, int mode, struct fasync_struct **fa);
+
+02. void kill_fasync(struct fasync_struct **fa, int sig, int band);
+
+当一个打开文件的FASYNC标志被修改，
+调用fasync_helper以便从相关的进程列表中增加
+或删除文件，
+而kill_fasync在数据到达时通知所有相关进程。
+
+
+d.例子
+01.在设备类型中定义fasync_struct动态数据结构
+struct my_pipe {
+    	struct fasync_struct *async_queue; /* 异步读取结构 */
+	......
+};
+
+02.驱动中的fasync函数调用fasync_helper
+
+int my_fasync(fasync_file fd, struct file *filp, int mode)
+{
+    	my_pipe *dev = filp->private_data;
+    	return fasync_helper(fd, filp, mode, &dev->async_queue);
+}
+
+03.符合异步通知条件时调用kill_fasync
+异步通知的是一个读进程，所以要用write发送kill_fasync。
+调用kill_fasync向所有注册在设备上的异步队列async_queue中的进程发送信号SIGIO。
+
+ssize_t my_write(struct file *filp, const char *buf, size_t count,
+                loff_t *f_pos)
+{
+	......
+	if (dev->async_queue)
+        kill_fasync(&dev->async_queue, SIGIO, POLL_IN); 
+        ......
+}
+
+04.关闭文件时必须调用fasync方法
+当关闭文件时必须调用fasync方法，以便从活动的异步读进程列表中删除该文件。
+在release中调用：
+	scull_p_fasync(-1, filp, 0);
+
+
+
+-------------------------------------
+/*****************
+ * proc文件系统
+ *****************/
+
+(1)/proc文件系统的特点和/proc文件的说明
+/proc文件系统是一种特殊的、由软件创建的文件系统，内核使用它向外界导出信息，/proc系统只存在内存当中，而不占用外存空间。
+/proc下面的每个文件都绑定于一个内核函数，用户读取文件时，该函数动态地生成文件的内容。也可以通过写/proc文件修改内核参数
+
+/proc目录下的文件分析
+/proc/$pid 
+关于进程$pid的信息目录。每个进程在/proc 下有一个名为其进程号的目录。例：
+$>strings -f /proc/[0-9]*/cmdline
+
+/proc/cmdline
+内核启动的命令行
+
+/proc/cpuinfo 
+处理器信息，如类型、制造商、型号和性能。 
+
+/proc/devices 
+列出字符和块设备的主设备号，以及分配到这些设备号的设备名称
+
+/proc/dma 
+显示当前使用的DMA通道。 
+
+/proc/filesystems 
+列出了可供使用的文件系统类型，通常是编入内核的文件系统类型，但可以通过模块加入新的类型
+
+/proc/interrupts
+显示使用的中断号，中断名称，以及这些中断从系统启动后产生的次数
+
+/proc/ioports 
+当前使用的I/O端口。 
+
+/proc/kallsyms 
+内核符号表。安装新的模块后，会在这里体现出来 
+
+/proc/kcore 
+系统物理内存映象。与物理内存大小完全一样，但不实际占用这么多内存；(记住：除非拷贝到文件中，/proc下没有任何东西占用任何磁盘空间) 
+
+/proc/kmsg 
+内核输出的消息。也被送到syslog。 
+
+/proc/loadavg 
+系统的平均负载，前3个是过去1分钟，5分钟，15分钟的负载，然后是正在运行的任务数和总任务数，最后是上次运行的进程号
+
+/proc/meminfo 
+存储器使用信息，包括物理内存和swap。 
+
+/proc/modules 
+当前加载了哪些核心模块。 
+
+/proc/partitions
+系统当前挂载硬盘的分区信息
+
+/proc/pci
+系统的pci总线信息
+
+/proc/net 
+网络协议状态信息。 
+
+/proc/self 
+到查看/proc的程序的进程目录的符号连接。当2个进程查看/proc时，是不同的连接。这主要便于程序得到它自己的进程目录。
+
+/proc/slabinfo
+系统中slab缓存的分配信息
+
+/proc/stat 
+系统的一些状态信息
+
+/proc/swaps
+系统采用的交换区信息
+
+/proc/sysrq-trigger
+用于启动sysRq键
+$>echo 1 > sysrq-trigger
+
+/proc/uptime
+系统启动的时间长度和空闲的时间长度。供uptime使用
+
+/proc/version 
+内核版本
+
+
+(2)自行实现一个/proc文件
+需包含头文件<linux/proc_fs.h>，函数定义在/fs/proc/generic.c
+
+a.在/proc下创建文件
+调用create_proc_read_entry在/proc下创建新的文件
+struct proc_dir_entry *create_proc_read_entry(
+        const char *name,
+        mode_t mode, 
+        struct proc_dir_entry *base,
+        read_proc_t *read_proc, 
+        void * data)
+
+b.卸载/proc下的文件
+采用remove_proc_entry卸载proc文件
+void remove_proc_entry(
+        const char *name, 
+        struct proc_dir_entry *parent);
+
+c.定义返回数据的函数
+在进程读取/proc文件时，内核会分配一个内存页(即PAGE_SIZE个字节的内存块)，驱动将要写的数据通过这个内存页返回到用户空间。
+typedef int (read_proc_t)(char *page, char **start, off_t off,
+int count, int *eof, void *data);
+ 
+
+
+/********************
+ * 内核中链表的应用
+ ********************/
+
+(1)介绍
+在Linux内核中使用了大量的链表结构来组织数据，包括设备列表以及各种功能模块中的数据组织。这些链表大多采用在include/linux/list.h实现的一个相当精彩的链表数据结构。
+
+链表数据结构的定义很简单:
+struct list_head {
+  struct list_head *next, *prev;
+};
+
+list_head结构包含两个指向list_head结构的指针prev和next，内核的数据结构通常组织成双循环链表。
+
+和以前介绍的双链表结构模型不同，这里的list_head没有数据域。在Linux内核链表中，不是在链表结构中包含数据，而是在数据结构中包含链表节点。
+如：
+struct my_struct{
+  struct list_head list;
+  unsigned long dog;
+  void *cat;
+};
+
+linux中的链表没有固定的表头，从任何元素开始访问都可以。遍历链表仅仅需要从某个节点开始，沿指针访问下一个节点，直到又重新回到最初这个节点就可以了。每个独立的节点都可以被称作是链表头。
+
+
+(2)链表的初始化
+a.静态
+如果在编译时静态创建链表，并且直接引用它，如下：
+struct my_struct mine={
+  .lost = LIST_HEAD_INIT(mine.list);
+  .dog = 0,
+  .cat = NULL
+};
+或
+static LIST_HEAD(fox);
+/*等于struct list_head fox = LIST_HEAD_INIT(fox); */
+
+b.动态
+struct my_struct *p;
+p = kmalloc(GFP_KERNEL, sizeof(my_struct));
+p->dog = 0;
+p->cat = NULL;
+INIT_LIST_HEAD(&p->list);
+
+
+(3)操作链表
+内核提供了一组函数来操作链表。
+注意！这些函数都使用一个或多个list_head结构体指针作参数。定义在<linux/list.h>
+
+a.增加节点
+list_add(struct list_head *new, 
+          struct list_head *head);
+向指定链表的head节点后面插入new节点
+          
+b.把节点增加到链表尾
+list_add_tail(struct list_head *new, 
+          struct list_head *head);
+向指定链表的head节点前面插入new节点
+          
+c.从链表删除一个节点
+list_del(struct list_head *entry);
+将entry从链表中移走
+
+d.把节点从一个链表移到另一个链表
+list_move(struct list_head *list, 
+          struct list_head *head);
+从一个链表中摘除list项，然后将其插入head的后面
+
+e.list_empty(struct list_head *head);
+链表为空返回非0值，否则返回0
+
+f.合并链表
+list_splice(struct list_head *list, 
+            struct list_head *head);
+注意！新的链表不包括list节点
+
+
+
+(4)遍历链表
+链表本身不重要，访问到那个包含链表的结构体才重要
+
+a.从链表指针获得包含该链表的结构体的指针
+list_entry(struct list_head *ptr,
+           type_of_struct, 
+           field_name);
+ptr: list_head指针
+type_of_struct: 包含ptr的结构体类型
+field_name: 结构体中链表字段的名字
+如：
+my_struct *p = (list_head *ptr, my_struct, list);
+
+b.遍历链表
+list_for_each(struct list_head *cursor,
+              struct list_head *list);
+常常和list_entry配套使用
+注意！用list_for_each遍历时，不包括头节点
+
+
+c.遍历的同时获得大结构体指针
+list_for_each_entry(type *cursor, 
+           struct list_head *list,
+           member);
+
+d.遍历链表的同时释放每个被遍历到的节点
+list_for_each_entry_safe(type *cursor, 
+          type *tmp;
+          struct list_head *list,
+          member);
+           
+           
+
+
+/******************
+ * 内核的调试技术
+ ******************/
+ 
+(1)内核源代码中的一些与调试相关的配置选项
+内核的配置选项中包含了一些与内核调试相关的选项，都集中在"kernel hacking"菜单中。包括：
+CONFIG_DEBUG_KERNEL
+使其他的调试选项可用，应该选中，其本身不会打开所有的调试功能。
+...
+
+具体的调试选项说明可参见驱动一书，或通过menuconfig的help说明查看。
+
+
+(2)如何通过宏对printk调试语句进行全局控制
+通过和Makefile配合，可以在c文件中定义属于我们自己的调试语句。
+
+
+
+(3)strace的使用
+strace可以跟踪由用户空间程序所发出的所有系统调用。有用的参数有：
+-t
+显示调用发生的时间
+-T
+显式调用所花费的时间
+-e
+限定被跟踪的系统调用类型，如"-e execve"
+-f
+跟踪所有子进程
+-p
+跟踪特定进程。如"-p 8856"
+-o
+将输出的信息导入特定的文件
+
+strace对于发现系统调用时的细微错误非常有用，尤其是针对多进程的程序，可以通过strace输出的返回值和进程pid获得大量有用信息。如：
+$>strace -o zht.txt -f ./process_create
+
+
+(4)ltrace的使用
+ltrace可以跟踪由用户空间程序所发出的所有动态库函数调用。有用的参数有：
+-t
+显示调用发生的时间
+-T
+显式调用所花费的时间
+-f
+跟踪所有子进程
+-p
+跟踪特定进程
+-o
+将输出的信息导入特定的文件
+
+
+(5)查看oops消息
+oops是内核告知用户有不幸发生的最常用方式。通常，发送完oops后，内核会处于一种不稳定状态。
+在某些情况下，oops会导致内核混乱，而混乱的结果就是死机，这些情况可能包括：
+*oops发生在持有锁的代码中
+*oops发生在和硬件设备通讯的过程中
+*oops在中断上下文中发生
+*oops发生在idle进程(0)或init进程(1)，因为内核没有这两个进程没法工作
+
+如果oops在其他进程运行时发生，内核会杀死该进程并尝试着继续运行。oops的产生有很多原因，包括内存访问越界或非法指令等。
+
+oops包含的最重要讯息是寄存器上下文和回溯线索(call trace)
+
+可以人为引起oops，如：
+if(bad_thing)
+  BUG();
+或 BUG_ON(bad_thing);
+
+
+可以用panic()引发更严重的错误，调用panic()不但会打印错误信息，还会挂起整个系统。只有在极端恶劣的情况下才会使用：
+if(terrible_thing)
+  panic("foo is %ld!\n", foo);
+  
+有些时候，只要打印一下栈信息就可以帮助测试，如dump_stack():
+  if(!debug_check){
+    printk(KERNEL_DEBUG "provide some info\n");
+    dump_stack();
+  }
+  

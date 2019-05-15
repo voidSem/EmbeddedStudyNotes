@@ -1,0 +1,94 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+BGPD0CON	res.h	26;"	d
+BGPD0DAT	res.h	27;"	d
+BGPM4CON	res.h	23;"	d
+BGPM4DAT	res.h	24;"	d
+BGPX3CON	res.h	29;"	d
+BGPX3DAT	res.h	30;"	d
+CON_MASK	s5p_gpio.c	40;"	d	file:
+CON_SFR	s5p_gpio.c	41;"	d	file:
+DAT_MASK	s5p_gpio.c	43;"	d	file:
+DAT_SET	s5p_gpio.c	44;"	d	file:
+DRV_MASK	s5p_gpio.c	49;"	d	file:
+DRV_SET	s5p_gpio.c	50;"	d	file:
+GPD0CON	res.h	15;"	d
+GPD0DAT	res.h	16;"	d
+GPIO_DRV_1X	res.h	85;"	d
+GPIO_DRV_2X	res.h	86;"	d
+GPIO_DRV_3X	res.h	87;"	d
+GPIO_DRV_4X	res.h	88;"	d
+GPIO_DRV_FAST	res.h	89;"	d
+GPIO_DRV_SLOW	res.h	90;"	d
+GPIO_FUNC	res.h	77;"	d
+GPIO_HIGHT	res.h	69;"	d
+GPIO_INPUT	res.h	74;"	d
+GPIO_IRQ	res.h	76;"	d
+GPIO_LOW	res.h	70;"	d
+GPIO_OUTPUT	res.h	75;"	d
+GPIO_PULL_DOWN	res.h	81;"	d
+GPIO_PULL_NONE	res.h	80;"	d
+GPIO_PULL_UP	res.h	82;"	d
+GPM4CON	res.h	12;"	d
+GPM4DAT	res.h	13;"	d
+GPX3CON	res.h	18;"	d
+GPX3DAT	res.h	19;"	d
+PULL_MASK	s5p_gpio.c	46;"	d	file:
+PULL_MODE	s5p_gpio.c	47;"	d	file:
+RATE_MASK	s5p_gpio.c	51;"	d	file:
+RATE_SET	s5p_gpio.c	52;"	d	file:
+U16	res.h	/^typedef   volatile unsigned short U16 ; $/;"	t
+U32	res.h	/^typedef   volatile unsigned int   U32 ; $/;"	t
+U8	res.h	/^typedef   volatile unsigned char  U8 ;$/;"	t
+_RES_H	res.h	3;"	d
+__arch_getb	s5p_gpio.c	13;"	d	file:
+__arch_getl	s5p_gpio.c	15;"	d	file:
+__arch_getw	s5p_gpio.c	14;"	d	file:
+__arch_putb	s5p_gpio.c	17;"	d	file:
+__arch_putl	s5p_gpio.c	19;"	d	file:
+__arch_putw	s5p_gpio.c	18;"	d	file:
+__raw_readb	s5p_gpio.c	27;"	d	file:
+__raw_readl	s5p_gpio.c	29;"	d	file:
+__raw_readw	s5p_gpio.c	28;"	d	file:
+__raw_writeb	s5p_gpio.c	23;"	d	file:
+__raw_writel	s5p_gpio.c	25;"	d	file:
+__raw_writew	s5p_gpio.c	24;"	d	file:
+_start	test.c	/^int _start(void)$/;"	f
+buzzer_configure	basedevice.c	/^int buzzer_configure(void)$/;"	f
+buzzer_off	basedevice.c	/^int buzzer_off(void)$/;"	f
+buzzer_on	basedevice.c	/^int buzzer_on(void)$/;"	f
+con	res.h	/^	unsigned int	con;$/;"	m	struct:s5p_gpio_bank
+dat	res.h	/^	unsigned int	dat;$/;"	m	struct:s5p_gpio_bank
+delay	basedevice.c	/^int delay(unsigned int val)$/;"	f
+drv	res.h	/^	unsigned int	drv;$/;"	m	struct:s5p_gpio_bank
+get_key	basedevice.c	/^int get_key(void)$/;"	f
+gpio_cfg_pin	s5p_gpio.c	/^void gpio_cfg_pin(struct s5p_gpio_bank *bank, int gpio, int cfg)$/;"	f
+gpio_direction_input	s5p_gpio.c	/^void gpio_direction_input(struct s5p_gpio_bank *bank, int gpio)$/;"	f
+gpio_direction_output	s5p_gpio.c	/^void gpio_direction_output(struct s5p_gpio_bank *bank, int gpio, int en)$/;"	f
+gpio_get_value	s5p_gpio.c	/^unsigned int gpio_get_value(struct s5p_gpio_bank *bank, int gpio)$/;"	f
+gpio_set_drv	s5p_gpio.c	/^void gpio_set_drv(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_pull	s5p_gpio.c	/^void gpio_set_pull(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_rate	s5p_gpio.c	/^void gpio_set_rate(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_value	s5p_gpio.c	/^void gpio_set_value(struct s5p_gpio_bank *bank, int gpio, int en)$/;"	f
+key_configure	basedevice.c	/^int key_configure(void)$/;"	f
+led_all_off	basedevice.c	/^int led_all_off(void)$/;"	f
+led_all_on	basedevice.c	/^int led_all_on(void)$/;"	f
+led_configure	basedevice.c	/^int led_configure(void)$/;"	f
+led_flash	basedevice.c	/^int led_flash(void)$/;"	f
+led_run	basedevice.c	/^int led_run(void)$/;"	f
+led_which_on	basedevice.c	/^int led_which_on(int which)$/;"	f
+pdn_con	res.h	/^	unsigned int	pdn_con;$/;"	m	struct:s5p_gpio_bank
+pdn_pull	res.h	/^	unsigned int	pdn_pull;$/;"	m	struct:s5p_gpio_bank
+pull	res.h	/^	unsigned int	pull;$/;"	m	struct:s5p_gpio_bank
+readb	s5p_gpio.c	35;"	d	file:
+readl	s5p_gpio.c	37;"	d	file:
+readw	s5p_gpio.c	36;"	d	file:
+res1	res.h	/^	unsigned char	res1[8];$/;"	m	struct:s5p_gpio_bank
+s5p_gpio_bank	res.h	/^struct s5p_gpio_bank {$/;"	s
+writeb	s5p_gpio.c	31;"	d	file:
+writel	s5p_gpio.c	33;"	d	file:
+writew	s5p_gpio.c	32;"	d	file:

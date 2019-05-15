@@ -1,0 +1,73 @@
+
+1. struct bus_type 的对象来表示一个总线
+   struct device  的对象来表示一个挂在总线上的设备
+   struct device_driver 对象来表示一个挂在总线上的设备驱动
+
+总线:
+
+ 一个总线可以挂多个设备和多个驱动。
+ 由总线的match函数来匹配设备对应的驱动, 匹配规则在总线match函数里实现
+int (*match)(struct device *dev, struct device_driver *drv)
+{
+
+	return 1//表示dev与drv匹配上了
+	return 0//表示不匹配, 总线会继续匹配直到设备与驱动一一对过
+}
+  
+struct bus_type {
+	.name     //总线名
+	.match    //匹配函数
+   //////
+	以下函数当总线实现时，不管device_driver里实不实现这些函数，
+都会调用总线的这些函数
+	.probe    //设备探测函数
+	.remove   //设备移除
+	.suspend  //省电休眠
+	.resume   //唤醒
+};
+
+bus_register(&mybus);
+bus_unregister(&mybus);
+
+如果总线与驱动， 设备不是同一个文件里实的话
+则EXPORT_SYMBOL(mybus);
+
+在驱动与设备里
+extern struct bus_type mybus;
+
+////////////////////////
+
+void	(*release)(struct device *dev);
+设备:
+	struct device {
+		.init_name  //设备在总线上的名字, 在总线上是唯一的
+		.bus        //属于哪个总线，指向总线的地址
+		.release    //设备释放函数， 必须要实现
+		...
+		.driver     //如果总线匹配成功后， 此指针指向device_driver对象的地址
+	};
+
+device_register(&mydev);
+device_unregister(&mydev);
+
+//////////////////////
+
+
+驱动:
+	struct device_driver {
+		.name   //驱动在总线上的名字
+		.bus    //属于哪个总线, 指向总线的地址
+		.probe  //当总线匹配上时， 驱动探测设备
+	/////////
+		.remove //设备移除时触发函数
+		.suspend //驱动省电的行为
+		.resume  //驱动恢复工作
+	};
+
+driver_register(&mydrv);
+driver_unregister(&mydrv);
+
+///////////////
+
+匹配过程:
+	总线的match -->> 驱动的probe

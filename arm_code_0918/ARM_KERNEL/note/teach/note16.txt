@@ -1,0 +1,105 @@
+ #include <linux/etherdevice.h>
+
+1. 网络协议层
+  发送直接调用网络驱动里面的net_device_ops.ndo_start_xmit函数,    接收 netif_rx()(把接收到的数据包提交给网络协议栈)
+
+2. 网络设备接口层
+	struct net_device 一个对象表示一个网络设备
+
+
+3. 设备驱动接口
+  发送 hard_start_xmit(),   中断处理接收数据包
+	net_device_ops.ndo_start_xmit函数
+
+4. 以太网控制器-->>物理
+//////////////////////////
+struct net_device {
+	...
+	char	name[IFNAMSIZ]; //设备名"eth0"
+	int	(*init)(struct net_device *dev); //设备初始化时调用, 只调用一次
+	unsigned long		last_rx; //上次接收数据包的时间，用jiffies
+	unsigned char		dev_addr[MAX_ADDR_LEN]; //mac地址
+	unsigned long		trans_start;//上次发送数据包的时间, 用jiffies
+
+	/* Management operations */
+	const struct net_device_ops *netdev_ops;	
+	{
+		int (*hard_start_xmit) (struct sk_buff *skb, struct net_device *dev);//驱动发送数据包的接口
+		int	(*open)(struct net_device *dev); //在ifconfig 设备名 up时调用
+		int	(*stop)(struct net_device *dev); //在ifconfig 设备名 down时调用
+		int	(*set_mac_address)(struct net_device *dev, void *addr);//设mac地址时调用		
+	},
+
+	struct net_device_stats	stats; //装数据包的统计信息	
+	....
+};
+
+alloc_etherdev(sizeof_priv);
+	alloc_etherdev_mq(sizeof_priv, 1)
+		struct net_device *alloc_etherdev_mq(int sizeof_priv, unsigned
+			int queue_count)
+		{
+			return alloc_netdev_mq(sizeof_priv, "eth%d", ether_setup,
+				queue_count);
+		}
+alloc_netdev(sizeof_priv, name, setup)//用来动态创建net_device的对象还创建对象里的私有数据, sizeof_priv指创建priv成员指向的空间大小, name为设备名, setup指定网络设备的初始化函数   
+
+struct net_device *alloc_netdev_mq(int sizeof_priv, const char *name,
+		void (*setup)(struct net_device *), unsigned int queue_count)
+alloc_netdev_mq(sizeof_priv, "eth%d", ether_setup, queue_count(1));
+
+void ether_setup(struct net_device *dev); //给网络设备对象里的部分成员填入通用的值
+
+/////////////////
+
+extern int register_netdev(struct net_device *dev);//注册一个网络设备
+extern void unregister_netdev(struct net_device *dev);//反注册网络设备
+
+
+
+void netif_start_queue(struct net_device *dev);//开启接收发送队列
+void netif_stop_queue(struct net_device *dev); //停止接收发送队列
+
+int netif_rx(struct sk_buff *skb); //把收到的数据递给网络协议层
+
+//////////
+struct sk_buff 表示一个套接字的缓冲区
+{
+	unsigned int		len,      //数据总长
+				data_len;
+	__u16			mac_len,
+				hdr_len;	
+
+	unsigned char		*data;	 //指向用户的数据包缓冲区地址
+};
+
+struct sk_buff *dev_alloc_skb(unsigned int length); //动态申请套接字缓冲区
+dev_kfree_skb(a); //把a指向的套接字缓冲区释放掉
+
+unsigned char *skb_put(struct sk_buff *skb, unsigned int
+len);//动态申请套接字缓冲区里的data, 返回首地址
+
+__be16 eth_type_trans(struct sk_buff *skb, struct net_device
+*dev);//检查skb数据包的协议， 返回协议id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,37 @@
+
+#include <linux/moduleparam.h>
+
+1. 模块参数
+   在驱动定义变量
+	static int num = 0; //当加载模块不指定num的值时则为0
+	
+	module_param(变量名, 类型， 权限);
+	类型: byte, int, uint, short, ushort, long, ulong, bool, charp
+	权限不能有写的权限
+
+   传参数: insmod test.ko 变量名1=值1  变量名2=值2
+
+#define module_param(name, type, perm)				\
+	module_param_named(name, name, type, perm)
+
+#define module_param_named(name, value, type, perm)			   \
+	param_check_##type(name, &(value));				   \
+	module_param_call(name, param_set_##type, param_get_##type, &value, perm); \
+	__MODULE_PARM_TYPE(name, #type)
+ 
+#define module_param_call(name, set, get, arg, perm)			      \
+	__module_param_call(MODULE_PARAM_PREFIX,			      \
+			    name, set, get, arg,			      \
+			    __same_type(*(arg), bool), perm)
+
+#define __module_param_call(prefix, name, set, get, arg, isbool, perm)	\
+	static int __param_perm_check_##name __attribute__((unused)) =	\
+	BUILD_BUG_ON_ZERO((perm) < 0 || (perm) > 0777 || ((perm) & 2))	\
+	+ BUILD_BUG_ON_ZERO(sizeof(""prefix) > MAX_PARAM_PREFIX_LEN);	\
+	static const char __param_str_##name[] = prefix #name;		\
+	static struct kernel_param __moduleparam_const __param_##name	\
+	__used								\
+    __attribute__ ((unused,__section__ ("__param"),aligned(sizeof(void *)))) \
+	= { __param_str_##name, perm, isbool ? KPARAM_ISBOOL : 0,	\
+	    set, get, { arg } }
+

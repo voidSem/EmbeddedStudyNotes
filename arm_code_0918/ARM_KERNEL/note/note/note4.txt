@@ -1,0 +1,32 @@
+printk()
+a.介绍
+printk是内核中非常好用的一种信息输出方法，和printf很象，不同的是printk可以附加不同的日志级别，从而可以根据消息的严重程度分类。如：
+printk(KERN_DEBUG "Here I am: %s:%i\n", __FILE__, __LINE__);
+
+b.日志级别
+printk()定义在/kernel/printk.c中，消息级别和原型声明都在<linux/kernel.h>中。缺省级别在printk.c中指定。
+支持的日志级别：
+KERN_EMERG: 紧急情况 
+KERN_ALERT: 需要立即被注意到的错误
+KERN_CRIT: 临界情况
+KERN_ERR: 错误
+KERN_WARNING: 警告
+KERN_NOTICE: 注意
+KERN_INFO: 非正式的消息
+KERN_DEBUG: 调试信息(冗余信息)
+
+
+c.printk向用户空间的输出
+两个守护进程syslogd和klogd用于处理日志信息。小于控制台级别的信息会被输出到console，而大于控制台级别的信息不输出，只是写入/var/log/messages和/proc/kmsg中。可以通过dmesg查看。
+
+修改控制台级别：
+$>echo 8 > /proc/sys/kernel/printk
+或
+$>klogd -c 8
+/*需要先关闭klogd，用ps -C klogd 查出这个进程的pid，然后kill)
+
+printk函数将消息写到一个长度为__LOG_BUF_LEN字节的循环缓冲区中，然后唤醒任何睡眠在syslog系统调用或正在读取/proc/kmsg的进程。循环缓冲区满了以后，会绕回开始处填写新的内容。printk()可以在中断中调用。
+
+当printk()的调用频率过高时，还可以通过printk_ratelimit()限制输出。
+
+

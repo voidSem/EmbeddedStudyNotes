@@ -1,0 +1,76 @@
+struct i2c_client的一个对象描述一个i2c的设备
+struct i2c_client {
+	unsigned short flags; //标明i2c设备的地址占多少位, 0为7bit, I2C_CLIENT_TEN为10位
+	unsigned short addr;  //设备地址
+	char name[I2C_NAME_SIZE]; 
+	struct i2c_adapter *adapter; //指向使用的i2c控制器
+	struct i2c_driver *driver; //指向匹配上的i2c设备驱动
+	struct device dev;
+	int irq;
+	...
+};
+
+struct i2c_board_info {
+	char		type[I2C_NAME_SIZE];
+	unsigned short	flags;
+	unsigned short	addr;
+	void		*platform_data;
+	struct dev_archdata	*archdata;
+#ifdef CONFIG_OF
+	struct device_node *of_node;
+#endif
+	int		irq;
+};
+
+struct i2c_driver描述一个i2c设备驱动
+ {
+	unsigned int class;
+
+	struct device_driver driver;
+	const struct i2c_device_id *id_table; //描述支持哪些设备
+	int (*probe)(struct i2c_client *, const struct i2c_device_id *);
+		//总线匹配上后会触发此函数
+	int (*remove)(struct i2c_client *);
+	void (*alert)(struct i2c_client *, unsigned int data);
+	int (*command)(struct i2c_client *client, unsigned int cmd, void *arg);
+
+	int (*detect)(struct i2c_client *, struct i2c_board_info *);
+	const unsigned short *address_list;	
+	....
+};
+
+/// 总线通过i2c驱动里id_table里的名字与i2c设备的名字进行匹配
+i2c_match_id(driver->id_table, client) != NULL;
+static const struct i2c_device_id *i2c_match_id(const struct i2c_device_id *id,
+						const struct i2c_client *client)
+{
+	while (id->name[0]) {
+		if (strcmp(client->name, id->name) == 0)
+			return id;
+		id++;
+	}
+	return NULL;
+}
+
+//描述一个i2c控制器
+struct i2c_adapter { 
+	struct module *owner;
+	unsigned int id;
+	unsigned int class;		  /* classes to allow probing for */
+	const struct i2c_algorithm *algo; //使用哪种协议去传输数据
+	void *algo_data;
+
+	char name[48];
+	struct completion dev_released;
+	...
+};
+
+struct i2c_algorithm {
+	int (*master_xfer)(struct i2c_adapter *adap, struct i2c_msg *msgs,
+			   int num);  //数据传输
+	int (*smbus_xfer) (struct i2c_adapter *adap, u16 addr,
+			   unsigned short flags, char read_write,
+			   u8 command, int size, union i2c_smbus_data *data);
+
+	u32 (*functionality) (struct i2c_adapter *); //返回所支持的协议
+};

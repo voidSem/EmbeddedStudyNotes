@@ -1,0 +1,108 @@
+
+
+
+1>
+	在SD卡上最后一个分区再分出一个分区，如/dev/sdb3  大小在1G以上
+
+2>
+	然后将ramdisk-u.img 拷到SD卡上第一个分区既/dev/sdb1 跟zImage同在一个分区
+
+PC:
+	cd /disk/A9
+	tar -xvf rootfs_qtopia_qt4-20141213.tar.gz
+	mv  rootfs_qtopia_qt4    qtfilesystem
+	chmod 777  qtfilesystem  -R
+	echo "/disk/A9/qtfilesystem  *(rw,sync,no_root_squash)" >> /etc/exports
+	service nfs restart
+	chkconfig nfs on
+	
+	showmount -e 192.168.88.xx(PC机IP)
+	如果看到发布目录则PC端完毕
+
+
+3>
+	进入minicom
+	set  nfsbootcmd  $bootcmd
+	save
+	
+	set bootcmd "fatload mmc 0:1 0x40008000 zImage;fatload mmc 0:1 0x41000000 ramdisk-u.img;bootm 0x40008000 0x41000000"
+	save
+
+	set  nfsbootargs  $bootargs
+	set bootargs "root=/dev/nfs nfsroot=192.168.88.254:/disk/A9/qtfilesystem ip=192.168.88.200 console=ttySAC0,115200 lcd=S70 ctp=2"
+	save
+
+	reset
+	进入五点校准
+	五点校准之后就进入了qt文件系统 
+
+运行自己的QT程序 
+
+1>
+	cd /disk/A9
+	arm-qte-4.8.5-20131207.tar.gz   QT4源码
+	rootfs_qtopia_qt4-20141213.tar.gz   QT  qtopia文件系统
+	arm-qtopia-20101105.tar.gz      qtopia源码
+	ramdisk-u.img
+	
+	确保这些文件存在
+
+2>
+	tar -xvf   arm-qte-4.8.5-20131207.tar.gz
+	cd  arm-qte-4.8.5
+	./build.sh      注意：这一步将要花比较多的时间
+
+	
+3>
+	打开QT  ＝》  Tool  ==>  Option  ==> QT4
+	新增加一个 qmake ARM 的选项
+	
+
+4>  自己编一个自己的QT
+	以ARM的qmake编译
+	将编译的文件拷到QT文件系统  如:  test
+	
+5>
+	ls  /disk/A9/qtfilesystem/test
+	确保文件存在
+
+6>
+	改动 /disk/A9/qtfilesystem/etc/init.d/rcS
+	第104行注释掉
+	改成:
+	101 # /opt/360box/apktools-service
+	102 # /opt/360box/run.sh &
+	103 
+	104 #/bin/qtopia &
+	105 /bin/qt4  &
+	106 echo "                                  " > /dev/tty1
+	107 echo "Starting Qtopia, please waiting..." > /dev/tty1
+	108 
+
+7>
+	改动 /disk/A9/qtfilesystem/bin/qt4
+	改成:
+	1 #!/bin/sh
+	2 
+	3 . setqt4env
+	4 
+ 	5 export HOME=/root
+	6 #cd /usr/local/Trolltech/QtEmbedded-4.8.5-arm/demos/embedded/fluidlauncher
+  	7 #./fluidlauncher -qws
+  	8 ./test -qws
+  	9 hotplug
+~                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+

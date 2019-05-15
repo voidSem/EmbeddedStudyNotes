@@ -1,0 +1,31 @@
+
+#include <asm/io.h>
+
+#define ioremap(cookie,size)		__arm_ioremap(cookie, size, MT_DEVICE)
+//cookie表示物理地址， size表示映射大小。 ioremap把指定的物理地址映射到空闲的虚拟地址
+
+void __iomem *
+__arm_ioremap(unsigned long phys_addr, size_t size, unsigned int mtype)
+{
+	return __arm_ioremap_caller(phys_addr, size, mtype,
+			__builtin_return_address(0));
+}
+
+
+1. 拫据物理地址映射后的虚拟地址
+	虚拟地址 = ioremap(物理地址, 映射多大);
+	使用完后 iounmap(虚拟地址);  //把映射表删除
+
+2.   ioread8(地址)/readb()
+     ioread16(地址)/readw()
+     ioread32(地址)/readl()
+
+     iowrite8(值, 地址) / writeb
+     iowrite16(值, 地址) / writew
+     iowrite32(值, 地址) / writel
+
+#include <asm/sizes.h>
+SZ_4K
+SZ_1M
+
+

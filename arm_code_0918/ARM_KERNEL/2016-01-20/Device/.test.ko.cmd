@@ -1,0 +1,1 @@
+cmd_/mnt/share/arm_code_0918/ARM_KERNEL/2016-01-20/Device/test.ko := arm-linux-ld -EL -r  -T /disk/A9/linux-3.5/scripts/module-common.lds --build-id  -o /mnt/share/arm_code_0918/ARM_KERNEL/2016-01-20/Device/test.ko /mnt/share/arm_code_0918/ARM_KERNEL/2016-01-20/Device/test.o /mnt/share/arm_code_0918/ARM_KERNEL/2016-01-20/Device/test.mod.o

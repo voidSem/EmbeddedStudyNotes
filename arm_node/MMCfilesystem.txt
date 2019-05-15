@@ -1,0 +1,91 @@
+
+
+minicom UB:
+	emmc open 1
+
+	//download bl1 
+	dnw 0x40008000
+
+PC:
+	dnw  /disk/A9/uboot_tiny4412-master/sd_fuse/tiny4412/E4412_N.bl1.bin
+
+minicom UB:
+	mmc write 1 0x40008000 0 0x10
+
+	
+
+	//download bl2
+minicom UB:
+	dnw 0x40008000
+
+PC:
+	dnw  /disk/A9/uboot_tiny4412-master/sd_fuse/tiny4412/bl2.bin
+
+minicom UB:
+	mmc write 1 0x40008000 0x10 0x1C
+
+
+	//download u-boot.bin
+minicom UB:
+	dnw 0x40008000
+	
+PC:
+	dnw /disk/A9/uboot_tiny4412-master/u-boot.bin
+
+minicom UB:
+	mmc write 1 0x40008000 0x30 0x230
+
+
+	emmc close 1 
+
+
+断电，将卡拔出，然后将OM角NAND启动
+	上电  启动u-boot
+
+	看1.txt
+	配置MMC启动网络文件系统
+
+
+	分区  MMC
+
+	fdisk -p 0
+
+	fdisk -c 0 2000 1000 500 
+
+	fdisk -p 0 查看是否已经分区
+	格式化
+
+	fatformat  mmc 0:1 
+
+	ext3format mmc 0:2
+	ext3format mmc 0:3
+	ext3format mmc 0:4
+
+	reset 启动网络文件系统
+
+minicom FS:
+	fdisk -l  查看是否已经分区成功
+
+	mount /dev/mmcblk0p3  /mnt
+	tar -xvf  nfs.tar -C  /mnt
+	umount /mnt	
+
+
+	reboot
+	网线断开
+
+minicom UB:
+	set nfsbootargs  $bootargs
+	
+	set bootargs  "root=/dev/mmcblk0p3  console=ttySAC0,115200 lcd=S70 ctp=2"
+	save
+	reset
+	启动MMC文件系统
+
+
+OK
+
+
+
+
+

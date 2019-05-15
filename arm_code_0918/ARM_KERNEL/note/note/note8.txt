@@ -1,0 +1,312 @@
+-------------------------------------
+/******************
+ * linux内核的时间管理
+ ******************/
+
+(1)内核中的时间概念
+时间管理在linux内核中占有非常重要的作用。
+相对于事件驱动而言，内核中有大量函数是基于时间驱动的。
+有些函数是周期执行的，比如每10毫秒刷新一次屏幕；
+有些函数是推后一定时间执行的，比如内核在500毫秒后执行某项任务。
+要区分：
+*绝对时间和相对时间
+*周期性产生的事件和推迟执行的事件
+周期性事件是由系统系统定时器驱动的
+
+
+
+(2)HZ值
+内核必须在硬件定时器的帮助下才能计算和管理时间。
+定时器产生中断的频率称为节拍率(tick rate)。
+在内核中指定了一个变量HZ，内核初始化的时候会根据这个值确定定时器的节拍率。
+HZ定义在<asm/param.h>，在i386平台上，目前采用的HZ值是1000。
+也就是时钟中断每秒发生1000次，周期为1毫秒。即：
+#define HZ 1000
+
+注意！HZ不是个固定不变的值，它是可以更改的，可以在内核源代码配置的时候输入。
+不同的体系结构其HZ值是不一样的，比如arm就采用100。
+如果在驱动中要使用系统的中断频率，直接使用HZ，而不要用100或1000
+
+
+a.理想的HZ值
+i386的HZ值一直采用100，直到2.5版后才改为1000。
+提高节拍率意味着时钟中断产生的更加频繁，中断处理程序也会更频繁地执行。
+
+带来的好处有：
+*内核定时器能够以更高的频率和更高的准确度运行
+*依赖定时器执行的系统调用，比如poll()和select()，运行的精度更高
+*提高进程抢占的准确度
+(缩短了调度延时，如果进程还剩2ms时间片，在10ms的调度周期下，进程会多运行8ms。
+由于耽误了抢占，对于一些对时间要求严格的任务会产生影响)
+
+坏处有：
+*节拍率要高，系统负担越重。
+中断处理程序将占用更多的处理器时间。
+
+
+
+(3)jiffies
+全局变量jiffies用于记录系统启动以来产生的节拍的总数。
+启动时，jiffies初始化为0，此后每次时钟中断处理程序都会增加该变量的值。
+这样，系统启动后的运行时间就是jiffies/HZ秒
+
+jiffies定义于<linux/jiffies.h>中：
+extern unsigned long volatile jiffies;
+
+jiffies变量总是为unsigned long型。
+因此在32位体系结构上是32位，而在64位体系上是64位。
+对于32位的jiffies，如果HZ为1000，49.7天后会溢出。
+虽然溢出的情况不常见，但程序在检测超时时仍然可能因为回绕而导致错误。
+linux提供了4个宏来比较节拍计数，它们能正确地处理节拍计数回绕。
+
+#include <linux/jiffies.h>
+#define time_after(unknown, known)       // unknow >  known
+#define time_before(unknown, known)      // unknow <  known
+#define time_after_eq(unknown, known)    // unknow >= known
+#define time_before_eq(unknown, known)   // unknow <= known
+
+unknown通常是指jiffies，known是需要对比的值(常常是一个jiffies加减后计算出的相对值)
+
+例：
+unsigned long timeout = jiffies + HZ/2; /* 0.5秒后超时 */
+...
+if(time_before(jiffies, timeout)){
+	/* 没有超时，很好 */
+}else{
+	/* 超时了，发生错误 */
+	
+time_before可以理解为如果在超时(timeout)之前(before)完成
+
+
+*系统中还声明了一个64位的值jiffies_64，在64位系统中jiffies_64和jiffies是一个值。
+可以通过get_jiffies_64()获得这个值。
+
+*使用
+u64 j2;
+	j2 = get_jiffies_64();
+
+
+
+(4)获得当前时间
+驱动程序中一般不需要知道墙钟时间(也就是年月日的时间)。但驱动可能需要处理绝对时间。
+为此，内核提供了两个结构体，都定义在<linux/time.h>：
+a.struct timeval {
+  time_t tv_sec; /* seconds */
+  suseconds_t tv_usec; /* microseconds */
+};
+较老，但很流行。采用秒和毫秒值，保存了1970年1月1日0点以来的秒数
+
+b.struct timespec {
+  time_t  tv_sec; /* seconds */
+  long tv_nsec; /* nanoseconds */
+};
+较新，采用秒和纳秒值保存时间。
+
+c.do_gettimeofday()
+该函数用通常的秒或微秒来填充一个指向struct timeval的指针变量，原型如下：
+#include <linux/time.h>
+void do_gettimeofday(struct timeval *tv);
+
+d.current_kernel_time()
+该函数可用于获得timespec
+#include <linux/time.h>
+struct timespec current_kernel_time(void);
+
+
+
+/********************
+ *确定时间的延迟执行
+ *******************/
+ 
+设备驱动程序经常需要将某些特定代码延迟一段时间后执行，通常是为了让硬件能完成某些任务。
+长于定时器周期(也称为时钟嘀嗒)的延迟可以通过使用系统时钟完成，而非常短的延时则通过软件循环的方式完成
+ 
+
+(1)短延时
+对于那些最多几十个毫秒的延迟，无法借助系统定时器。
+系统通过软件循环提供了下面的延迟函数：
+#include <linux/delay.h> 
+/* 实际在<asm/delay.h> */
+void ndelay(unsigned long nsecs); /*延迟纳秒 */
+void udelay(unsigned long usecs); /*延迟微秒 */
+void mdelay(unsigned long msecs); /*延迟毫秒 */
+
+这三个延迟函数均是忙等待函数，在延迟过程中无法运行其他任务。
+实际上，当前所有平台都无法达到纳秒精度。
+
+
+
+
+(2)长延时
+a.在延迟到期前让出处理器
+while(time_before(jiffies, j1))
+	schedule();
+在等待期间可以让出处理器，但系统无法进入空闲模式(因为这个进程始终在进行调度)，不利于省电。
+
+b.超时函数
+#include <linux/sched.h>
+signed long schedule_timeout(signed long timeout);
+
+使用方式：
+set_current_state(TASK_INTERRUPTIBLE);
+schedule_timeout(2*HZ); /* 睡2秒 */
+进程经过2秒后会被唤醒。如果不希望被用户空间打断，可以将进程状态设置为TASK_UNINTERRUPTIBLE。
+
+msleep
+ssleep    // 秒
+
+(3)等待队列
+使用等待队列也可以实现长延迟。
+在延迟期间，当前进程在等待队列中睡眠。
+进程在睡眠时，需要根据所等待的事件链接到某一个等待队列。
+
+a.声明等待队列
+等待队列实际上就是一个进程链表，链表中包含了等待某个特定事件的所有进程。
+#include <linux/wait.h>
+struct __wait_queue_head {
+        spinlock_t lock;
+        struct list_head task_list;
+};
+typedef struct __wait_queue_head wait_queue_head_t;
+
+要想把进程加入等待队列，驱动首先要在模块中声明一个等待队列头，并将它初始化。
+
+静态初始化
+DECLARE_WAIT_QUEUE_HEAD(name);
+
+动态初始化
+wait_queue_head_t my_queue;
+init_waitqueue_head(&my_queue);
+
+b.等待函数
+进程通过调用下面函数可以在某个等待队列中休眠固定的时间：
+#include <linux/wait.h>
+long wait_event_timeout(wait_queue_head_t q,condition, long timeout);
+long wait_event_interruptible_timeout(wait_queue_head_t q, condition, long timeout);
+调用这两个函数后，进程会在给定的等待队列q上休眠，但会在超时(timeout)到期时返回。
+如果超时到期，则返回0，如果进程被其他事件唤醒，则返回剩余的时间数。
+如果没有等待条件，则将condition设为0
+
+使用方式：
+wait_queue_head_t wait;
+init_waitqueue_head(&wait);
+wait_event_interruptible_timeout(wait, 0, 2*HZ); 
+/*当前进程在等待队列wait中睡2秒 */
+
+
+
+(4)内核定时器
+还有一种将任务延迟执行的方法是采用内核定时器。
+与前面几种延迟方法不同，内核定时器并不会阻塞当前进程，
+启动一个内核定时器只是声明了要在未来的某个时刻执行一项任务，当前进程仍然继续执行。
+不要用定时器完成硬实时任务
+
+定时器由结构timer_list表示，定义在<linux/timer.h>
+struct timer_list{
+	struct list_head entry; /* 定时器链表 */
+	unsigned long expires; /* 以jiffies为单位的定时值 */
+	spinlock_t lock;
+	void(*function)(unsigned long); /* 定时器处理函数 */
+	unsigned long data;  /* 传给定时器处理函数的参数 */
+}
+
+内核在<linux/timer.h>中提供了一系列管理定时器的接口。
+
+a.创建定时器
+struct timer_list my_timer;
+
+b.初始化定时器
+init_timer(&my_timer);
+/* 填充数据结构 */
+my_timer.expires = jiffies + delay;
+my_timer.data = 0;
+my_timer.function = my_function; /*定时器到期时调用的函数*/
+
+c.定时器的执行函数
+超时处理函数的原型如下：
+void my_timer_function(unsigned long data);
+可以利用data参数用一个处理函数处理多个定时器。可以将data设为0
+
+d.激活定时器
+add_timer(&my_timer);
+定时器一旦激活就开始运行。
+
+e.更改已激活的定时器的超时时间
+mod_timer(&my_timer,
+       jiffies+ney_delay);
+可以用于那些已经初始化但还没激活的定时器，
+如果调用时定时器未被激活则返回0，否则返回1。
+一旦mod_timer返回，定时器将被激活。
+
+f.删除定时器
+del_timer(&my_timer);
+被激活或未被激活的定时器都可以使用，如果调用时定时器未被激活则返回0，否则返回1。
+不需要为已经超时的定时器调用，它们被自动删除
+
+g.同步删除
+del_time_sync(&my_timer);
+在smp系统中，确保返回时，所有的定时器处理函数都退出。不能在中断上下文使用。
+
+
+
+
+/********************
+ *不确定时间的延迟执行
+ *******************/
+ 
+(1)什么是不确定时间的延迟
+前面介绍的是确定时间的延迟执行，但在写驱动的过程中经常遇到这种情况：
+用户空间程序调用read函数从设备读数据，但设备中当前没有产生数据。
+此时，驱动的read函数默认的操作是进入休眠，一直等待到设备中有了数据为止。
+
+这种等待就是不定时的延迟，通常采用休眠机制来实现。
+
+
+(2)休眠
+休眠是基于等待队列实现的，前面我们已经介绍过wait_event系列函数，
+但现在我们将不会有确定的休眠时间。
+
+当进程被置入休眠时，会被标记为特殊状态并从调度器的运行队列中移走。
+直到某些事件发生后，如设备接收到数据，则将进程重新设为运行态并进入运行队列进行调度。
+休眠函数的头文件是<linux/wait.h>，具体的实现函数在kernel/wait.c中。
+
+a.休眠的规则
+*永远不要在原子上下文中休眠
+*当被唤醒时，我们无法知道睡眠了多少时间，也不知道醒来后是否获得了我们需要的资源
+*除非知道有其他进程会在其他地方唤醒我们，否则进程不能休眠
+
+b.等待队列的初始化
+见前文
+
+c.休眠函数
+linux最简单的睡眠方式为wait_event宏。该宏在实现休眠的同时，检查进程等待的条件。
+
+1. void wait_event(
+      wait_queue_head_t q, 
+      int condition);
+
+2. int wait_event_interruptible(
+      wait_queue_head_t q, 
+      int condition);
+q: 是等待队列头，注意是采用值传递。
+condition: 任意一个布尔表达式，在条件为真之前，进程会保持休眠。
+注意！进程需要通过唤醒函数才可能被唤醒，此时需要检测条件。
+如果条件满足，则被唤醒的进程真正醒来；
+如果条件不满足，则进程继续睡眠。
+
+
+d.唤醒函数
+当我们的进程睡眠后，需要由其他的某个执行线程(可能是另一个进程或中断处理例程)唤醒。
+唤醒函数：
+#include <linux/wait.h>
+1. void wake_up(
+    wait_queue_head_t *queue);
+
+2. void wake_up_interruptible(
+    wait_queue_head_t *queue);
+
+wake_up会唤醒等待在给定queue上的所有进程。
+而wake_up_interruptible唤醒那些执行可中断休眠的进程。
+实践中，约定做法是在使用wait_event时使用wake_up，而使用wait_event_interruptible时使用wake_up_interruptible。
+
+

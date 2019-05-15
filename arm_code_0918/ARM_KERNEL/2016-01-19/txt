@@ -1,0 +1,12 @@
+
+如果有竞争条件　　则要加volatile
+
+__user            用户态指针
+__kernel          内核态指针
+__safe            安全指针
+__force           强转
+__nocast          无条件
+__iomem           内存ＩＯ指针
+
+
+

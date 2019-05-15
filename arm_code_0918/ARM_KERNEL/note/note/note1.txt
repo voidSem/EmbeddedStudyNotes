@@ -1,0 +1,132 @@
+
+-------------  make the file system image ----------
+## total =  bs * count
+1. dd if=/dev/zero of=<image file name>  bs=<block size> count=<number>
+
+## insert the file into the loopback device
+2. losetup /dev/loop<N>  <image file name> 
+
+
+## format the block device
+3. mkfs.<file system format>  /dev/loop<N>
+
+## detach the image file from the loopback device
+4. losetup -d /dev/loop<N>
+
+
+-------------- build the file system (busybox) ------------
+## choice  the link type: static link or dymanic link
+1. Build Options ---> Build BusyBox as a satic library.......
+
+## configure the compiler prefix
+2. Build Options ---> Do you want to build .......
+
+## configure Installation floder
+3. Installoation Options --> busybox installation prefix
+
+## choice init process
+4. Init Uitilies ---> init
+
+## choice the shell 
+5. Shells ---> Choose ...... ---> ash
+
+## build
+6. make
+
+## install
+7. make install
+
+
+-------------- copy the busybox into the image file -------
+1. mount -o loop  <image file name>  <mount floder>
+
+2. cp -rf <busybox install floder> <mount floder> 
+
+3. cd <mount floder>
+4. mkdir dev  proc sys
+5. mknod dev/console c 5 1
+6. mknod dev/null  c  1 3
+
+	## if the busybox linked as dynamic linker
+	   cp -rf <complier installation floder>/arm-linux/lib/* lib/
+
+7. umount <mount floder>
+
+
+========================================================================
+--------------------- A. boot from nand flash -----------------
+1.  nand erase <part start addr>  <part size>  nand擦除
+2.  nand scrub 查找坏块
+2.  tftp 30000000 <image file name>
+3.  nand write 30000000 <part start addr> <part size>
+
+## configure command line tag for kernel booting
+4.  setenv bootargs noinitrd mem=64M console=ttySAC0 root=/dev/mtdblock2
+    saveenv
+
+## download the kernel image and boot it
+5. tftp 30008000 uImage
+   bootm 30008000
+
+func 2:
+	1. nand erase 400000 4000000
+	2. nfs
+	3. mount -t yaffs /dev/mtdblock2 /mnt
+	4. tar xjvf nfsroot-29.tar.bz2
+	5. mv nfsroot-29/* /mnt
+
+	reboot
+
+	<u-boot>:setenv bootargs noinitrd mem=64M console=ttySAC0 root=/dev/mtdblock2
+		 saveenv
+
+    ----------- done--------
+
+-------------------- B. boot from init ram disk----------------------
+1. tftp <ram disk start addr> <image file name>
+2. setenv bootargs initrd=<ram disk start addr>,<size> mem=64M console=ttySAC0
+root=/dev/ram0
+   saveenv
+
+## download the kernel image and boot it
+3. tftp 30008000 uImage
+   bootm 30008000
+
+   ------------ done -------
+
+
+------------------- C. boot from network file system (nfs) -------
+## configure the nfs service of your host 
+1.   ##edit the /etc/exports and append the following:
+		<shared root file system>  *(rw)
+
+	 ##restart the nfs service
+	    /etc/rc.d/init.d/nfs restart
+
+## copy the busybox into the nfs service root dir
+2. cp -rf <busybox install floder> <nfs service root floder> 
+   cd <nfs service root floder>
+   mkdir dev  proc sys
+   mknod dev/console c 5 1
+   mknod dev/null  c  1 3
+
+	## if the busybox linked as dynamic linker
+	   cp -rf <complier installation floder>/arm-linux/lib/* lib/
+
+## setup the command line tags on the development board
+3. setenv bootargs noinitrd console=ttySAC0,115200 mem=64M root=/dev/nfs
+	nfsroot=192.168.0.3:/<nfs service root floder>
+	ip=192.168.0.2:192.168.0.3:192.168.0.3:255.255.255.0::eth0:off
+
+## download the kernel image and boot it
+3. tftp 30008000 uImage
+   bootm 30008000
+
+   ------------ done -------
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+
+arm-none-linux-gnueabi-gcc -static -o rmmod rmmod.c
+arm-none-linux-gnueabi-strip -s rmmod
+cp rmmod /nfs/
+cp /nfs/rmmod  /sbin

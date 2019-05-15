@@ -1,0 +1,124 @@
+
+1. HZ表示一秒钟内中断的次数， 每中断一次jiffies全局变量的值++
+   HZ的值可以在<linux/param.h>下查看或修改
+   一般个人pc设HZ的值为200, 服务器设为1000
+
+   <linux/jiffies.h>
+extern u64 __jiffy_data jiffies_64;
+extern unsigned long volatile __jiffy_data jiffies;
+
+   time_after(a,b) 如a大于b则返回真, 否则返回假
+   time_before(a,b) 如a小于b则返回真, 否则返回假
+
+#define time_after(a,b)		\
+	(typecheck(unsigned long, a) && \
+	 typecheck(unsigned long, b) && \
+	 ((long)(b) - (long)(a) < 0))
+#define time_before(a,b)	time_after(b,a)
+//假设延时100毫秒
+	u32 aa = jiffies;
+	while (time_after(HZ*100/1000+aa, jiffies))
+		;	
+
+   <linux/delay.h>
+   mdelay(val);  //毫秒延时
+   ndelay(val);  //纳秒
+   udelay(val);  //微秒延时
+
+   msleep(val); //毫秒睡眠
+   ssleep(val); //秒
+
+
+2. 中断  <linux/interrupt.h>
+	<linux/irq.h>
+
+//每个中断号都由一个irq_desc对象来描述管理
+struct irq_desc {
+	unsigned int		irq;//中断号
+	irq_flow_handler_t	handle_irq;//当前中断处理函数
+	struct irq_chip		*chip;//硬件如何开， 清中断的功能
+	struct irqaction	*action;//对应中断号的中断处理函数,  可以有多个
+	unsigned int		status; //中断状态
+	....
+};
+
+//irq_chip对应着硬件的中断寄存器操作
+struct irq_chip {
+	const char	*name;//名字, 
+	void		(*enable)(unsigned int irq);//开启中断
+	void		(*disable)(unsigned int irq);//关闭中断
+	void		(*ack)(unsigned int irq);//清中断
+	void		(*mask)(unsigned int irq);
+	void		(*unmask)(unsigned int irq);
+	....
+};
+
+//irqaction对应着中断处理, 由P民指定, 同一个中断号可由多个irqaction共用
+struct irqaction {
+	irq_handler_t handler; //中断处理函数
+	unsigned long flags;   //什么情况下中断, 如上升沿， 下降沿触发
+	const char *name;      //中断名字
+	void *dev_id;          //给中断处理函数的参数
+	struct irqaction *next; //指向共用一个中断号的下个irqaction对象
+	int irq                //中断号
+	...
+};
+
+#define NR_IRQS (S5P_IRQ_GPIOINT(27 * 8) + 1)
+
+
+  s3c6410中断号  arch/arm/plat-s3c64xx/include/plat/irqs.h
+
+//中断处理函数的原型
+typedef irqreturn_t (*irq_handler_t)(int num, void *data);
+   //num 表示中断号
+   //data为request_irq时的dev_id
+
+typedef int irqreturn_t;
+#define IRQ_NONE	(0) //中断未处理
+#define IRQ_HANDLED	(1) //中断已处理
+
+//申请中断, 根据指定的参数生成irqaction对象
+int request_irq(unsigned int irq,
+		irq_handler_t handler,
+		unsigned long irqflags, const char * devname, void *dev_id)
+//irq为中断号, handler为中断处理函数, irqflags可设触发方式或中断方式, 
+	devname为中断设备名字(cat /proc/interrupts),
+dev_id可传参数的地址和可用于区分共享中断
+
+irqflags:
+#define IRQF_TRIGGER_NONE	0x00000000
+#define IRQF_TRIGGER_RISING	0x00000001
+#define IRQF_TRIGGER_FALLING	0x00000002
+#define IRQF_TRIGGER_HIGH	0x00000004
+#define IRQF_TRIGGER_LOW	0x00000008
+
+#define IRQF_DISABLED		0x00000020 //当中断处理函数执行时， 关闭中断
+#define IRQF_SAMPLE_RANDOM	0x00000040 //产生随机数的种子
+#define IRQF_SHARED		0x00000080 //共享中断
+#define IRQF_TIMER		0x00000200 //定时器中断
+
+
+中断不使用时，需要调用free_irq(中断号, dev_id);
+// 查看当前系统的中断使用情况
+cat /proc/interrupts
+167:          1       s5p-eint  myk11
+中断号    中断发生次数   中断类型  中断注册名字 
+
+disable_irq_nosync(int irq); //关指定的中断号, 不等待完成
+disable_irq(int irq);        //关指定的中断号， 等待完成
+enable_irq(int irq);        //开启中断
+
+local_irq_enable();
+local_irq_disable();
+
+local_irq_save(flags);    //关中断并保存flags
+local_irq_restore(flags); //恢复中断
+
+
+
+
+
+
+
+

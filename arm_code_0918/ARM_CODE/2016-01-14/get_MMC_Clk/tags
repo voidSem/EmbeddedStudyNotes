@@ -1,0 +1,2082 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ADCCON	res.h	459;"	d
+ADCDAT	res.h	461;"	d
+ADCDLY	res.h	460;"	d
+ADCMUX	res.h	463;"	d
+ALMDAY	res.h	38;"	d
+ALMHOUR	res.h	37;"	d
+ALMMIN	res.h	36;"	d
+ALMMON	res.h	39;"	d
+ALMSEC	res.h	35;"	d
+ALMYEAR	res.h	40;"	d
+APB_DMC_0_BASE	cpu.h	215;"	d
+APB_DMC_0_BASE	cpu.h	218;"	d
+APB_DMC_1_BASE	cpu.h	216;"	d
+APB_DMC_1_BASE	cpu.h	219;"	d
+APLL_CON0_OFFSET	cpu.h	157;"	d
+APLL_CON0_REG	cpu.h	175;"	d
+APLL_CON1_OFFSET	cpu.h	158;"	d
+APLL_LOCK_OFFSET	cpu.h	155;"	d
+ARRAY_SIZE	res.h	192;"	d
+BASEICCADDR	res.h	103;"	d
+BASEICDADDR	res.h	104;"	d
+BCDDAY	res.h	45;"	d
+BCDDAYWEEK	res.h	44;"	d
+BCDHOUR	res.h	43;"	d
+BCDMIN	res.h	42;"	d
+BCDMON	res.h	46;"	d
+BCDSEC	res.h	41;"	d
+BCDYEAR	res.h	47;"	d
+BGPD0CON	res.h	78;"	d
+BGPD0DAT	res.h	79;"	d
+BGPM4CON	res.h	75;"	d
+BGPM4DAT	res.h	76;"	d
+BGPX3CON	res.h	81;"	d
+BGPX3DAT	res.h	82;"	d
+BIT0	cpu.h	33;"	d
+BIT1	cpu.h	34;"	d
+BIT10	cpu.h	43;"	d
+BIT11	cpu.h	44;"	d
+BIT12	cpu.h	45;"	d
+BIT13	cpu.h	46;"	d
+BIT14	cpu.h	47;"	d
+BIT15	cpu.h	48;"	d
+BIT16	cpu.h	49;"	d
+BIT17	cpu.h	50;"	d
+BIT18	cpu.h	51;"	d
+BIT19	cpu.h	52;"	d
+BIT2	cpu.h	35;"	d
+BIT20	cpu.h	53;"	d
+BIT21	cpu.h	54;"	d
+BIT22	cpu.h	55;"	d
+BIT23	cpu.h	56;"	d
+BIT24	cpu.h	57;"	d
+BIT25	cpu.h	58;"	d
+BIT26	cpu.h	59;"	d
+BIT27	cpu.h	60;"	d
+BIT28	cpu.h	61;"	d
+BIT29	cpu.h	62;"	d
+BIT3	cpu.h	36;"	d
+BIT30	cpu.h	63;"	d
+BIT31	cpu.h	64;"	d
+BIT4	cpu.h	37;"	d
+BIT5	cpu.h	38;"	d
+BIT6	cpu.h	39;"	d
+BIT7	cpu.h	40;"	d
+BIT8	cpu.h	41;"	d
+BIT9	cpu.h	42;"	d
+BIT_ADC	cpu.h	409;"	d
+BIT_ALLMSK	cpu.h	410;"	d
+BIT_BAT_FLT	cpu.h	387;"	d
+BIT_DMA0	cpu.h	397;"	d
+BIT_DMA1	cpu.h	398;"	d
+BIT_DMA2	cpu.h	399;"	d
+BIT_DMA3	cpu.h	400;"	d
+BIT_EINT0	cpu.h	381;"	d
+BIT_EINT1	cpu.h	382;"	d
+BIT_EINT2	cpu.h	383;"	d
+BIT_EINT3	cpu.h	384;"	d
+BIT_EINT4_7	cpu.h	385;"	d
+BIT_EINT8_23	cpu.h	386;"	d
+BIT_IIC	cpu.h	405;"	d
+BIT_LCD	cpu.h	396;"	d
+BIT_RTC	cpu.h	408;"	d
+BIT_SDI	cpu.h	401;"	d
+BIT_SPI0	cpu.h	402;"	d
+BIT_SPI1	cpu.h	407;"	d
+BIT_TICK	cpu.h	388;"	d
+BIT_TIMER0	cpu.h	390;"	d
+BIT_TIMER1	cpu.h	391;"	d
+BIT_TIMER2	cpu.h	392;"	d
+BIT_TIMER3	cpu.h	393;"	d
+BIT_TIMER4	cpu.h	394;"	d
+BIT_UART0	cpu.h	406;"	d
+BIT_UART1	cpu.h	403;"	d
+BIT_UART2	cpu.h	395;"	d
+BIT_USBH	cpu.h	404;"	d
+BIT_WDT	cpu.h	389;"	d
+BUILD_BUG_ON_NULL	res.h	188;"	d
+BUILD_BUG_ON_ZERO	res.h	186;"	d
+Both_Edge	gpio.h	21;"	d
+C2C_CTRL_OFFSET	cpu.h	101;"	d
+CCFLAG	Makefile	/^CCFLAG=-fno-builtin$/;"	m
+CHIP_ID_BASE	cpu.h	71;"	d
+CIPSR0	res.h	488;"	d
+CLK_DIV_CPU0_OFFSET	cpu.h	168;"	d
+CLK_DIV_CPU1_OFFSET	cpu.h	169;"	d
+CLK_DIV_DMC0_OFFSET	cpu.h	152;"	d
+CLK_DIV_DMC1_OFFSET	cpu.h	153;"	d
+CLK_DIV_FSYS1	cpu.h	172;"	d
+CLK_DIV_FSYS1_OFFSET	cpu.h	146;"	d
+CLK_DIV_FSYS2	cpu.h	173;"	d
+CLK_DIV_FSYS2_OFFSET	cpu.h	147;"	d
+CLK_DIV_FSYS3	cpu.h	174;"	d
+CLK_DIV_FSYS3_OFFSET	cpu.h	148;"	d
+CLK_DIV_LEFTBUS_OFFSET	cpu.h	123;"	d
+CLK_DIV_PERIL0_OFFSET	cpu.h	149;"	d
+CLK_DIV_RIGHTBUS_OFFSET	cpu.h	126;"	d
+CLK_DIV_TOP_OFFSET	cpu.h	145;"	d
+CLK_SRC_CPU_OFFSET	cpu.h	167;"	d
+CLK_SRC_DMC_OFFSET	cpu.h	151;"	d
+CLK_SRC_FSYS	cpu.h	171;"	d
+CLK_SRC_FSYS_OFFSET	cpu.h	143;"	d
+CLK_SRC_LEFTBUS_OFFSET	cpu.h	122;"	d
+CLK_SRC_PERIL0_OFFSET	cpu.h	144;"	d
+CLK_SRC_RIGHTBUS_OFFSET	cpu.h	125;"	d
+CLK_SRC_TOP0_OFFSET	cpu.h	141;"	d
+CLK_SRC_TOP1_OFFSET	cpu.h	142;"	d
+CLRINTADC	res.h	462;"	d
+CONFIG_SYS_HZ	pwm.h	14;"	d
+CON_MASK	res.h	231;"	d
+CON_SFR	res.h	232;"	d
+CROSS_COMPILE	Makefile	/^CROSS_COMPILE=arm-linux-$/;"	m
+CTLRSIZE	serial.h	5;"	d
+CURTICCNT	res.h	48;"	d
+Check_Timer	Timer.c	/^int Check_Timer(unsigned int Timer)$/;"	f
+Code	test.c	/^static unsigned int Code = 0 ; $/;"	v	file:
+DAT_MASK	res.h	234;"	d
+DAT_SET	res.h	235;"	d
+DECLARE_S5P_SERIAL_FUNCTIONS	serial_s5p.c	165;"	d	file:
+DIR	gpio.h	/^} DIR;$/;"	t	typeref:enum:__anon1
+DISABLE_I2C	i2c.h	/^{ DISABLE_I2C, MASTER_TX_MODE,$/;"	e	enum:__anon3
+DMC_AREFSTATUS	cpu.h	240;"	d
+DMC_CHIP0STATUS	cpu.h	238;"	d
+DMC_CHIP1STATUS	cpu.h	239;"	d
+DMC_CONCONTROL	cpu.h	222;"	d
+DMC_DIRECTCMD	cpu.h	226;"	d
+DMC_IVCONTROL	cpu.h	277;"	d
+DMC_MEMCONFIG0	cpu.h	224;"	d
+DMC_MEMCONFIG1	cpu.h	225;"	d
+DMC_MEMCONTROL	cpu.h	223;"	d
+DMC_MRSTATUS	cpu.h	241;"	d
+DMC_PHYCONTROL0	cpu.h	228;"	d
+DMC_PHYCONTROL1	cpu.h	229;"	d
+DMC_PHYCONTROL2	cpu.h	230;"	d
+DMC_PHYSTATUS	cpu.h	236;"	d
+DMC_PHYTEST0	cpu.h	242;"	d
+DMC_PHYTEST1	cpu.h	243;"	d
+DMC_PHYZQCONTROL	cpu.h	237;"	d
+DMC_PRECHCONFIG	cpu.h	227;"	d
+DMC_PWRDNCONFIG	cpu.h	231;"	d
+DMC_QOSCONFIG0	cpu.h	245;"	d
+DMC_QOSCONFIG1	cpu.h	247;"	d
+DMC_QOSCONFIG10	cpu.h	265;"	d
+DMC_QOSCONFIG11	cpu.h	267;"	d
+DMC_QOSCONFIG12	cpu.h	269;"	d
+DMC_QOSCONFIG13	cpu.h	271;"	d
+DMC_QOSCONFIG14	cpu.h	273;"	d
+DMC_QOSCONFIG15	cpu.h	275;"	d
+DMC_QOSCONFIG2	cpu.h	249;"	d
+DMC_QOSCONFIG3	cpu.h	251;"	d
+DMC_QOSCONFIG4	cpu.h	253;"	d
+DMC_QOSCONFIG5	cpu.h	255;"	d
+DMC_QOSCONFIG6	cpu.h	257;"	d
+DMC_QOSCONFIG7	cpu.h	259;"	d
+DMC_QOSCONFIG8	cpu.h	261;"	d
+DMC_QOSCONFIG9	cpu.h	263;"	d
+DMC_QOSCONTROL0	cpu.h	244;"	d
+DMC_QOSCONTROL1	cpu.h	246;"	d
+DMC_QOSCONTROL10	cpu.h	264;"	d
+DMC_QOSCONTROL11	cpu.h	266;"	d
+DMC_QOSCONTROL12	cpu.h	268;"	d
+DMC_QOSCONTROL13	cpu.h	270;"	d
+DMC_QOSCONTROL14	cpu.h	272;"	d
+DMC_QOSCONTROL15	cpu.h	274;"	d
+DMC_QOSCONTROL2	cpu.h	248;"	d
+DMC_QOSCONTROL3	cpu.h	250;"	d
+DMC_QOSCONTROL4	cpu.h	252;"	d
+DMC_QOSCONTROL5	cpu.h	254;"	d
+DMC_QOSCONTROL6	cpu.h	256;"	d
+DMC_QOSCONTROL7	cpu.h	258;"	d
+DMC_QOSCONTROL8	cpu.h	260;"	d
+DMC_QOSCONTROL9	cpu.h	262;"	d
+DMC_TIMINGAREF	cpu.h	232;"	d
+DMC_TIMINGDATA	cpu.h	234;"	d
+DMC_TIMINGPOWER	cpu.h	235;"	d
+DMC_TIMINGROW	cpu.h	233;"	d
+DRV_MASK	res.h	240;"	d
+DRV_SET	res.h	241;"	d
+DataAbt	test.c	/^void DataAbt(void)$/;"	f
+DataAbt	vector.S	/^DataAbt:$/;"	l
+DataAbt	vector/vector.S	/^DataAbt:$/;"	l
+Disable_Timer	Timer.c	/^void Disable_Timer(unsigned int Timer)$/;"	f
+EINT_FIXPRI_XA	gpio.c	/^void EINT_FIXPRI_XA(int uEINT_Grp_No, int uEINT_No  )$/;"	f
+EINT_FIXPRI_XB	gpio.c	/^void EINT_FIXPRI_XB(int uEINT_Grp_No, int uEINT_No  )$/;"	f
+EINT_GRPFIXPRI_XA	gpio.c	/^void EINT_GRPFIXPRI_XA(int uEINT_No )$/;"	f
+EINT_GRPFIXPRI_XB	gpio.c	/^void EINT_GRPFIXPRI_XB(int uEINT_No )$/;"	f
+EINT_GRPPRI_XA	gpio.c	/^void EINT_GRPPRI_XA(PRI_eTYPE uPriType )$/;"	f
+EINT_GRPPRI_XB	gpio.c	/^void EINT_GRPPRI_XB(PRI_eTYPE uPriType )$/;"	f
+EINT_PRIORITY_XA	gpio.c	/^void EINT_PRIORITY_XA(int uEINT_No )$/;"	f
+EINT_PRIORITY_XB	gpio.c	/^void EINT_PRIORITY_XB(int uEINT_No )$/;"	f
+ELFIN_CLOCK_BASE	cpu.h	120;"	d
+ELFIN_HSMMC_0_BASE	cpu.h	337;"	d
+ELFIN_HSMMC_1_BASE	cpu.h	338;"	d
+ELFIN_HSMMC_2_BASE	cpu.h	339;"	d
+ELFIN_HSMMC_3_BASE	cpu.h	340;"	d
+ELFIN_HSMMC_4_BASE	cpu.h	341;"	d
+ELFIN_SROM_BASE	cpu.h	201;"	d
+ELFIN_TZPC0_BASE	cpu.h	186;"	d
+ELFIN_TZPC1_BASE	cpu.h	187;"	d
+ELFIN_TZPC2_BASE	cpu.h	188;"	d
+ELFIN_TZPC3_BASE	cpu.h	189;"	d
+ELFIN_TZPC4_BASE	cpu.h	190;"	d
+ELFIN_TZPC5_BASE	cpu.h	191;"	d
+EPLL_CON0_OFFSET	cpu.h	130;"	d
+EPLL_CON0_REG	cpu.h	177;"	d
+EPLL_CON1_OFFSET	cpu.h	131;"	d
+EPLL_CON2_OFFSET	cpu.h	133;"	d
+EPLL_LOCK_OFFSET	cpu.h	128;"	d
+ETC_SetPullUpDownAll	gpio.c	/^void ETC_SetPullUpDownAll(GPIO_eId Id, int uValue)$/;"	f
+ETC_SetPullUpDownEach	gpio.c	/^void ETC_SetPullUpDownEach(GPIO_eId Id, GPIO_eBitPos eBitPos, int uValue)$/;"	f
+EXTCON	irq.c	155;"	d	file:
+EXT_INT40_CON	res.h	427;"	d
+EXT_INT40_FLTCON0	res.h	431;"	d
+EXT_INT40_FLTCON1	res.h	432;"	d
+EXT_INT40_MASK	res.h	439;"	d
+EXT_INT40_PEND	res.h	443;"	d
+EXT_INT41_CON	res.h	428;"	d
+EXT_INT41_FLTCON0	res.h	433;"	d
+EXT_INT41_FLTCON1	res.h	434;"	d
+EXT_INT41_MASK	res.h	440;"	d
+EXT_INT41_PEND	res.h	444;"	d
+EXT_INT42_CON	res.h	429;"	d
+EXT_INT42_FLTCON0	res.h	435;"	d
+EXT_INT42_FLTCON1	res.h	436;"	d
+EXT_INT42_MASK	res.h	441;"	d
+EXT_INT42_PEND	res.h	445;"	d
+EXT_INT43_CON	res.h	430;"	d
+EXT_INT43_FLTCON0	res.h	437;"	d
+EXT_INT43_FLTCON1	res.h	438;"	d
+EXT_INT43_MASK	res.h	442;"	d
+EXT_INT43_PEND	res.h	446;"	d
+Enable_Timer	Timer.c	/^void Enable_Timer(unsigned int Timer)$/;"	f
+FALSE	i2c.c	17;"	d	file:
+FILTER	irq.c	163;"	d	file:
+FLT_TYPE	gpio.h	/^typedef enum FLT_TYPE$/;"	g
+FLT_eTYPE	gpio.h	/^} FLT_eTYPE;$/;"	t	typeref:enum:FLT_TYPE
+Falling_Edge	gpio.h	19;"	d
+Fiq	test.c	/^void Fiq(void)$/;"	f
+Fiq	vector.S	/^Fiq:$/;"	l
+Fiq	vector/vector.S	/^Fiq:$/;"	l
+GENERAL_CTRL_C2C_OFFSET	cpu.h	79;"	d
+GINTSTS_EnumDone	cpu.h	755;"	d
+GINTSTS_IEPInt	cpu.h	754;"	d
+GINTSTS_OEPInt	cpu.h	753;"	d
+GINTSTS_RXFLvl	cpu.h	758;"	d
+GINTSTS_USBRst	cpu.h	756;"	d
+GINTSTS_USBSusp	cpu.h	757;"	d
+GINTSTS_WkUpInt	cpu.h	752;"	d
+GPA1CON	res.h	68;"	d
+GPA1DAT	res.h	69;"	d
+GPD0CON	res.h	22;"	d
+GPD0DAT	res.h	23;"	d
+GPD1CON	I2C.c	21;"	d	file:
+GPIO_BASE	gpio.c	7;"	d	file:
+GPIO_BitPos	gpio.h	/^typedef enum GPIO_BitPos$/;"	g
+GPIO_DRV_1X	gpio.h	477;"	d
+GPIO_DRV_2X	gpio.h	478;"	d
+GPIO_DRV_3X	gpio.h	479;"	d
+GPIO_DRV_4X	gpio.h	480;"	d
+GPIO_DRV_FAST	gpio.h	481;"	d
+GPIO_DRV_SLOW	gpio.h	482;"	d
+GPIO_Data	gpio.h	/^typedef enum GPIO_Data$/;"	g
+GPIO_EINT10ClrPend	gpio.c	/^void GPIO_EINT10ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT10Mask	gpio.c	/^void GPIO_EINT10Mask(int uEINT_No )$/;"	f
+GPIO_EINT10UnMask	gpio.c	/^void GPIO_EINT10UnMask(int uEINT_No )$/;"	f
+GPIO_EINT11ClrPend	gpio.c	/^void GPIO_EINT11ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT11Mask	gpio.c	/^void GPIO_EINT11Mask(int uEINT_No )$/;"	f
+GPIO_EINT11UnMask	gpio.c	/^void GPIO_EINT11UnMask(int uEINT_No )$/;"	f
+GPIO_EINT12ClrPend	gpio.c	/^void GPIO_EINT12ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT12Mask	gpio.c	/^void GPIO_EINT12Mask(int uEINT_No )$/;"	f
+GPIO_EINT12UnMask	gpio.c	/^void GPIO_EINT12UnMask(int uEINT_No )$/;"	f
+GPIO_EINT13ClrPend	gpio.c	/^void GPIO_EINT13ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT13Mask	gpio.c	/^void GPIO_EINT13Mask(int uEINT_No )$/;"	f
+GPIO_EINT13UnMask	gpio.c	/^void GPIO_EINT13UnMask(int uEINT_No )$/;"	f
+GPIO_EINT14ClrPend	gpio.c	/^void GPIO_EINT14ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT14Mask	gpio.c	/^void GPIO_EINT14Mask(int uEINT_No )$/;"	f
+GPIO_EINT14UnMask	gpio.c	/^void GPIO_EINT14UnMask(int uEINT_No )$/;"	f
+GPIO_EINT15ClrPend	gpio.c	/^void GPIO_EINT15ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT15Mask	gpio.c	/^void GPIO_EINT15Mask(int uEINT_No )$/;"	f
+GPIO_EINT15UnMask	gpio.c	/^void GPIO_EINT15UnMask(int uEINT_No )$/;"	f
+GPIO_EINT16ClrPend	gpio.c	/^void GPIO_EINT16ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT16Mask	gpio.c	/^void GPIO_EINT16Mask(int uEINT_No )$/;"	f
+GPIO_EINT16UnMask	gpio.c	/^void GPIO_EINT16UnMask(int uEINT_No )$/;"	f
+GPIO_EINT1ClrPend	gpio.c	/^void GPIO_EINT1ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT1Mask	gpio.c	/^void GPIO_EINT1Mask(int uEINT_No )$/;"	f
+GPIO_EINT1UnMask	gpio.c	/^void GPIO_EINT1UnMask(int uEINT_No )$/;"	f
+GPIO_EINT21ClrPend	gpio.c	/^void GPIO_EINT21ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT21Mask	gpio.c	/^void GPIO_EINT21Mask(int uEINT_No )$/;"	f
+GPIO_EINT21UnMask	gpio.c	/^void GPIO_EINT21UnMask(int uEINT_No )$/;"	f
+GPIO_EINT22ClrPend	gpio.c	/^void GPIO_EINT22ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT22Mask	gpio.c	/^void GPIO_EINT22Mask(int uEINT_No )$/;"	f
+GPIO_EINT22UnMask	gpio.c	/^void GPIO_EINT22UnMask(int uEINT_No )$/;"	f
+GPIO_EINT23ClrPend	gpio.c	/^void GPIO_EINT23ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT23Mask	gpio.c	/^void GPIO_EINT23Mask(int uEINT_No )$/;"	f
+GPIO_EINT23UnMask	gpio.c	/^void GPIO_EINT23UnMask(int uEINT_No )$/;"	f
+GPIO_EINT24ClrPend	gpio.c	/^void GPIO_EINT24ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT24Mask	gpio.c	/^void GPIO_EINT24Mask(int uEINT_No )$/;"	f
+GPIO_EINT24UnMask	gpio.c	/^void GPIO_EINT24UnMask(int uEINT_No )$/;"	f
+GPIO_EINT25ClrPend	gpio.c	/^void GPIO_EINT25ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT25Mask	gpio.c	/^void GPIO_EINT25Mask(int uEINT_No )$/;"	f
+GPIO_EINT25UnMask	gpio.c	/^void GPIO_EINT25UnMask(int uEINT_No )$/;"	f
+GPIO_EINT26ClrPend	gpio.c	/^void GPIO_EINT26ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT26Mask	gpio.c	/^void GPIO_EINT26Mask(int uEINT_No )$/;"	f
+GPIO_EINT26UnMask	gpio.c	/^void GPIO_EINT26UnMask(int uEINT_No )$/;"	f
+GPIO_EINT27ClrPend	gpio.c	/^void GPIO_EINT27ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT27Mask	gpio.c	/^void GPIO_EINT27Mask(int uEINT_No )$/;"	f
+GPIO_EINT27UnMask	gpio.c	/^void GPIO_EINT27UnMask(int uEINT_No )$/;"	f
+GPIO_EINT28ClrPend	gpio.c	/^void GPIO_EINT28ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT28Mask	gpio.c	/^void GPIO_EINT28Mask(int uEINT_No )$/;"	f
+GPIO_EINT28UnMask	gpio.c	/^void GPIO_EINT28UnMask(int uEINT_No )$/;"	f
+GPIO_EINT29ClrPend	gpio.c	/^void GPIO_EINT29ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT29Mask	gpio.c	/^void GPIO_EINT29Mask(int uEINT_No )$/;"	f
+GPIO_EINT29UnMask	gpio.c	/^void GPIO_EINT29UnMask(int uEINT_No )$/;"	f
+GPIO_EINT2ClrPend	gpio.c	/^void GPIO_EINT2ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT2Mask	gpio.c	/^void GPIO_EINT2Mask(int uEINT_No )$/;"	f
+GPIO_EINT2UnMask	gpio.c	/^void GPIO_EINT2UnMask(int uEINT_No )$/;"	f
+GPIO_EINT3ClrPend	gpio.c	/^void GPIO_EINT3ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT3Mask	gpio.c	/^void GPIO_EINT3Mask(int uEINT_No )$/;"	f
+GPIO_EINT3UnMask	gpio.c	/^void GPIO_EINT3UnMask(int uEINT_No )$/;"	f
+GPIO_EINT40ClrPend	gpio.c	/^void GPIO_EINT40ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT40Mask	gpio.c	/^void GPIO_EINT40Mask(int uEINT_No )$/;"	f
+GPIO_EINT40UnMask	gpio.c	/^void GPIO_EINT40UnMask(int uEINT_No )$/;"	f
+GPIO_EINT41ClrPend	gpio.c	/^void GPIO_EINT41ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT41Mask	gpio.c	/^void GPIO_EINT41Mask(int uEINT_No )$/;"	f
+GPIO_EINT41UnMask	gpio.c	/^void GPIO_EINT41UnMask(int uEINT_No )$/;"	f
+GPIO_EINT42ClrPend	gpio.c	/^void GPIO_EINT42ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT42Mask	gpio.c	/^void GPIO_EINT42Mask(int uEINT_No )$/;"	f
+GPIO_EINT42UnMask	gpio.c	/^void GPIO_EINT42UnMask(int uEINT_No )$/;"	f
+GPIO_EINT43ClrPend	gpio.c	/^void GPIO_EINT43ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT43Mask	gpio.c	/^void GPIO_EINT43Mask(int uEINT_No )$/;"	f
+GPIO_EINT43UnMask	gpio.c	/^void GPIO_EINT43UnMask(int uEINT_No )$/;"	f
+GPIO_EINT4ClrPend	gpio.c	/^void GPIO_EINT4ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT4Mask	gpio.c	/^void GPIO_EINT4Mask(int uEINT_No )$/;"	f
+GPIO_EINT4UnMask	gpio.c	/^void GPIO_EINT4UnMask(int uEINT_No )$/;"	f
+GPIO_EINT5ClrPend	gpio.c	/^void GPIO_EINT5ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT5Mask	gpio.c	/^void GPIO_EINT5Mask(int uEINT_No )$/;"	f
+GPIO_EINT5UnMask	gpio.c	/^void GPIO_EINT5UnMask(int uEINT_No )$/;"	f
+GPIO_EINT6ClrPend	gpio.c	/^void GPIO_EINT6ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT6Mask	gpio.c	/^void GPIO_EINT6Mask(int uEINT_No )$/;"	f
+GPIO_EINT6UnMask	gpio.c	/^void GPIO_EINT6UnMask(int uEINT_No )$/;"	f
+GPIO_EINT7ClrPend	gpio.c	/^void GPIO_EINT7ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT7Mask	gpio.c	/^void GPIO_EINT7Mask(int uEINT_No )$/;"	f
+GPIO_EINT7UnMask	gpio.c	/^void GPIO_EINT7UnMask(int uEINT_No )$/;"	f
+GPIO_EINT8ClrPend	gpio.c	/^void GPIO_EINT8ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT8Mask	gpio.c	/^void GPIO_EINT8Mask(int uEINT_No )$/;"	f
+GPIO_EINT8UnMask	gpio.c	/^void GPIO_EINT8UnMask(int uEINT_No )$/;"	f
+GPIO_EINT9ClrPend	gpio.c	/^void GPIO_EINT9ClrPend(int uEINT_No )$/;"	f
+GPIO_EINT9Mask	gpio.c	/^void GPIO_EINT9Mask(int uEINT_No )$/;"	f
+GPIO_EINT9UnMask	gpio.c	/^void GPIO_EINT9UnMask(int uEINT_No )$/;"	f
+GPIO_FUNC	gpio.h	469;"	d
+GPIO_Func	gpio.h	/^typedef enum GPIO_Func$/;"	g
+GPIO_GetDataAll	gpio.c	/^int GPIO_GetDataAll(GPIO_eId Id)$/;"	f
+GPIO_GetDataEach	gpio.c	/^int GPIO_GetDataEach(GPIO_eId Id, GPIO_eBitPos eBitPos)$/;"	f
+GPIO_HIGHT	res.h	133;"	d
+GPIO_INPUT	gpio.h	466;"	d
+GPIO_IRQ	gpio.h	468;"	d
+GPIO_Id	gpio.h	/^typedef enum GPIO_Id	\/\/ Address Offset                                                         $/;"	g
+GPIO_Init	gpio.c	/^void GPIO_Init(void)$/;"	f
+GPIO_LOW	res.h	134;"	d
+GPIO_OUTPUT	gpio.h	467;"	d
+GPIO_PUD	gpio.h	/^typedef enum GPIO_PUD$/;"	g
+GPIO_PULL_DOWN	gpio.h	473;"	d
+GPIO_PULL_NONE	gpio.h	472;"	d
+GPIO_PULL_UP	gpio.h	474;"	d
+GPIO_PadNum	gpio.h	/^typedef enum GPIO_PadNum                                                         $/;"	g
+GPIO_REG	gpio.c	9;"	d	file:
+GPIO_SetConRegPDNAll	gpio.c	/^void GPIO_SetConRegPDNAll(GPIO_eId Id, int uValue)$/;"	f
+GPIO_SetDSAll	gpio.c	/^void GPIO_SetDSAll(GPIO_eId Id, int uValue)$/;"	f
+GPIO_SetDSEach	gpio.c	/^void GPIO_SetDSEach(GPIO_eId Id, GPIO_eBitPos eBitPos, int uValue)$/;"	f
+GPIO_SetDataAll	gpio.c	/^void GPIO_SetDataAll(GPIO_eId Id, int uValue)$/;"	f
+GPIO_SetDataEach	gpio.c	/^void GPIO_SetDataEach(GPIO_eId Id, GPIO_eBitPos eBitPos, int uValue)$/;"	f
+GPIO_SetEint1	gpio.c	/^void GPIO_SetEint1(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint10	gpio.c	/^void GPIO_SetEint10(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint11	gpio.c	/^void GPIO_SetEint11(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint12	gpio.c	/^void GPIO_SetEint12(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint13	gpio.c	/^void GPIO_SetEint13(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint14	gpio.c	/^void GPIO_SetEint14(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint15	gpio.c	/^void GPIO_SetEint15(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint16	gpio.c	/^void GPIO_SetEint16(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint2	gpio.c	/^void GPIO_SetEint2(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint21	gpio.c	/^void GPIO_SetEint21(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint22	gpio.c	/^void GPIO_SetEint22(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint23	gpio.c	/^void GPIO_SetEint23(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint24	gpio.c	/^void GPIO_SetEint24(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint25	gpio.c	/^void GPIO_SetEint25(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint26	gpio.c	/^void GPIO_SetEint26(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint27	gpio.c	/^void GPIO_SetEint27(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint28	gpio.c	/^void GPIO_SetEint28(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint29	gpio.c	/^void GPIO_SetEint29(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint3	gpio.c	/^void GPIO_SetEint3(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint4	gpio.c	/^void GPIO_SetEint4(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint40	gpio.c	/^void GPIO_SetEint40(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint41	gpio.c	/^void GPIO_SetEint41(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint42	gpio.c	/^void GPIO_SetEint42(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint43	gpio.c	/^void GPIO_SetEint43(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint5	gpio.c	/^void GPIO_SetEint5(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint6	gpio.c	/^void GPIO_SetEint6(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint7	gpio.c	/^void GPIO_SetEint7(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint8	gpio.c	/^void GPIO_SetEint8(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetEint9	gpio.c	/^void GPIO_SetEint9(int uEINT_No , int uIntType, FLT_eTYPE eFltType,  int uFltWidth)$/;"	f
+GPIO_SetFunctionAll	gpio.c	/^void GPIO_SetFunctionAll(GPIO_eId Id, int uValue0)$/;"	f
+GPIO_SetFunctionEach	gpio.c	/^void GPIO_SetFunctionEach(GPIO_eId Id, GPIO_eBitPos eBitPos, int uFunction)$/;"	f
+GPIO_SetPullUDPDNAll	gpio.c	/^void GPIO_SetPullUDPDNAll(GPIO_eId Id, int uValue)$/;"	f
+GPIO_SetPullUpDownAll	gpio.c	/^void GPIO_SetPullUpDownAll(GPIO_eId Id, int uValue)$/;"	f
+GPIO_SetPullUpDownEach	gpio.c	/^void GPIO_SetPullUpDownEach(GPIO_eId Id, GPIO_eBitPos eBitPos, int uValue)$/;"	f
+GPIO_eBitPos	gpio.h	/^}GPIO_eBitPos;$/;"	t	typeref:enum:GPIO_BitPos
+GPIO_eData	gpio.h	/^} GPIO_eData;$/;"	t	typeref:enum:GPIO_Data
+GPIO_eFunc	gpio.h	/^} GPIO_eFunc;$/;"	t	typeref:enum:GPIO_Func
+GPIO_eId	gpio.h	/^GPIO_eId;                                                                    $/;"	t	typeref:enum:GPIO_Id
+GPIO_ePUD	gpio.h	/^} GPIO_ePUD;$/;"	t	typeref:enum:GPIO_PUD
+GPIO_ePadNum	gpio.h	/^GPIO_ePadNum;          $/;"	t	typeref:enum:GPIO_PadNum
+GPIO_pBase	gpio.c	/^static volatile void * GPIO_pBase;$/;"	v	file:
+GPM4CON	res.h	19;"	d
+GPM4DAT	res.h	20;"	d
+GPX3CON	res.h	25;"	d
+GPX3DAT	res.h	26;"	d
+GPXBASE	irq.c	148;"	d	file:
+Get_EINTSVCPEND_XA	gpio.c	/^int Get_EINTSVCPEND_XA(void)$/;"	f
+Get_EINTSVCPEND_XB	gpio.c	/^int Get_EINTSVCPEND_XB(void)$/;"	f
+Get_EINTSVC_XA	gpio.c	/^int Get_EINTSVC_XA(void)$/;"	f
+Get_EINTSVC_XB	gpio.c	/^int Get_EINTSVC_XB(void)$/;"	f
+HM_ACMD12ERRSTS	cpu.h	368;"	d
+HM_ARGUMENT	cpu.h	346;"	d
+HM_BDATA	cpu.h	353;"	d
+HM_BLKCNT	cpu.h	345;"	d
+HM_BLKGAP	cpu.h	357;"	d
+HM_BLKSIZE	cpu.h	344;"	d
+HM_CAPAREG	cpu.h	369;"	d
+HM_CLKCON	cpu.h	359;"	d
+HM_CMDREG	cpu.h	348;"	d
+HM_CONTROL2	cpu.h	371;"	d
+HM_CONTROL3	cpu.h	372;"	d
+HM_CONTROL4	cpu.h	373;"	d
+HM_ERRINTSIGEN	cpu.h	367;"	d
+HM_ERRINTSTS	cpu.h	363;"	d
+HM_ERRINTSTSEN	cpu.h	365;"	d
+HM_HCVER	cpu.h	374;"	d
+HM_HOSTCTL	cpu.h	355;"	d
+HM_MAXCURR	cpu.h	370;"	d
+HM_NORINTSIGEN	cpu.h	366;"	d
+HM_NORINTSTS	cpu.h	362;"	d
+HM_NORINTSTSEN	cpu.h	364;"	d
+HM_PRNSTS	cpu.h	354;"	d
+HM_PWRCON	cpu.h	356;"	d
+HM_RSPREG0	cpu.h	349;"	d
+HM_RSPREG1	cpu.h	350;"	d
+HM_RSPREG2	cpu.h	351;"	d
+HM_RSPREG3	cpu.h	352;"	d
+HM_SWRST	cpu.h	361;"	d
+HM_SYSAD	cpu.h	343;"	d
+HM_TIMEOUTCON	cpu.h	360;"	d
+HM_TRNMOD	cpu.h	347;"	d
+HM_WAKCON	cpu.h	358;"	d
+HW_REG16	i2c.c	13;"	d	file:
+HW_REG32	i2c.c	12;"	d	file:
+HW_REG8	i2c.c	14;"	d	file:
+High_Level	gpio.h	18;"	d
+I2C0	i2c.h	/^    I2C0,$/;"	e	enum:__anon8
+I2C0_BASE	gpio.h	23;"	d
+I2C1	i2c.h	/^    I2C1,$/;"	e	enum:__anon8
+I2C1_BASE	gpio.h	24;"	d
+I2C2	i2c.h	/^    I2C2,$/;"	e	enum:__anon8
+I2C2_BASE	gpio.h	25;"	d
+I2C3	i2c.h	/^    I2C3,$/;"	e	enum:__anon8
+I2C3_BASE	gpio.h	26;"	d
+I2C4	i2c.h	/^    I2C4,$/;"	e	enum:__anon8
+I2C4_BASE	gpio.h	27;"	d
+I2C5	i2c.h	/^    I2C5,$/;"	e	enum:__anon8
+I2C5_BASE	gpio.h	28;"	d
+I2C6	i2c.h	/^    I2C6,$/;"	e	enum:__anon8
+I2C6_BASE	gpio.h	29;"	d
+I2C7	i2c.h	/^    I2C7,$/;"	e	enum:__anon8
+I2C7_BASE	gpio.h	30;"	d
+I2C8	i2c.h	/^    I2C8,$/;"	e	enum:__anon8
+I2C8_BASE	gpio.h	31;"	d
+I2CADDn	res.h	519;"	d
+I2CCONn	res.h	517;"	d
+I2CDSn	res.h	520;"	d
+I2CLCn	res.h	521;"	d
+I2CSTATn	res.h	518;"	d
+I2C_ADD	i2c.h	9;"	d
+I2C_CHANNEL	i2c.h	/^} I2C_CHANNEL;$/;"	t	typeref:enum:__anon8
+I2C_CHANNEL_MAX	i2c.h	/^    I2C_CHANNEL_MAX,$/;"	e	enum:__anon8
+I2C_CON	i2c.h	7;"	d
+I2C_CONDITION	i2c.h	/^} I2C_CONDITION;$/;"	t	typeref:enum:__anon4
+I2C_CONTEXT	i2c.h	/^} I2C_CONTEXT;$/;"	t	typeref:struct:__anon7
+I2C_CalculatePrescaler	i2c.c	/^bool I2C_CalculatePrescaler(unsigned int uPClk, unsigned int uOpClk, I2C_PRESCALER *pePrescaler, unsigned int *pnPrescaler)$/;"	f
+I2C_ClearIntStatus	i2c.c	/^void I2C_ClearIntStatus(I2C_CHANNEL eCh)$/;"	f
+I2C_DS	i2c.h	10;"	d
+I2C_DisableInt	i2c.c	/^void I2C_DisableInt(I2C_CHANNEL eCh)$/;"	f
+I2C_ERR	i2c.c	22;"	d	file:
+I2C_ERROR	i2c.h	/^} I2C_ERROR;$/;"	t	typeref:enum:__anon2
+I2C_EnableInt	i2c.c	/^void I2C_EnableInt(I2C_CHANNEL eCh)$/;"	f
+I2C_GenerateSignal	i2c.c	/^void I2C_GenerateSignal(I2C_CHANNEL eCh, I2C_CONDITION eCondition)$/;"	f
+I2C_GetBusStatus	i2c.c	/^bool I2C_GetBusStatus(I2C_CHANNEL eCh)$/;"	f
+I2C_GetIntStatus	i2c.c	/^bool I2C_GetIntStatus(I2C_CHANNEL eCh)$/;"	f
+I2C_GetLastError	i2c.c	/^I2C_ERROR I2C_GetLastError(I2C_CHANNEL eCh)$/;"	f
+I2C_INIT	i2c.c	21;"	d	file:
+I2C_INVALID_ADDRESS	i2c.h	/^    I2C_INVALID_ADDRESS,$/;"	e	enum:__anon2
+I2C_INVALID_TX_CLOCK	i2c.h	/^    I2C_INVALID_TX_CLOCK,$/;"	e	enum:__anon2
+I2C_InitIp	i2c.c	/^bool I2C_InitIp(I2C_CHANNEL eCh, unsigned int nOpClock, unsigned int nTimeOut)$/;"	f
+I2C_InitMaster	i2c.c	/^bool I2C_InitMaster(I2C_CHANNEL eCh, I2C_PRESCALER ePrescaler, unsigned int nPrescaler)$/;"	f
+I2C_InitSlave	i2c.c	/^bool I2C_InitSlave(I2C_CHANNEL eCh, unsigned int uSlaveAddr, I2C_PRESCALER ePrescaler, unsigned int nPrescaler)$/;"	f
+I2C_Init_TouchScreen	I2C.c	/^void I2C_Init_TouchScreen(void)$/;"	f
+I2C_IsBusBusy	i2c.c	/^bool I2C_IsBusBusy(I2C_CHANNEL eCh)$/;"	f
+I2C_IsBusReady	i2c.c	/^bool I2C_IsBusReady(I2C_CHANNEL eCh)$/;"	f
+I2C_IsMatchAddress	i2c.c	/^bool I2C_IsMatchAddress(I2C_CHANNEL eCh)$/;"	f
+I2C_IsXferAck	i2c.c	/^bool I2C_IsXferAck(I2C_CHANNEL eCh)$/;"	f
+I2C_LC	i2c.h	11;"	d
+I2C_MODE	i2c.h	/^} I2C_MODE;$/;"	t	typeref:enum:__anon3
+I2C_OUTPUT_DELAY	i2c.h	/^} I2C_OUTPUT_DELAY;$/;"	t	typeref:enum:__anon5
+I2C_PRESCALER	i2c.h	/^} I2C_PRESCALER;$/;"	t	typeref:enum:__anon6
+I2C_PrintErrorCase	i2c.c	/^void I2C_PrintErrorCase(I2C_ERROR eError)$/;"	f
+I2C_ReadData	i2c.c	/^u8 I2C_ReadData(I2C_CHANNEL eCh)$/;"	f
+I2C_Recv	i2c.c	/^bool I2C_Recv(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aData[], unsigned int nNumOfData)$/;"	f
+I2C_RecvEx	i2c.c	/^bool I2C_RecvEx(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aAddr[], unsigned int nNumOfAddr, u8 aData[], unsigned int nNumOfData)$/;"	f
+I2C_RecvForGeneral	i2c.c	/^static bool I2C_RecvForGeneral(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aAddr[], unsigned int nNumOfAddr, u8 aData[], unsigned int nNumOfData)$/;"	f	file:
+I2C_RecvForHdmiPhy	i2c.c	/^static bool I2C_RecvForHdmiPhy(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aData[], unsigned int nNumOfData)$/;"	f	file:
+I2C_STAT	i2c.h	8;"	d
+I2C_SUCCESS	i2c.h	/^    I2C_SUCCESS,$/;"	e	enum:__anon2
+I2C_Send	i2c.c	/^bool I2C_Send(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aData[], unsigned int nNumOfData)$/;"	f
+I2C_SendEx	i2c.c	/^bool I2C_SendEx(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aAddr[], unsigned int nNumOfAddr, u8 aData[], unsigned int nNumOfData)$/;"	f
+I2C_SendForGeneral	i2c.c	/^static bool I2C_SendForGeneral(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aAddr[], unsigned int nNumOfAddr, u8 aData[], unsigned int nNumOfData)$/;"	f	file:
+I2C_SendForHdmiDdc	i2c.c	/^static bool I2C_SendForHdmiDdc(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aData[], unsigned int nNumOfData)$/;"	f	file:
+I2C_SendForHdmiPhy	i2c.c	/^static bool I2C_SendForHdmiPhy(I2C_CHANNEL eCh, u8 ucSlvAddr, u8 aData[], unsigned int nNumOfData)$/;"	f	file:
+I2C_SetAckGeneration	i2c.c	/^void I2C_SetAckGeneration(I2C_CHANNEL eCh, bool bEnable)$/;"	f
+I2C_SetClock	i2c.c	/^void I2C_SetClock(I2C_CHANNEL eCh, I2C_PRESCALER eSource, unsigned int nPrescaler)$/;"	f
+I2C_SetFilter	i2c.c	/^void I2C_SetFilter(I2C_CHANNEL eCh, bool bEnable)$/;"	f
+I2C_SetGPIO	i2c.c	/^void I2C_SetGPIO(I2C_CHANNEL eCh, bool bEnable)$/;"	f
+I2C_SetMode	i2c.c	/^void I2C_SetMode(I2C_CHANNEL eCh, I2C_MODE eMode)$/;"	f
+I2C_SetOutputDelay	i2c.c	/^void I2C_SetOutputDelay(I2C_CHANNEL eCh, I2C_OUTPUT_DELAY eOutputDelay)$/;"	f
+I2C_SetSlaveAddress	i2c.c	/^void I2C_SetSlaveAddress(I2C_CHANNEL eCh, u8 nSlaveAddress)$/;"	f
+I2C_TIMEOUT_BUS_READY_START	i2c.h	/^    I2C_TIMEOUT_BUS_READY_START,$/;"	e	enum:__anon2
+I2C_TIMEOUT_BUS_READY_STOP	i2c.h	/^    I2C_TIMEOUT_BUS_READY_STOP,$/;"	e	enum:__anon2
+I2C_TIMEOUT_DEFAULT	i2c.h	20;"	d
+I2C_TIMEOUT_INFINITY	i2c.h	19;"	d
+I2C_TIMEOUT_READ_DATA	i2c.h	/^    I2C_TIMEOUT_READ_DATA,$/;"	e	enum:__anon2
+I2C_TIMEOUT_SLAVE_ADDRESS	i2c.h	/^    I2C_TIMEOUT_SLAVE_ADDRESS,$/;"	e	enum:__anon2
+I2C_TIMEOUT_WRITE_ADDRESS	i2c.h	/^    I2C_TIMEOUT_WRITE_ADDRESS,$/;"	e	enum:__anon2
+I2C_TIMEOUT_WRITE_DATA	i2c.h	/^    I2C_TIMEOUT_WRITE_DATA,$/;"	e	enum:__anon2
+I2C_TX_CLOCK_125KHZ	i2c.h	14;"	d
+I2C_TX_CLOCK_200KHZ	i2c.h	15;"	d
+I2C_TX_CLOCK_300KHZ	i2c.h	16;"	d
+I2C_TX_CLOCK_DEFAULT	i2c.h	17;"	d
+I2C_WaitForBusReady	i2c.c	/^bool I2C_WaitForBusReady(I2C_CHANNEL eCh, unsigned int nTimeOut)$/;"	f
+I2C_WaitForMatchAddress	i2c.c	/^bool I2C_WaitForMatchAddress(I2C_CHANNEL eCh, unsigned int nTimeOut)$/;"	f
+I2C_WaitForXferAck	i2c.c	/^bool I2C_WaitForXferAck(I2C_CHANNEL eCh, unsigned int nTimeOut)$/;"	f
+I2C_WaitForXferNoAck	i2c.c	/^bool I2C_WaitForXferNoAck(I2C_CHANNEL eCh, unsigned int nTimeOut)$/;"	f
+I2C_WriteAddress	i2c.c	/^void I2C_WriteAddress(I2C_CHANNEL eCh, u8 nAddress)$/;"	f
+I2C_WriteData	i2c.c	/^void I2C_WriteData(I2C_CHANNEL eCh, u8 nData)$/;"	f
+ICCABPR_CPU0	res.h	256;"	d
+ICCABPR_CPU1	res.h	264;"	d
+ICCABPR_CPU2	res.h	272;"	d
+ICCBPR_CPU0	res.h	251;"	d
+ICCBPR_CPU1	res.h	259;"	d
+ICCBPR_CPU2	res.h	267;"	d
+ICCEOIR_CPU0	res.h	253;"	d
+ICCEOIR_CPU1	res.h	261;"	d
+ICCEOIR_CPU2	res.h	269;"	d
+ICCHPIR_CPU0	res.h	255;"	d
+ICCHPIR_CPU1	res.h	263;"	d
+ICCHPIR_CPU2	res.h	271;"	d
+ICCIAR_CPU0	res.h	252;"	d
+ICCIAR_CPU1	res.h	260;"	d
+ICCIAR_CPU2	res.h	268;"	d
+ICCICR_CPU0	res.h	249;"	d
+ICCICR_CPU1	res.h	257;"	d
+ICCICR_CPU2	res.h	265;"	d
+ICCPMR_CPU0	res.h	250;"	d
+ICCPMR_CPU1	res.h	258;"	d
+ICCPMR_CPU2	res.h	266;"	d
+ICCRPR_CPU0	res.h	254;"	d
+ICCRPR_CPU1	res.h	262;"	d
+ICCRPR_CPU2	res.h	270;"	d
+ICDABR0_CPU0	res.h	305;"	d
+ICDABR0_CPU1	res.h	410;"	d
+ICDABR1	res.h	306;"	d
+ICDABR2	res.h	307;"	d
+ICDABR3	res.h	308;"	d
+ICDABR4	res.h	309;"	d
+ICDDCR	res.h	277;"	d
+ICDICER0_CPU0	res.h	290;"	d
+ICDICER0_CPU1	res.h	407;"	d
+ICDICER1	res.h	291;"	d
+ICDICER2	res.h	292;"	d
+ICDICER3	res.h	293;"	d
+ICDICER4	res.h	294;"	d
+ICDICFR0_CPU0	res.h	390;"	d
+ICDICFR1_CPU0	res.h	391;"	d
+ICDICFR2	res.h	392;"	d
+ICDICFR3	res.h	393;"	d
+ICDICFR4	res.h	394;"	d
+ICDICFR5	res.h	395;"	d
+ICDICFR6	res.h	396;"	d
+ICDICFR7	res.h	397;"	d
+ICDICFR8	res.h	398;"	d
+ICDICFR9	res.h	399;"	d
+ICDICPR0_CPU0	res.h	300;"	d
+ICDICPR0_CPU1	res.h	409;"	d
+ICDICPR1	res.h	301;"	d
+ICDICPR2	res.h	302;"	d
+ICDICPR3	res.h	303;"	d
+ICDICPR4	res.h	304;"	d
+ICDICTR	res.h	278;"	d
+ICDIIDR	res.h	279;"	d
+ICDIPR0_CPU0	res.h	310;"	d
+ICDIPR0_CPU1	res.h	411;"	d
+ICDIPR10	res.h	320;"	d
+ICDIPR11	res.h	321;"	d
+ICDIPR12	res.h	322;"	d
+ICDIPR13	res.h	323;"	d
+ICDIPR14	res.h	324;"	d
+ICDIPR15	res.h	325;"	d
+ICDIPR16	res.h	326;"	d
+ICDIPR17	res.h	327;"	d
+ICDIPR18	res.h	328;"	d
+ICDIPR19	res.h	329;"	d
+ICDIPR1_CPU0	res.h	311;"	d
+ICDIPR1_CPU1	res.h	412;"	d
+ICDIPR20	res.h	330;"	d
+ICDIPR21	res.h	331;"	d
+ICDIPR22	res.h	332;"	d
+ICDIPR23	res.h	333;"	d
+ICDIPR24	res.h	334;"	d
+ICDIPR25	res.h	335;"	d
+ICDIPR26	res.h	336;"	d
+ICDIPR27	res.h	337;"	d
+ICDIPR28	res.h	338;"	d
+ICDIPR29	res.h	339;"	d
+ICDIPR2_CPU0	res.h	312;"	d
+ICDIPR2_CPU1	res.h	413;"	d
+ICDIPR30	res.h	340;"	d
+ICDIPR31	res.h	341;"	d
+ICDIPR32	res.h	342;"	d
+ICDIPR33	res.h	343;"	d
+ICDIPR34	res.h	344;"	d
+ICDIPR35	res.h	345;"	d
+ICDIPR36	res.h	346;"	d
+ICDIPR37	res.h	347;"	d
+ICDIPR38	res.h	348;"	d
+ICDIPR39	res.h	349;"	d
+ICDIPR3_CPU0	res.h	313;"	d
+ICDIPR3_CPU1	res.h	414;"	d
+ICDIPR4_CPU0	res.h	314;"	d
+ICDIPR4_CPU1	res.h	415;"	d
+ICDIPR5_CPU0	res.h	315;"	d
+ICDIPR5_CPU1	res.h	416;"	d
+ICDIPR6_CPU0	res.h	316;"	d
+ICDIPR6_CPU1	res.h	417;"	d
+ICDIPR7_CPU0	res.h	317;"	d
+ICDIPR7_CPU1	res.h	418;"	d
+ICDIPR8	res.h	318;"	d
+ICDIPR9	res.h	319;"	d
+ICDIPTR0_CPU0	res.h	350;"	d
+ICDIPTR0_CPU1	res.h	419;"	d
+ICDIPTR10	res.h	360;"	d
+ICDIPTR11	res.h	361;"	d
+ICDIPTR12	res.h	362;"	d
+ICDIPTR13	res.h	363;"	d
+ICDIPTR14	res.h	364;"	d
+ICDIPTR15	res.h	365;"	d
+ICDIPTR16	res.h	366;"	d
+ICDIPTR17	res.h	367;"	d
+ICDIPTR18	res.h	368;"	d
+ICDIPTR19	res.h	369;"	d
+ICDIPTR1_CPU0	res.h	351;"	d
+ICDIPTR1_CPU1	res.h	420;"	d
+ICDIPTR20	res.h	370;"	d
+ICDIPTR21	res.h	371;"	d
+ICDIPTR22	res.h	372;"	d
+ICDIPTR23	res.h	373;"	d
+ICDIPTR24	res.h	374;"	d
+ICDIPTR25	res.h	375;"	d
+ICDIPTR26	res.h	376;"	d
+ICDIPTR27	res.h	377;"	d
+ICDIPTR28	res.h	378;"	d
+ICDIPTR29	res.h	379;"	d
+ICDIPTR2_CPU0	res.h	352;"	d
+ICDIPTR2_CPU1	res.h	421;"	d
+ICDIPTR30	res.h	380;"	d
+ICDIPTR31	res.h	381;"	d
+ICDIPTR32	res.h	382;"	d
+ICDIPTR33	res.h	383;"	d
+ICDIPTR34	res.h	384;"	d
+ICDIPTR35	res.h	385;"	d
+ICDIPTR36	res.h	386;"	d
+ICDIPTR37	res.h	387;"	d
+ICDIPTR38	res.h	388;"	d
+ICDIPTR39	res.h	389;"	d
+ICDIPTR3_CPU0	res.h	353;"	d
+ICDIPTR3_CPU1	res.h	422;"	d
+ICDIPTR4_CPU0	res.h	354;"	d
+ICDIPTR5_CPU0	res.h	355;"	d
+ICDIPTR6_CPU0	res.h	356;"	d
+ICDIPTR7_CPU0	res.h	357;"	d
+ICDIPTR8	res.h	358;"	d
+ICDIPTR9	res.h	359;"	d
+ICDISER0_CPU0	res.h	285;"	d
+ICDISER0_CPU1	res.h	406;"	d
+ICDISER1	res.h	286;"	d
+ICDISER2	res.h	287;"	d
+ICDISER3	res.h	288;"	d
+ICDISER4	res.h	289;"	d
+ICDISPR0_CPU0	res.h	295;"	d
+ICDISPR0_CPU1	res.h	408;"	d
+ICDISPR1	res.h	296;"	d
+ICDISPR2	res.h	297;"	d
+ICDISPR3	res.h	298;"	d
+ICDISPR4	res.h	299;"	d
+ICDISR0_CPU0	res.h	280;"	d
+ICDISR0_CPU1	res.h	405;"	d
+ICDISR1	res.h	281;"	d
+ICDISR2	res.h	282;"	d
+ICDISR3	res.h	283;"	d
+ICDISR4	res.h	284;"	d
+ICDSGIR	res.h	404;"	d
+IECR0	res.h	469;"	d
+IECR1	res.h	473;"	d
+IECR2	res.h	477;"	d
+IECR3	res.h	481;"	d
+IECR4	res.h	485;"	d
+IESR0	res.h	468;"	d
+IESR1	res.h	472;"	d
+IESR2	res.h	476;"	d
+IESR3	res.h	480;"	d
+IESR4	res.h	484;"	d
+IMSR0	res.h	471;"	d
+IMSR1	res.h	475;"	d
+IMSR2	res.h	479;"	d
+IMSR3	res.h	483;"	d
+IMSR4	res.h	487;"	d
+INF_REG0_OFFSET	cpu.h	92;"	d
+INF_REG0_REG	cpu.h	103;"	d
+INF_REG1_OFFSET	cpu.h	93;"	d
+INF_REG1_REG	cpu.h	104;"	d
+INF_REG2_OFFSET	cpu.h	94;"	d
+INF_REG2_REG	cpu.h	105;"	d
+INF_REG3_OFFSET	cpu.h	95;"	d
+INF_REG3_REG	cpu.h	106;"	d
+INF_REG4_OFFSET	cpu.h	96;"	d
+INF_REG4_REG	cpu.h	107;"	d
+INF_REG5_OFFSET	cpu.h	97;"	d
+INF_REG5_REG	cpu.h	108;"	d
+INF_REG6_OFFSET	cpu.h	98;"	d
+INF_REG6_REG	cpu.h	109;"	d
+INF_REG7_OFFSET	cpu.h	99;"	d
+INF_REG7_REG	cpu.h	110;"	d
+INF_REG_BASE	cpu.h	90;"	d
+INIT_S5P_SERIAL_STRUCTURE	serial_s5p.c	173;"	d	file:
+INTP	res.h	31;"	d
+ISTR0	res.h	470;"	d
+ISTR1	res.h	474;"	d
+ISTR2	res.h	478;"	d
+ISTR3	res.h	482;"	d
+ISTR4	res.h	486;"	d
+Init_Timer	Timer.c	/^void Init_Timer(unsigned int Timer,unsigned int usec)$/;"	f
+Init_Uart	Uart.c	/^void Init_Uart(void)$/;"	f
+Irq	test.c	/^void Irq(void)$/;"	f
+Irq	vector.S	/^Irq:$/;"	l
+Irq	vector/vector.S	/^Irq:$/;"	l
+LINKSCRIPT	Makefile	/^LINKSCRIPT=test.lds$/;"	m
+Lbignum	udiv.S	/^Lbignum:$/;"	l
+Ldiv0	div.S	/^Ldiv0:$/;"	l
+Ldiv0	udiv.S	/^Ldiv0:$/;"	l
+Lgot_result	udiv.S	/^Lgot_result:$/;"	l
+Loop1	udiv.S	/^Loop1:$/;"	l
+Loop3	udiv.S	/^Loop3:$/;"	l
+Low_Level	gpio.h	17;"	d
+MASK	irq.c	168;"	d	file:
+MASTER_RX_MODE	i2c.h	/^	MASTER_RX_MODE,$/;"	e	enum:__anon3
+MASTER_TX_MODE	i2c.h	/^{ DISABLE_I2C, MASTER_TX_MODE,$/;"	e	enum:__anon3
+MIU_BASE	cpu.h	283;"	d
+MIU_INTLV_CONFIG	cpu.h	284;"	d
+MIU_INTLV_END_ADDR	cpu.h	287;"	d
+MIU_INTLV_START_ADDR	cpu.h	285;"	d
+MIU_MAPPING_UPDATE	cpu.h	286;"	d
+MIU_SINGLE_MAPPING0_END_ADDR	cpu.h	290;"	d
+MIU_SINGLE_MAPPING0_START_ADDR	cpu.h	289;"	d
+MIU_SINGLE_MAPPING1_END_ADDR	cpu.h	292;"	d
+MIU_SINGLE_MAPPING1_START_ADDR	cpu.h	291;"	d
+MPLL_CON0_OFFSET	cpu.h	160;"	d
+MPLL_CON0_OFFSET	cpu.h	163;"	d
+MPLL_CON0_REG	cpu.h	176;"	d
+MPLL_CON1_OFFSET	cpu.h	161;"	d
+MPLL_CON1_OFFSET	cpu.h	164;"	d
+MPLL_LOCK_OFFSET	cpu.h	156;"	d
+MUX3_DIV_SHIFT	timer.c	14;"	d	file:
+MUX_DIV_16	timer.c	13;"	d	file:
+MUX_DIV_2	timer.c	10;"	d	file:
+MUX_DIV_4	timer.c	11;"	d	file:
+MUX_DIV_8	timer.c	12;"	d	file:
+NAMESIZE	serial.h	4;"	d
+NULL	res.h	14;"	d
+NULL	serial.h	8;"	d
+NULL	string.h	5;"	d
+OBJS	Makefile	/^OBJS:=basedevice.o  div.o  s3c44b0_rtc.o $/;"	m
+OD_0CLK	i2c.h	/^	OD_0CLK,$/;"	e	enum:__anon5
+OD_10CLK	i2c.h	/^	OD_10CLK,$/;"	e	enum:__anon5
+OD_15CLK	i2c.h	/^	OD_15CLK,$/;"	e	enum:__anon5
+OD_5CLK	i2c.h	/^	OD_5CLK,$/;"	e	enum:__anon5
+OMR_OFFSET	cpu.h	86;"	d
+PEND	irq.c	177;"	d	file:
+PRESCALER_1	timer.c	9;"	d	file:
+PRESCALER_16	i2c.h	/^	PRESCALER_16 = 16,$/;"	e	enum:__anon6
+PRESCALER_512	i2c.h	/^	PRESCALER_512 = 512,$/;"	e	enum:__anon6
+PRI_TYPE	gpio.h	/^typedef enum PRI_TYPE$/;"	g
+PRI_eTYPE	gpio.h	/^} PRI_eTYPE;$/;"	t	typeref:enum:PRI_TYPE
+PRO_ID	cpu.h	74;"	d
+PRO_ID_OFFSET	cpu.h	73;"	d
+PULL_MASK	res.h	237;"	d
+PULL_MODE	res.h	238;"	d
+PrefetchAbt	test.c	/^void PrefetchAbt(void)$/;"	f
+PrefetchAbt	vector.S	/^PrefetchAbt:$/;"	l
+PrefetchAbt	vector/vector.S	/^PrefetchAbt:$/;"	l
+RATE_MASK	res.h	242;"	d
+RATE_SET	res.h	243;"	d
+RTCALM	res.h	34;"	d
+RTCCON	res.h	32;"	d
+RX	gpio.h	/^	TX, RX$/;"	e	enum:__anon1
+Read_I2C_Data	I2C.c	/^void Read_I2C_Data(unsigned int SlaveAddr , char *buffer , int len)$/;"	f
+Reset	test.c	/^void Reset(void)$/;"	f
+Reset	vector.S	/^Reset:$/;"	l
+Reset	vector/vector.S	/^Reset:$/;"	l
+Rising_Edge	gpio.h	20;"	d
+S5PV310_CLOCK_BASE	cpu.h	19;"	d
+S5PV310_HSMMC_BASE	cpu.h	27;"	d
+S5PV310_POWER_BASE	cpu.h	18;"	d
+S5PV310_PRO_ID	cpu.h	16;"	d
+S5PV310_PWMTIMER_BASE	cpu.h	28;"	d
+S5PV310_SYSREG_BASE	cpu.h	17;"	d
+S5PV310_UART0_OFFSET	cpu.h	298;"	d
+S5PV310_UART1_OFFSET	cpu.h	299;"	d
+S5PV310_UART2_OFFSET	cpu.h	300;"	d
+S5PV310_UART3_OFFSET	cpu.h	301;"	d
+S5PV310_UART_BASE	cpu.h	30;"	d
+S5PV310_UART_CONSOLE_BASE	cpu.h	304;"	d
+S5PV310_UART_CONSOLE_BASE	cpu.h	306;"	d
+S5PV310_UART_CONSOLE_BASE	cpu.h	308;"	d
+S5PV310_UART_CONSOLE_BASE	cpu.h	310;"	d
+S5PV310_UART_CONSOLE_BASE	cpu.h	312;"	d
+S5P_CHECK_DIDLE	cpu.h	114;"	d
+S5P_CHECK_LPA	cpu.h	115;"	d
+S5P_CHECK_SLEEP	cpu.h	113;"	d
+S5P_OTG_DAINT	cpu.h	604;"	d
+S5P_OTG_DAINTMSK	cpu.h	605;"	d
+S5P_OTG_DCFG	cpu.h	599;"	d
+S5P_OTG_DCTL	cpu.h	600;"	d
+S5P_OTG_DIEPCTL0	cpu.h	614;"	d
+S5P_OTG_DIEPCTL1	cpu.h	618;"	d
+S5P_OTG_DIEPCTL10	cpu.h	654;"	d
+S5P_OTG_DIEPCTL11	cpu.h	658;"	d
+S5P_OTG_DIEPCTL12	cpu.h	662;"	d
+S5P_OTG_DIEPCTL13	cpu.h	666;"	d
+S5P_OTG_DIEPCTL14	cpu.h	670;"	d
+S5P_OTG_DIEPCTL15	cpu.h	674;"	d
+S5P_OTG_DIEPCTL2	cpu.h	622;"	d
+S5P_OTG_DIEPCTL3	cpu.h	626;"	d
+S5P_OTG_DIEPCTL4	cpu.h	630;"	d
+S5P_OTG_DIEPCTL5	cpu.h	634;"	d
+S5P_OTG_DIEPCTL6	cpu.h	638;"	d
+S5P_OTG_DIEPCTL7	cpu.h	642;"	d
+S5P_OTG_DIEPCTL8	cpu.h	646;"	d
+S5P_OTG_DIEPCTL9	cpu.h	650;"	d
+S5P_OTG_DIEPDMA0	cpu.h	617;"	d
+S5P_OTG_DIEPDMA1	cpu.h	621;"	d
+S5P_OTG_DIEPDMA10	cpu.h	657;"	d
+S5P_OTG_DIEPDMA11	cpu.h	661;"	d
+S5P_OTG_DIEPDMA12	cpu.h	665;"	d
+S5P_OTG_DIEPDMA13	cpu.h	669;"	d
+S5P_OTG_DIEPDMA14	cpu.h	673;"	d
+S5P_OTG_DIEPDMA15	cpu.h	677;"	d
+S5P_OTG_DIEPDMA2	cpu.h	625;"	d
+S5P_OTG_DIEPDMA3	cpu.h	629;"	d
+S5P_OTG_DIEPDMA4	cpu.h	633;"	d
+S5P_OTG_DIEPDMA5	cpu.h	637;"	d
+S5P_OTG_DIEPDMA6	cpu.h	641;"	d
+S5P_OTG_DIEPDMA7	cpu.h	645;"	d
+S5P_OTG_DIEPDMA8	cpu.h	649;"	d
+S5P_OTG_DIEPDMA9	cpu.h	653;"	d
+S5P_OTG_DIEPINT0	cpu.h	615;"	d
+S5P_OTG_DIEPINT1	cpu.h	619;"	d
+S5P_OTG_DIEPINT10	cpu.h	655;"	d
+S5P_OTG_DIEPINT11	cpu.h	659;"	d
+S5P_OTG_DIEPINT12	cpu.h	663;"	d
+S5P_OTG_DIEPINT13	cpu.h	667;"	d
+S5P_OTG_DIEPINT14	cpu.h	671;"	d
+S5P_OTG_DIEPINT15	cpu.h	675;"	d
+S5P_OTG_DIEPINT2	cpu.h	623;"	d
+S5P_OTG_DIEPINT3	cpu.h	627;"	d
+S5P_OTG_DIEPINT4	cpu.h	631;"	d
+S5P_OTG_DIEPINT5	cpu.h	635;"	d
+S5P_OTG_DIEPINT6	cpu.h	639;"	d
+S5P_OTG_DIEPINT7	cpu.h	643;"	d
+S5P_OTG_DIEPINT8	cpu.h	647;"	d
+S5P_OTG_DIEPINT9	cpu.h	651;"	d
+S5P_OTG_DIEPMSK	cpu.h	602;"	d
+S5P_OTG_DIEPTSIZ0	cpu.h	616;"	d
+S5P_OTG_DIEPTSIZ1	cpu.h	620;"	d
+S5P_OTG_DIEPTSIZ10	cpu.h	656;"	d
+S5P_OTG_DIEPTSIZ11	cpu.h	660;"	d
+S5P_OTG_DIEPTSIZ12	cpu.h	664;"	d
+S5P_OTG_DIEPTSIZ13	cpu.h	668;"	d
+S5P_OTG_DIEPTSIZ14	cpu.h	672;"	d
+S5P_OTG_DIEPTSIZ15	cpu.h	676;"	d
+S5P_OTG_DIEPTSIZ2	cpu.h	624;"	d
+S5P_OTG_DIEPTSIZ3	cpu.h	628;"	d
+S5P_OTG_DIEPTSIZ4	cpu.h	632;"	d
+S5P_OTG_DIEPTSIZ5	cpu.h	636;"	d
+S5P_OTG_DIEPTSIZ6	cpu.h	640;"	d
+S5P_OTG_DIEPTSIZ7	cpu.h	644;"	d
+S5P_OTG_DIEPTSIZ8	cpu.h	648;"	d
+S5P_OTG_DIEPTSIZ9	cpu.h	652;"	d
+S5P_OTG_DOEPCTL0	cpu.h	680;"	d
+S5P_OTG_DOEPCTL1	cpu.h	684;"	d
+S5P_OTG_DOEPCTL10	cpu.h	720;"	d
+S5P_OTG_DOEPCTL11	cpu.h	724;"	d
+S5P_OTG_DOEPCTL12	cpu.h	728;"	d
+S5P_OTG_DOEPCTL13	cpu.h	732;"	d
+S5P_OTG_DOEPCTL14	cpu.h	736;"	d
+S5P_OTG_DOEPCTL15	cpu.h	740;"	d
+S5P_OTG_DOEPCTL2	cpu.h	688;"	d
+S5P_OTG_DOEPCTL3	cpu.h	692;"	d
+S5P_OTG_DOEPCTL4	cpu.h	696;"	d
+S5P_OTG_DOEPCTL5	cpu.h	700;"	d
+S5P_OTG_DOEPCTL6	cpu.h	704;"	d
+S5P_OTG_DOEPCTL7	cpu.h	708;"	d
+S5P_OTG_DOEPCTL8	cpu.h	712;"	d
+S5P_OTG_DOEPCTL9	cpu.h	716;"	d
+S5P_OTG_DOEPDMA0	cpu.h	683;"	d
+S5P_OTG_DOEPDMA1	cpu.h	687;"	d
+S5P_OTG_DOEPDMA10	cpu.h	723;"	d
+S5P_OTG_DOEPDMA11	cpu.h	727;"	d
+S5P_OTG_DOEPDMA12	cpu.h	731;"	d
+S5P_OTG_DOEPDMA13	cpu.h	735;"	d
+S5P_OTG_DOEPDMA14	cpu.h	739;"	d
+S5P_OTG_DOEPDMA15	cpu.h	743;"	d
+S5P_OTG_DOEPDMA2	cpu.h	691;"	d
+S5P_OTG_DOEPDMA3	cpu.h	695;"	d
+S5P_OTG_DOEPDMA4	cpu.h	699;"	d
+S5P_OTG_DOEPDMA5	cpu.h	703;"	d
+S5P_OTG_DOEPDMA6	cpu.h	707;"	d
+S5P_OTG_DOEPDMA7	cpu.h	711;"	d
+S5P_OTG_DOEPDMA8	cpu.h	715;"	d
+S5P_OTG_DOEPDMA9	cpu.h	719;"	d
+S5P_OTG_DOEPINT0	cpu.h	681;"	d
+S5P_OTG_DOEPINT1	cpu.h	685;"	d
+S5P_OTG_DOEPINT10	cpu.h	721;"	d
+S5P_OTG_DOEPINT11	cpu.h	725;"	d
+S5P_OTG_DOEPINT12	cpu.h	729;"	d
+S5P_OTG_DOEPINT13	cpu.h	733;"	d
+S5P_OTG_DOEPINT14	cpu.h	737;"	d
+S5P_OTG_DOEPINT2	cpu.h	689;"	d
+S5P_OTG_DOEPINT3	cpu.h	693;"	d
+S5P_OTG_DOEPINT4	cpu.h	697;"	d
+S5P_OTG_DOEPINT5	cpu.h	701;"	d
+S5P_OTG_DOEPINT6	cpu.h	705;"	d
+S5P_OTG_DOEPINT7	cpu.h	709;"	d
+S5P_OTG_DOEPINT8	cpu.h	713;"	d
+S5P_OTG_DOEPINT9	cpu.h	717;"	d
+S5P_OTG_DOEPMSK	cpu.h	603;"	d
+S5P_OTG_DOEPTSIZ0	cpu.h	682;"	d
+S5P_OTG_DOEPTSIZ1	cpu.h	686;"	d
+S5P_OTG_DOEPTSIZ10	cpu.h	722;"	d
+S5P_OTG_DOEPTSIZ11	cpu.h	726;"	d
+S5P_OTG_DOEPTSIZ12	cpu.h	730;"	d
+S5P_OTG_DOEPTSIZ13	cpu.h	734;"	d
+S5P_OTG_DOEPTSIZ14	cpu.h	738;"	d
+S5P_OTG_DOEPTSIZ15	cpu.h	742;"	d
+S5P_OTG_DOEPTSIZ2	cpu.h	690;"	d
+S5P_OTG_DOEPTSIZ3	cpu.h	694;"	d
+S5P_OTG_DOEPTSIZ4	cpu.h	698;"	d
+S5P_OTG_DOEPTSIZ5	cpu.h	702;"	d
+S5P_OTG_DOEPTSIZ6	cpu.h	706;"	d
+S5P_OTG_DOEPTSIZ7	cpu.h	710;"	d
+S5P_OTG_DOEPTSIZ8	cpu.h	714;"	d
+S5P_OTG_DOEPTSIZ9	cpu.h	718;"	d
+S5P_OTG_DPTXFSIZ1	cpu.h	471;"	d
+S5P_OTG_DPTXFSIZ10	cpu.h	480;"	d
+S5P_OTG_DPTXFSIZ11	cpu.h	481;"	d
+S5P_OTG_DPTXFSIZ12	cpu.h	482;"	d
+S5P_OTG_DPTXFSIZ13	cpu.h	483;"	d
+S5P_OTG_DPTXFSIZ14	cpu.h	484;"	d
+S5P_OTG_DPTXFSIZ15	cpu.h	485;"	d
+S5P_OTG_DPTXFSIZ2	cpu.h	472;"	d
+S5P_OTG_DPTXFSIZ3	cpu.h	473;"	d
+S5P_OTG_DPTXFSIZ4	cpu.h	474;"	d
+S5P_OTG_DPTXFSIZ5	cpu.h	475;"	d
+S5P_OTG_DPTXFSIZ6	cpu.h	476;"	d
+S5P_OTG_DPTXFSIZ7	cpu.h	477;"	d
+S5P_OTG_DPTXFSIZ8	cpu.h	478;"	d
+S5P_OTG_DPTXFSIZ9	cpu.h	479;"	d
+S5P_OTG_DSTS	cpu.h	601;"	d
+S5P_OTG_DTKNQR1	cpu.h	606;"	d
+S5P_OTG_DTKNQR2	cpu.h	607;"	d
+S5P_OTG_DTKNQR3	cpu.h	610;"	d
+S5P_OTG_DTKNQR4	cpu.h	611;"	d
+S5P_OTG_DVBUSDIS	cpu.h	608;"	d
+S5P_OTG_DVBUSPULSE	cpu.h	609;"	d
+S5P_OTG_EP0_FIFO	cpu.h	749;"	d
+S5P_OTG_GAHBCFG	cpu.h	460;"	d
+S5P_OTG_GINTMSK	cpu.h	464;"	d
+S5P_OTG_GINTSTS	cpu.h	463;"	d
+S5P_OTG_GNPTXFSIZ	cpu.h	468;"	d
+S5P_OTG_GNPTXSTS	cpu.h	469;"	d
+S5P_OTG_GOTGCTL	cpu.h	458;"	d
+S5P_OTG_GOTGINT	cpu.h	459;"	d
+S5P_OTG_GRSTCTL	cpu.h	462;"	d
+S5P_OTG_GRXFSIZ	cpu.h	467;"	d
+S5P_OTG_GRXSTSP	cpu.h	466;"	d
+S5P_OTG_GRXSTSR	cpu.h	465;"	d
+S5P_OTG_GUSBCFG	cpu.h	461;"	d
+S5P_OTG_HAINT	cpu.h	494;"	d
+S5P_OTG_HAINTMSK	cpu.h	495;"	d
+S5P_OTG_HCCHAR0	cpu.h	501;"	d
+S5P_OTG_HCCHAR1	cpu.h	507;"	d
+S5P_OTG_HCCHAR10	cpu.h	561;"	d
+S5P_OTG_HCCHAR11	cpu.h	567;"	d
+S5P_OTG_HCCHAR12	cpu.h	573;"	d
+S5P_OTG_HCCHAR13	cpu.h	579;"	d
+S5P_OTG_HCCHAR14	cpu.h	585;"	d
+S5P_OTG_HCCHAR15	cpu.h	591;"	d
+S5P_OTG_HCCHAR2	cpu.h	513;"	d
+S5P_OTG_HCCHAR3	cpu.h	519;"	d
+S5P_OTG_HCCHAR4	cpu.h	525;"	d
+S5P_OTG_HCCHAR5	cpu.h	531;"	d
+S5P_OTG_HCCHAR6	cpu.h	537;"	d
+S5P_OTG_HCCHAR7	cpu.h	543;"	d
+S5P_OTG_HCCHAR8	cpu.h	549;"	d
+S5P_OTG_HCCHAR9	cpu.h	555;"	d
+S5P_OTG_HCDMA0	cpu.h	506;"	d
+S5P_OTG_HCDMA1	cpu.h	512;"	d
+S5P_OTG_HCDMA10	cpu.h	566;"	d
+S5P_OTG_HCDMA11	cpu.h	572;"	d
+S5P_OTG_HCDMA12	cpu.h	578;"	d
+S5P_OTG_HCDMA13	cpu.h	584;"	d
+S5P_OTG_HCDMA14	cpu.h	590;"	d
+S5P_OTG_HCDMA15	cpu.h	596;"	d
+S5P_OTG_HCDMA2	cpu.h	518;"	d
+S5P_OTG_HCDMA3	cpu.h	524;"	d
+S5P_OTG_HCDMA4	cpu.h	530;"	d
+S5P_OTG_HCDMA5	cpu.h	536;"	d
+S5P_OTG_HCDMA6	cpu.h	542;"	d
+S5P_OTG_HCDMA7	cpu.h	548;"	d
+S5P_OTG_HCDMA8	cpu.h	554;"	d
+S5P_OTG_HCDMA9	cpu.h	560;"	d
+S5P_OTG_HCFG	cpu.h	489;"	d
+S5P_OTG_HCINT0	cpu.h	503;"	d
+S5P_OTG_HCINT1	cpu.h	509;"	d
+S5P_OTG_HCINT10	cpu.h	563;"	d
+S5P_OTG_HCINT11	cpu.h	569;"	d
+S5P_OTG_HCINT12	cpu.h	575;"	d
+S5P_OTG_HCINT13	cpu.h	581;"	d
+S5P_OTG_HCINT14	cpu.h	587;"	d
+S5P_OTG_HCINT15	cpu.h	593;"	d
+S5P_OTG_HCINT2	cpu.h	515;"	d
+S5P_OTG_HCINT3	cpu.h	521;"	d
+S5P_OTG_HCINT4	cpu.h	527;"	d
+S5P_OTG_HCINT5	cpu.h	533;"	d
+S5P_OTG_HCINT6	cpu.h	539;"	d
+S5P_OTG_HCINT7	cpu.h	545;"	d
+S5P_OTG_HCINT8	cpu.h	551;"	d
+S5P_OTG_HCINT9	cpu.h	557;"	d
+S5P_OTG_HCINTMSK0	cpu.h	504;"	d
+S5P_OTG_HCINTMSK1	cpu.h	510;"	d
+S5P_OTG_HCINTMSK10	cpu.h	564;"	d
+S5P_OTG_HCINTMSK11	cpu.h	570;"	d
+S5P_OTG_HCINTMSK12	cpu.h	576;"	d
+S5P_OTG_HCINTMSK13	cpu.h	582;"	d
+S5P_OTG_HCINTMSK14	cpu.h	588;"	d
+S5P_OTG_HCINTMSK15	cpu.h	594;"	d
+S5P_OTG_HCINTMSK2	cpu.h	516;"	d
+S5P_OTG_HCINTMSK3	cpu.h	522;"	d
+S5P_OTG_HCINTMSK4	cpu.h	528;"	d
+S5P_OTG_HCINTMSK5	cpu.h	534;"	d
+S5P_OTG_HCINTMSK6	cpu.h	540;"	d
+S5P_OTG_HCINTMSK7	cpu.h	546;"	d
+S5P_OTG_HCINTMSK8	cpu.h	552;"	d
+S5P_OTG_HCINTMSK9	cpu.h	558;"	d
+S5P_OTG_HCSPLT0	cpu.h	502;"	d
+S5P_OTG_HCSPLT1	cpu.h	508;"	d
+S5P_OTG_HCSPLT10	cpu.h	562;"	d
+S5P_OTG_HCSPLT11	cpu.h	568;"	d
+S5P_OTG_HCSPLT12	cpu.h	574;"	d
+S5P_OTG_HCSPLT13	cpu.h	580;"	d
+S5P_OTG_HCSPLT14	cpu.h	586;"	d
+S5P_OTG_HCSPLT15	cpu.h	592;"	d
+S5P_OTG_HCSPLT2	cpu.h	514;"	d
+S5P_OTG_HCSPLT3	cpu.h	520;"	d
+S5P_OTG_HCSPLT4	cpu.h	526;"	d
+S5P_OTG_HCSPLT5	cpu.h	532;"	d
+S5P_OTG_HCSPLT6	cpu.h	538;"	d
+S5P_OTG_HCSPLT7	cpu.h	544;"	d
+S5P_OTG_HCSPLT8	cpu.h	550;"	d
+S5P_OTG_HCSPLT9	cpu.h	556;"	d
+S5P_OTG_HCTSIZ0	cpu.h	505;"	d
+S5P_OTG_HCTSIZ1	cpu.h	511;"	d
+S5P_OTG_HCTSIZ10	cpu.h	565;"	d
+S5P_OTG_HCTSIZ11	cpu.h	571;"	d
+S5P_OTG_HCTSIZ12	cpu.h	577;"	d
+S5P_OTG_HCTSIZ13	cpu.h	583;"	d
+S5P_OTG_HCTSIZ14	cpu.h	589;"	d
+S5P_OTG_HCTSIZ15	cpu.h	595;"	d
+S5P_OTG_HCTSIZ2	cpu.h	517;"	d
+S5P_OTG_HCTSIZ3	cpu.h	523;"	d
+S5P_OTG_HCTSIZ4	cpu.h	529;"	d
+S5P_OTG_HCTSIZ5	cpu.h	535;"	d
+S5P_OTG_HCTSIZ6	cpu.h	541;"	d
+S5P_OTG_HCTSIZ7	cpu.h	547;"	d
+S5P_OTG_HCTSIZ8	cpu.h	553;"	d
+S5P_OTG_HCTSIZ9	cpu.h	559;"	d
+S5P_OTG_HFIR	cpu.h	490;"	d
+S5P_OTG_HFNUM	cpu.h	491;"	d
+S5P_OTG_HPRT	cpu.h	498;"	d
+S5P_OTG_HPTXFSIZ	cpu.h	470;"	d
+S5P_OTG_HPTXSTS	cpu.h	493;"	d
+S5P_OTG_OTG_DOEPINT15	cpu.h	741;"	d
+S5P_OTG_PCGCCTL	cpu.h	746;"	d
+S5P_OTG_PHYCLK	cpu.h	452;"	d
+S5P_OTG_PHYPWR	cpu.h	451;"	d
+S5P_OTG_PHYTUNE0	cpu.h	454;"	d
+S5P_OTG_PHYTUNE1	cpu.h	455;"	d
+S5P_OTG_RSTCON	cpu.h	453;"	d
+SAMSUNG_BASE	cpu.h	432;"	d
+SLAVE_RX_MODE	i2c.h	/^	SLAVE_RX_MODE,$/;"	e	enum:__anon3
+SLAVE_TX_MODE	i2c.h	/^	SLAVE_TX_MODE,$/;"	e	enum:__anon3
+SPI_STATUS0	res.h	400;"	d
+SPI_STATUS1	res.h	401;"	d
+SPI_STATUS2	res.h	402;"	d
+SPI_STATUS3	res.h	403;"	d
+SROM_BC0_REG	cpu.h	204;"	d
+SROM_BC1_REG	cpu.h	205;"	d
+SROM_BC2_REG	cpu.h	206;"	d
+SROM_BC3_REG	cpu.h	207;"	d
+SROM_BC4_REG	cpu.h	208;"	d
+SROM_BC5_REG	cpu.h	209;"	d
+SROM_BW_REG	cpu.h	203;"	d
+START_CONDITION	i2c.h	/^	START_CONDITION,$/;"	e	enum:__anon4
+STOP_CONDITION	i2c.h	/^	STOP_CONDITION,$/;"	e	enum:__anon4
+SWRESET	res.h	16;"	d
+SW_RST_REG	cpu.h	88;"	d
+SW_RST_REG_OFFSET	cpu.h	87;"	d
+Svc	test.c	/^void Svc(unsigned int SystemCallNum)$/;"	f
+Svc	vector.S	/^Svc:$/;"	l
+Svc	vector/vector.S	/^Svc:$/;"	l
+TAG_PRIVATE_FUNCTION	i2c.c	634;"	d	file:
+TAG_PUBLIC_FUNCTION	i2c.c	43;"	d	file:
+TARGET	Makefile	/^TARGET=test$/;"	m
+TCFG0	res.h	494;"	d
+TCFG1	res.h	495;"	d
+TCMPB0	res.h	498;"	d
+TCMPB1	res.h	501;"	d
+TCMPB2	res.h	504;"	d
+TCMPB3	res.h	507;"	d
+TCNTB0	res.h	497;"	d
+TCNTB1	res.h	500;"	d
+TCNTB2	res.h	503;"	d
+TCNTB3	res.h	506;"	d
+TCNTB4	res.h	509;"	d
+TCNTO0	res.h	499;"	d
+TCNTO1	res.h	502;"	d
+TCNTO2	res.h	505;"	d
+TCNTO3	res.h	508;"	d
+TCNTO4	res.h	510;"	d
+TCON	res.h	496;"	d
+TCON3_AUTO_RELOAD	pwm.h	8;"	d
+TCON3_START	pwm.h	12;"	d
+TCON3_UPDATE	pwm.h	10;"	d
+TCON_TIMER3_SHIFT	timer.c	16;"	d	file:
+TICCNT	res.h	33;"	d
+TINT_CSTAT	res.h	511;"	d
+TRUE	i2c.c	16;"	d	file:
+TX	gpio.h	/^	TX, RX$/;"	e	enum:__anon1
+TZPC_DECPROT0SET_OFFSET	cpu.h	193;"	d
+TZPC_DECPROT1SET_OFFSET	cpu.h	194;"	d
+TZPC_DECPROT2SET_OFFSET	cpu.h	195;"	d
+TZPC_DECPROT3SET_OFFSET	cpu.h	196;"	d
+Ttext	vector/Makefile	/^	arm-linux-ld -Ttext=0xFFFF0000 vector.o -o vector$/;"	m
+U16	res.h	/^typedef   volatile unsigned short U16 ; $/;"	t
+U32	res.h	/^typedef   volatile unsigned int   U32 ; $/;"	t
+U8	res.h	/^typedef   volatile unsigned char  U8 ;$/;"	t
+UART_ERR_MASK	cpu.h	332;"	d
+UBRDIV_OFFSET	cpu.h	325;"	d
+UBRDIVn	res.h	63;"	d
+UCON_OFFSET	cpu.h	316;"	d
+UCONn	res.h	54;"	d
+UDIVSLOT_OFFSET	cpu.h	326;"	d
+UERSTAT_OFFSET	cpu.h	320;"	d
+UERSTATn	res.h	58;"	d
+UFCON_OFFSET	cpu.h	317;"	d
+UFCONn	res.h	55;"	d
+UFRACVALn	res.h	64;"	d
+UFSTAT_OFFSET	cpu.h	321;"	d
+UFSTATn	res.h	59;"	d
+UINTM_OFFSET	cpu.h	329;"	d
+UINTMn	res.h	66;"	d
+UINTP_OFFSET	cpu.h	327;"	d
+UINTPn	res.h	65;"	d
+UINTSP_OFFSET	cpu.h	328;"	d
+ULCON_OFFSET	cpu.h	315;"	d
+ULCONn	res.h	53;"	d
+UMCON_OFFSET	cpu.h	318;"	d
+UMCONn	res.h	56;"	d
+UMSTAT_OFFSET	cpu.h	322;"	d
+UMSTATn	res.h	60;"	d
+URXH_OFFSET	cpu.h	324;"	d
+URXHn	res.h	62;"	d
+USBOTG_LINK_BASE	cpu.h	377;"	d
+USBOTG_PHY_BASE	cpu.h	378;"	d
+USB_CFG_OFFSET	cpu.h	80;"	d
+USB_CFG_REG	cpu.h	81;"	d
+USB_PHY_CONTROL	cpu.h	181;"	d
+USB_PHY_CONTROL_OFFSET	cpu.h	180;"	d
+UTRSTAT_OFFSET	cpu.h	319;"	d
+UTRSTATn	res.h	57;"	d
+UTXH_OFFSET	cpu.h	323;"	d
+UTXHn	res.h	61;"	d
+Undef	test.c	/^void Undef(void)$/;"	f
+Undef	vector.S	/^Undef:$/;"	l
+Undef	vector/vector.S	/^Undef:$/;"	l
+VPLL_CON0_OFFSET	cpu.h	135;"	d
+VPLL_CON0_REG	cpu.h	178;"	d
+VPLL_CON1_OFFSET	cpu.h	136;"	d
+VPLL_CON2_OFFSET	cpu.h	138;"	d
+VPLL_LOCK_OFFSET	cpu.h	129;"	d
+WTCLRINT	res.h	455;"	d
+WTCNT	res.h	454;"	d
+WTCON	res.h	452;"	d
+WTDAT	res.h	453;"	d
+Wait_for_ACK	I2C.c	/^int Wait_for_ACK(void)$/;"	f
+Wait_for_irq	I2C.c	/^int Wait_for_irq(void)$/;"	f
+_ADNBND	Uart.h	13;"	d
+_AUPBND	Uart.h	12;"	d
+_BCD_H	bcd.h	11;"	d
+_RES_H	res.h	3;"	d
+_RTC_H_	rtc.h	6;"	d
+_S5PV310_CPU_H	cpu.h	6;"	d
+_STRING_H	string.h	3;"	d
+_UART_H	Uart.h	3;"	d
+__ASM_ARCH_GPIO_H	gpio.h	6;"	d
+__ASM_ARCH_UART_H_	uart.h	6;"	d
+__ASM_ARM_ARCH_PWM_H_	pwm.h	5;"	d
+__I2C_H__	i2c.h	2;"	d
+__REG	cpu.h	66;"	d
+__SERIAL_H__	serial.h	2;"	d
+___strtok	string.c	/^char * ___strtok;$/;"	v
+__aeabi_idiv	div.S	/^__aeabi_idiv:$/;"	l
+__aeabi_idivmod	udiv.S	/^__aeabi_idivmod:$/;"	l
+__aeabi_uidiv	udiv.S	/^ __aeabi_uidiv:$/;"	l
+__aeabi_uidivmod	udiv.S	/^__aeabi_uidivmod:$/;"	l
+__arch_getb	res.h	203;"	d
+__arch_getl	res.h	205;"	d
+__arch_getw	res.h	204;"	d
+__arch_putb	res.h	207;"	d
+__arch_putl	res.h	209;"	d
+__arch_putw	res.h	208;"	d
+__div0	basedevice.c	/^void __div0(void)$/;"	f
+__div0	div0.c	/^void __div0 (void)$/;"	f
+__divsi3	div.S	/^__divsi3:$/;"	l
+__must_be_array	res.h	190;"	d
+__raw_readb	res.h	217;"	d
+__raw_readl	res.h	219;"	d
+__raw_readw	res.h	218;"	d
+__raw_writeb	res.h	213;"	d
+__raw_writel	res.h	215;"	d
+__raw_writew	res.h	214;"	d
+__same_type	res.h	184;"	d
+__udelay	timer.c	/^void __udelay(unsigned long usec)$/;"	f
+__udivsi3	udiv.S	/^ __udivsi3:$/;"	l
+_bnd	Uart.h	18;"	d
+_start	test.c	/^int _start(void)$/;"	f
+_start	vector/vector.S	/^_start:$/;"	l
+adcbase	res.h	458;"	d
+bcd2bin	bcd.c	/^unsigned int bcd2bin(u8 val)$/;"	f
+bcopy	string.c	/^char * bcopy(const char * src, char * dest, int count)$/;"	f
+bin2bcd	bcd.c	/^u8 bin2bcd (unsigned int val)$/;"	f
+bool	i2c.h	/^typedef unsigned char	bool;$/;"	t
+br_rest	uart.h	/^union br_rest {$/;"	u
+buffer	test.c	/^char buffer[32] = {0};$/;"	v
+buzzer_configure	basedevice.c	/^int buzzer_configure(void)$/;"	f
+buzzer_off	basedevice.c	/^int buzzer_off(void)$/;"	f
+buzzer_on	basedevice.c	/^int buzzer_on(void)$/;"	f
+clear_external_irq	irq.c	/^int clear_external_irq(unsigned int eirqno)$/;"	f
+clear_i2c_irq	I2C.c	/^int clear_i2c_irq(void)$/;"	f
+clear_irq	irq.c	/^int clear_irq(unsigned int cpu)$/;"	f
+con	gpio.h	/^	unsigned int	con;$/;"	m	struct:s5p_gpio_bank
+count	test.c	/^static int count = 0 ; $/;"	v	file:
+count_value	timer.c	/^static unsigned long count_value;$/;"	v	file:
+ctlr	serial.h	/^	char ctlr[CTLRSIZE];$/;"	m	struct:serial_device
+curbit	udiv.S	/^curbit		.req	r3$/;"	l
+dat	gpio.h	/^	unsigned int	dat;$/;"	m	struct:s5p_gpio_bank
+delay	basedevice.c	/^int delay(unsigned int val)$/;"	f
+dividend	udiv.S	/^dividend	.req	r0$/;"	l
+divisor	udiv.S	/^divisor		.req	r1$/;"	l
+drv	gpio.h	/^	unsigned int	drv;$/;"	m	struct:s5p_gpio_bank
+eDIGFLT	gpio.h	/^	eDIGFLT	= 0x3		\/\/ EINT Group 40~43, 2'b11 => Fiter On & Digital Filter$/;"	e	enum:FLT_TYPE
+eDLYFLT	gpio.h	/^	eDLYFLT	= 0x2,		\/\/ EINT Group 40~43, 2'b10 => Filter On & Delay Filter$/;"	e	enum:FLT_TYPE
+eDisFLT	gpio.h	/^	eDisFLT	= 0x0,		\/\/ Digital Fiter Off (EINT Group 1~16, 21~29 )$/;"	e	enum:FLT_TYPE
+eETC0	gpio.h	/^	eETC0    = 0x400208,    	                                     $/;"	e	enum:GPIO_Id
+eETC1	gpio.h	/^	eETC1    = 0x400228    	                                     $/;"	e	enum:GPIO_Id
+eETC6	gpio.h	/^   	eETC6    = 0x208,    		                                     $/;"	e	enum:GPIO_Id
+eETC8	gpio.h	/^	eETC8    = 0x228,    		                                     $/;"	e	enum:GPIO_Id
+eEnFLT	gpio.h	/^	eEnFLT	= 0x1, 		\/\/ Digital Fiter On (EINT Group 1~16, 21~29 )$/;"	e	enum:FLT_TYPE
+eError	i2c.h	/^	I2C_ERROR eError; $/;"	m	struct:__anon7
+eFixed	gpio.h	/^	eFixed	= 0x0$/;"	e	enum:PRI_TYPE
+eGFunc_0	gpio.h	/^	eGFunc_0	= 2,	\/\/ Function 0 select$/;"	e	enum:GPIO_Func
+eGFunc_1	gpio.h	/^	eGFunc_1	= 3,	\/\/ Function 1 select$/;"	e	enum:GPIO_Func
+eGFunc_10	gpio.h	/^	eGFunc_10	= 12,$/;"	e	enum:GPIO_Func
+eGFunc_11	gpio.h	/^	eGFunc_11	= 13,$/;"	e	enum:GPIO_Func
+eGFunc_12	gpio.h	/^	eGFunc_12	= 14,$/;"	e	enum:GPIO_Func
+eGFunc_2	gpio.h	/^	eGFunc_2	= 4,	\/\/ Function 2 select$/;"	e	enum:GPIO_Func
+eGFunc_3	gpio.h	/^	eGFunc_3	= 5,	\/\/ Function 3 select$/;"	e	enum:GPIO_Func
+eGFunc_4	gpio.h	/^	eGFunc_4	= 6,	\/\/ Function 4 select$/;"	e	enum:GPIO_Func
+eGFunc_5	gpio.h	/^	eGFunc_5	= 7,$/;"	e	enum:GPIO_Func
+eGFunc_6	gpio.h	/^	eGFunc_6	= 8,$/;"	e	enum:GPIO_Func
+eGFunc_7	gpio.h	/^	eGFunc_7	= 9,$/;"	e	enum:GPIO_Func
+eGFunc_8	gpio.h	/^	eGFunc_8	= 10,$/;"	e	enum:GPIO_Func
+eGFunc_9	gpio.h	/^	eGFunc_9	= 11,$/;"	e	enum:GPIO_Func
+eGINT	gpio.h	/^	eGINT		= 15	\/\/ General external interrupt (no wake up)$/;"	e	enum:GPIO_Func
+eGPDen	gpio.h	/^        eGPDen		= 1,	\/\/ pull-down enable$/;"	e	enum:GPIO_PUD
+eGPI	gpio.h	/^	eGPI		= 0,	\/\/ GPIO input $/;"	e	enum:GPIO_Func
+eGPI0SPECIALPAD_Nums	gpio.h	/^         eGPI0SPECIALPAD_Nums	= (18),         $/;"	e	enum:GPIO_PadNum
+eGPIOA0PAD_Num	gpio.h	/^         eGPIOA0PAD_Num = (0x00010008),		\/\/0x0001*1000 		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOA1PAD_Num	gpio.h	/^         eGPIOA1PAD_Num = (0x00020006),		\/\/0x0002*1000 		\/\/0006$/;"	e	enum:GPIO_PadNum
+eGPIOBPAD_Num	gpio.h	/^         eGPIOBPAD_Num 	= (0x00030008),		\/\/0x0003*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOC0PAD_Num	gpio.h	/^         eGPIOC0PAD_Num = (0x00040005),		\/\/0x0004*1000		\/\/0005$/;"	e	enum:GPIO_PadNum
+eGPIOC1PAD_Num	gpio.h	/^         eGPIOC1PAD_Num = (0x00050005),		\/\/0x0005*1000		\/\/0005$/;"	e	enum:GPIO_PadNum
+eGPIOD0PAD_Num	gpio.h	/^         eGPIOD0PAD_Num = (0x00060004),		\/\/0x0006*1000		\/\/0004$/;"	e	enum:GPIO_PadNum
+eGPIOD1PAD_Num	gpio.h	/^         eGPIOD1PAD_Num = (0x00070004),		\/\/0x0007*1000		\/\/0004$/;"	e	enum:GPIO_PadNum
+eGPIOE0PAD_Num	gpio.h	/^         eGPIOE0PAD_Num = (0x00080005),		\/\/0x0008*1000		\/\/0005$/;"	e	enum:GPIO_PadNum
+eGPIOE1PAD_Num	gpio.h	/^         eGPIOE1PAD_Num = (0x00090008),		\/\/0x0009*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOE2PAD_Num	gpio.h	/^         eGPIOE2PAD_Num = (0x000A0006),		\/\/0x000A*1000		\/\/0006$/;"	e	enum:GPIO_PadNum
+eGPIOE3PAD_Num	gpio.h	/^         eGPIOE3PAD_Num = (0x000B0008),		\/\/0x000B*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOE4PAD_Num	gpio.h	/^         eGPIOE4PAD_Num = (0x000C0008),		\/\/0x000C*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOF0PAD_Num	gpio.h	/^         eGPIOF0PAD_Num = (0x000D0008),		\/\/0x000D*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOF1PAD_Num	gpio.h	/^         eGPIOF1PAD_Num = (0x000E0008),		\/\/0x000E*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOF2PAD_Num	gpio.h	/^         eGPIOF2PAD_Num = (0x000F0008),		\/\/0x000F*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOF3PAD_Num	gpio.h	/^         eGPIOF3PAD_Num = (0x00100006),		\/\/0x0010*1000		\/\/0006$/;"	e	enum:GPIO_PadNum
+eGPIOGENERALPAD_Nums	gpio.h	/^         eGPIOGENERALPAD_Nums	= (245),$/;"	e	enum:GPIO_PadNum
+eGPIOJ0PAD_Num	gpio.h	/^         eGPIOJ0PAD_Num = (0x00110008),		\/\/0x0011*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOJ1PAD_Num	gpio.h	/^         eGPIOJ1PAD_Num = (0x00120005),		\/\/0x0012*1000		\/\/0005$/;"	e	enum:GPIO_PadNum
+eGPIOK0PAD_Num	gpio.h	/^         eGPIOK0PAD_Num = (0x00130007),		\/\/0x0013*1000		\/\/0007$/;"	e	enum:GPIO_PadNum
+eGPIOK1PAD_Num	gpio.h	/^         eGPIOK1PAD_Num = (0x00140007),		\/\/0x0014*1000		\/\/0007$/;"	e	enum:GPIO_PadNum
+eGPIOK2PAD_Num	gpio.h	/^         eGPIOK2PAD_Num = (0x00150007),		\/\/0x0015*1000		\/\/0007$/;"	e	enum:GPIO_PadNum
+eGPIOK3PAD_Num	gpio.h	/^         eGPIOK3PAD_Num = (0x00160007),		\/\/0x0016*1000		\/\/0007$/;"	e	enum:GPIO_PadNum
+eGPIOL0PAD_Num	gpio.h	/^         eGPIOL0PAD_Num = (0x00170008),		\/\/0x0017*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOL1PAD_Num	gpio.h	/^         eGPIOL1PAD_Num = (0x00180003),		\/\/0x0018*1000		\/\/0003$/;"	e	enum:GPIO_PadNum
+eGPIOL2PAD_Num	gpio.h	/^         eGPIOL2PAD_Num = (0x00190008),		\/\/0x0019*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOMP0PAD_Num	gpio.h	/^         eGPIOMP0PAD_Num        = (0x001E0006),		\/\/0x001E*1000		\/\/0006$/;"	e	enum:GPIO_PadNum
+eGPIOMP1PAD_Num	gpio.h	/^         eGPIOMP1PAD_Num        = (0x001F0004),		\/\/0x001F*1000		\/\/0004$/;"	e	enum:GPIO_PadNum
+eGPIOMP2PAD_Num	gpio.h	/^         eGPIOMP2PAD_Num 	= (0x00200006),		\/\/0x0020*1000		\/\/0006$/;"	e	enum:GPIO_PadNum
+eGPIOMP3PAD_Num	gpio.h	/^         eGPIOMP3PAD_Num 	= (0x00210008),		\/\/0x0021*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOMP4PAD_Num	gpio.h	/^         eGPIOMP4PAD_Num 	= (0x00220008),		\/\/0x0022*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOMP5PAD_Num	gpio.h	/^         eGPIOMP5PAD_Num 	= (0x00230008),		\/\/0x0023*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOMP6PAD_Num	gpio.h	/^         eGPIOMP6PAD_Num 	= (0x00240008),		\/\/0x0024*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOTOTALPAD_Nums	gpio.h	/^         eGPIOTOTALPAD_Nums 	= (263) $/;"	e	enum:GPIO_PadNum
+eGPIOX0PAD_Num	gpio.h	/^         eGPIOX0PAD_Num = (0x001A0008),		\/\/0x001A*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOX1PAD_Num	gpio.h	/^         eGPIOX1PAD_Num = (0x001B0008),		\/\/0x001B*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOX2PAD_Num	gpio.h	/^         eGPIOX2PAD_Num = (0x001C0008),		\/\/0x001C*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIOX3PAD_Num	gpio.h	/^         eGPIOX3PAD_Num = (0x001D0008),		\/\/0x001D*1000		\/\/0008$/;"	e	enum:GPIO_PadNum
+eGPIO_0	gpio.h	/^	eGPIO_0	        = 0,$/;"	e	enum:GPIO_BitPos
+eGPIO_1	gpio.h	/^	eGPIO_1	        = 1,$/;"	e	enum:GPIO_BitPos
+eGPIO_10	gpio.h	/^	eGPIO_10	= 10,$/;"	e	enum:GPIO_BitPos
+eGPIO_11	gpio.h	/^	eGPIO_11	= 11,$/;"	e	enum:GPIO_BitPos
+eGPIO_12	gpio.h	/^	eGPIO_12	= 12,$/;"	e	enum:GPIO_BitPos
+eGPIO_13	gpio.h	/^	eGPIO_13	= 13,$/;"	e	enum:GPIO_BitPos
+eGPIO_14	gpio.h	/^	eGPIO_14	= 14,$/;"	e	enum:GPIO_BitPos
+eGPIO_15	gpio.h	/^	eGPIO_15	= 15$/;"	e	enum:GPIO_BitPos
+eGPIO_2	gpio.h	/^	eGPIO_2	        = 2,$/;"	e	enum:GPIO_BitPos
+eGPIO_3	gpio.h	/^	eGPIO_3	        = 3,$/;"	e	enum:GPIO_BitPos
+eGPIO_4	gpio.h	/^	eGPIO_4	        = 4,$/;"	e	enum:GPIO_BitPos
+eGPIO_5	gpio.h	/^	eGPIO_5	        = 5,$/;"	e	enum:GPIO_BitPos
+eGPIO_6	gpio.h	/^	eGPIO_6	        = 6,$/;"	e	enum:GPIO_BitPos
+eGPIO_7	gpio.h	/^	eGPIO_7	        = 7,$/;"	e	enum:GPIO_BitPos
+eGPIO_8	gpio.h	/^	eGPIO_8	        = 8,$/;"	e	enum:GPIO_BitPos
+eGPIO_9	gpio.h	/^	eGPIO_9	        = 9,$/;"	e	enum:GPIO_BitPos
+eGPIO_A0	gpio.h	/^	eGPIO_A0 = 0x400000,    	\/\/ offset : 0x40_0000	             $/;"	e	enum:GPIO_Id
+eGPIO_A1	gpio.h	/^	eGPIO_A1 = 0x400020,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_B	gpio.h	/^	eGPIO_B  = 0x400040,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_C0	gpio.h	/^	eGPIO_C0 = 0x400060,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_C1	gpio.h	/^	eGPIO_C1 = 0x400080,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_D0	gpio.h	/^	eGPIO_D0 = 0x4000A0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_D1	gpio.h	/^	eGPIO_D1 = 0x4000C0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_E0	gpio.h	/^	eGPIO_E0 = 0x4000E0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_E1	gpio.h	/^	eGPIO_E1 = 0x400100,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_E2	gpio.h	/^	eGPIO_E2 = 0x400120,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_E3	gpio.h	/^	eGPIO_E3 = 0x400140,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_E4	gpio.h	/^	eGPIO_E4 = 0x400160,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_F0	gpio.h	/^	eGPIO_F0 = 0x400180,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_F1	gpio.h	/^	eGPIO_F1 = 0x4001A0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_F2	gpio.h	/^	eGPIO_F2 = 0x4001C0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_F3	gpio.h	/^	eGPIO_F3 = 0x4001E0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_J0	gpio.h	/^	eGPIO_J0 = 0x000,    		\/\/ offset : 0x0                         $/;"	e	enum:GPIO_Id
+eGPIO_J1	gpio.h	/^	eGPIO_J1 = 0x020,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_K0	gpio.h	/^	eGPIO_K0 = 0x040,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_K1	gpio.h	/^	eGPIO_K1 = 0x060,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_K2	gpio.h	/^	eGPIO_K2 = 0x080,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_K3	gpio.h	/^	eGPIO_K3 = 0x0A0,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_L0	gpio.h	/^	eGPIO_L0 = 0x0C0,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_L1	gpio.h	/^	eGPIO_L1 = 0x0E0,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_L2	gpio.h	/^	eGPIO_L2 = 0x100,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_0	gpio.h	/^	eGPIO_MP0_0 = 0x120,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_1	gpio.h	/^	eGPIO_MP0_1 = 0x140,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_2	gpio.h	/^	eGPIO_MP0_2 = 0x160,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_3	gpio.h	/^	eGPIO_MP0_3 = 0x180,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_4	gpio.h	/^	eGPIO_MP0_4 = 0x1A0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_5	gpio.h	/^	eGPIO_MP0_5 = 0x1C0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_MP0_6	gpio.h	/^	eGPIO_MP0_6 = 0x1E0,    	                                     $/;"	e	enum:GPIO_Id
+eGPIO_X0	gpio.h	/^	eGPIO_X0 = 0xC00,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_X1	gpio.h	/^	eGPIO_X1 = 0xC20,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_X2	gpio.h	/^	eGPIO_X2 = 0xC40,    		                                     $/;"	e	enum:GPIO_Id
+eGPIO_X3	gpio.h	/^	eGPIO_X3 = 0xC60,    		                                     $/;"	e	enum:GPIO_Id
+eGPO	gpio.h	/^	eGPO		= 1,	\/\/ GPIO output$/;"	e	enum:GPIO_Func
+eGPRes	gpio.h	/^	eGPRes		= 2	\/\/ reserved$/;"	e	enum:GPIO_PUD
+eGPUDdis	gpio.h	/^	eGPUDdis	= 0,	\/\/ pull-up\/down disable$/;"	e	enum:GPIO_PUD
+eGPUen	gpio.h	/^        eGPUen		= 3,	\/\/ pull-up enable$/;"	e	enum:GPIO_PUD
+eHigh	gpio.h	/^	eHigh	= 1	\/\/ pull-down enable$/;"	e	enum:GPIO_Data
+eLow	gpio.h	/^	eLow	= 0,	\/\/ pull-up\/down disable$/;"	e	enum:GPIO_Data
+ePrescaler	i2c.h	/^	I2C_PRESCALER ePrescaler;$/;"	m	struct:__anon7
+enable_cpsr_irq	irq.c	/^void enable_cpsr_irq(void)$/;"	f
+enable_external_irq	irq.c	/^void enable_external_irq(unsigned int tiggermode , unsigned int eirqno)$/;"	f
+enable_irq	irq.c	/^void enable_irq(unsigned int RecvCpu ,unsigned int SendCpu ,unsigned int irqno)$/;"	f
+enable_mmu	enable_mmu.c	/^void enable_mmu(void)$/;"	f
+extbase	res.h	426;"	d
+g_IntCnt	gpio.c	/^volatile int  g_IntCnt;$/;"	v
+g_aI2c	i2c.c	/^static I2C_CONTEXT g_aI2c[] = $/;"	v	file:
+get_key	basedevice.c	/^int get_key(void)$/;"	f
+get_tbclk	timer.c	/^unsigned long get_tbclk(void)$/;"	f
+get_ticks	timer.c	/^unsigned long long get_ticks(void)$/;"	f
+get_timer	timer.c	/^unsigned long get_timer(unsigned long base)$/;"	f
+get_timer_masked	timer.c	/^unsigned long get_timer_masked(void)$/;"	f
+getc	serial.h	/^	int (*getc) (void);$/;"	m	struct:serial_device
+getchar	Uart.c	/^char getchar(void)$/;"	f
+gets	Uart.c	/^int gets(char *buffer)$/;"	f
+gpio_cfg_pin	s5p_gpio.c	/^void gpio_cfg_pin(struct s5p_gpio_bank *bank, int gpio, int cfg)$/;"	f
+gpio_direction_input	s5p_gpio.c	/^void gpio_direction_input(struct s5p_gpio_bank *bank, int gpio)$/;"	f
+gpio_direction_output	s5p_gpio.c	/^void gpio_direction_output(struct s5p_gpio_bank *bank, int gpio, int en)$/;"	f
+gpio_get_value	s5p_gpio.c	/^unsigned int gpio_get_value(struct s5p_gpio_bank *bank, int gpio)$/;"	f
+gpio_set_drv	s5p_gpio.c	/^void gpio_set_drv(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_pull	s5p_gpio.c	/^void gpio_set_pull(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_rate	s5p_gpio.c	/^void gpio_set_rate(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_value	s5p_gpio.c	/^void gpio_set_value(struct s5p_gpio_bank *bank, int gpio, int en)$/;"	f
+i2cbase	res.h	516;"	d
+iccbase	res.h	248;"	d
+icdbase	res.h	276;"	d
+init	serial.h	/^	int  (*init) (void);$/;"	m	struct:serial_device
+irqcombinerbase	res.h	466;"	d
+key_configure	basedevice.c	/^int key_configure(void)$/;"	f
+lastdec	timer.c	/^static unsigned long lastdec;		\/* Last decremneter snapshot *\/$/;"	v	file:
+led_all_off	basedevice.c	/^int led_all_off(void)$/;"	f
+led_all_on	basedevice.c	/^int led_all_on(void)$/;"	f
+led_configure	basedevice.c	/^int led_configure(void)$/;"	f
+led_flash	basedevice.c	/^int led_flash(void)$/;"	f
+led_run	basedevice.c	/^int led_run(void)$/;"	f
+led_which_on	basedevice.c	/^int led_which_on(int which)$/;"	f
+memchr	string.c	/^void *memchr(const void *s, int c, size_t n)$/;"	f
+memcmp	string.c	/^int memcmp(const void * cs,const void * ct,size_t count)$/;"	f
+memcpy	string.c	/^void * memcpy(void *dest, const void *src, size_t count)$/;"	f
+memmove	string.c	/^void * memmove(void * dest,const void *src,size_t count)$/;"	f
+memscan	string.c	/^void * memscan(void * addr, int c, size_t size)$/;"	f
+memset	string.c	/^void * memset(void * s,int c,size_t count)$/;"	f
+mk_ttb_self	enable_mmu.c	/^static void mk_ttb_self(unsigned int *ttb)$/;"	f	file:
+mmap	enable_mmu.c	/^static void mmap(unsigned int va , unsigned int pa , unsigned int *ttb)$/;"	f	file:
+nOpClock	i2c.h	/^	int nOpClock;$/;"	m	struct:__anon7
+nPrescaler	i2c.h	/^	int nPrescaler;$/;"	m	struct:__anon7
+nTimeOut	i2c.h	/^	int nTimeOut;$/;"	m	struct:__anon7
+name	serial.h	/^	char name[NAMESIZE];$/;"	m	struct:serial_device
+next	serial.h	/^	struct serial_device *next;$/;"	m	struct:serial_device	typeref:struct:serial_device::serial_device
+oGPIO_REGS	gpio.c	/^oGPIO_REGS; $/;"	t	typeref:struct:tag_GPIO_REGS	file:
+pdn_con	gpio.h	/^	unsigned int	pdn_con;$/;"	m	struct:s5p_gpio_bank
+pdn_pull	gpio.h	/^	unsigned int	pdn_pull;$/;"	m	struct:s5p_gpio_bank
+print_num	Uart.c	/^int print_num(int number , int base)$/;"	f
+print_t	res.h	/^typedef   int (*print_t)(const char *,...) ; $/;"	t
+printf	I2C.c	/^static print_t  printf = (void *)0x43E11A2C; $/;"	v	file:
+printf	gpio.c	/^static print_t  printf = (void *)0x43E11A2C; $/;"	v	file:
+printf	i2c.c	/^static print_t  printf = (void *)0x43E11A2C; $/;"	v	file:
+printf	irq.c	/^static print_t  printf = (void *)0x43E11A2C; $/;"	v	file:
+printf	test.c	/^static print_t  printf = (void *)0x43E11A2C; $/;"	v	file:
+pull	gpio.h	/^	unsigned int	pull;$/;"	m	struct:s5p_gpio_bank
+putc	serial.h	/^	void (*putc) (const char c);$/;"	m	struct:serial_device
+putchar	Uart.c	/^void putchar(char ch)$/;"	f
+puts	Uart.c	/^int puts(const char *str)$/;"	f
+puts	serial.h	/^	void (*puts) (const char *s);$/;"	m	struct:serial_device
+pwmbase	res.h	493;"	d
+rEINT10CON	gpio.c	/^	int rEINT10CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT10FIXPRI	gpio.c	/^	int rEINT10FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT10FLTCON0	gpio.c	/^	int rEINT10FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT10FLTCON1	gpio.c	/^	int rEINT10FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT10MASK	gpio.c	/^	int rEINT10MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT10PEND	gpio.c	/^	int rEINT10PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT11CON	gpio.c	/^	int rEINT11CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT11FIXPRI	gpio.c	/^	int rEINT11FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT11FLTCON0	gpio.c	/^	int rEINT11FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT11FLTCON1	gpio.c	/^	int rEINT11FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT11MASK	gpio.c	/^	int rEINT11MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT11PEND	gpio.c	/^	int rEINT11PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT12CON	gpio.c	/^	int rEINT12CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT12FIXPRI	gpio.c	/^	int rEINT12FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT12FLTCON0	gpio.c	/^	int rEINT12FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT12FLTCON1	gpio.c	/^	int rEINT12FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT12MASK	gpio.c	/^	int rEINT12MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT12PEND	gpio.c	/^	int rEINT12PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT13CON	gpio.c	/^	int rEINT13CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT13FIXPRI	gpio.c	/^	int rEINT13FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT13FLTCON0	gpio.c	/^	int rEINT13FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT13FLTCON1	gpio.c	/^	int rEINT13FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT13MASK	gpio.c	/^	int rEINT13MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT13PEND	gpio.c	/^	int rEINT13PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT14CON	gpio.c	/^	int rEINT14CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT14FIXPRI	gpio.c	/^	int rEINT14FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT14FLTCON0	gpio.c	/^	int rEINT14FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT14FLTCON1	gpio.c	/^	int rEINT14FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT14MASK	gpio.c	/^	int rEINT14MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT14PEND	gpio.c	/^	int rEINT14PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT15CON	gpio.c	/^	int rEINT15CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT15FIXPRI	gpio.c	/^	int rEINT15FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT15FLTCON0	gpio.c	/^	int rEINT15FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT15FLTCON1	gpio.c	/^	int rEINT15FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT15MASK	gpio.c	/^	int rEINT15MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT15PEND	gpio.c	/^	int rEINT15PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT16CON	gpio.c	/^	int rEINT16CON;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT16FIXPRI	gpio.c	/^	int rEINT16FIXPRI;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT16FLTCON0	gpio.c	/^	int rEINT16FLTCON0;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT16FLTCON1	gpio.c	/^	int rEINT16FLTCON1;                        $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT16MASK	gpio.c	/^	int rEINT16MASK;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT16PEND	gpio.c	/^	int rEINT16PEND;                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT1CON	gpio.c	/^	int rEINT1CON;		\/\/0x11400700   	$/;"	m	struct:tag_GPIO_REGS	file:
+rEINT1FIXPRI	gpio.c	/^	int rEINT1FIXPRI;	\/\/ 0x11000B14                 $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT1FLTCON0	gpio.c	/^	int rEINT1FLTCON0;	\/\/0x11400800       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT1FLTCON1	gpio.c	/^	int rEINT1FLTCON1;                   	   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT1MASK	gpio.c	/^	int rEINT1MASK;		\/\/0x11400900           $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT1PEND	gpio.c	/^	int rEINT1PEND;		\/\/0x11400A00  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT21CON	gpio.c	/^	int rEINT21CON;		\/\/ 0x1100_0700                            $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT21FIXPRI	gpio.c	/^	int rEINT21FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT21FLTCON0	gpio.c	/^	int rEINT21FLTCON0;	\/\/0x1100_0800                             $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT21FLTCON1	gpio.c	/^	int rEINT21FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT21MASK	gpio.c	/^	int rEINT21MASK;		\/\/0x1100_0900                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT21PEND	gpio.c	/^	int rEINT21PEND;	   	\/\/0x1100_0A00                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT22CON	gpio.c	/^	int rEINT22CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT22FIXPRI	gpio.c	/^	int rEINT22FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT22FLTCON0	gpio.c	/^	int rEINT22FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT22FLTCON1	gpio.c	/^	int rEINT22FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT22MASK	gpio.c	/^	int rEINT22MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT22PEND	gpio.c	/^	int rEINT22PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT23CON	gpio.c	/^	int rEINT23CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT23FIXPRI	gpio.c	/^	int rEINT23FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT23FLTCON0	gpio.c	/^	int rEINT23FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT23FLTCON1	gpio.c	/^	int rEINT23FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT23MASK	gpio.c	/^	int rEINT23MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT23PEND	gpio.c	/^	int rEINT23PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT24CON	gpio.c	/^	int rEINT24CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT24FIXPRI	gpio.c	/^	int rEINT24FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT24FLTCON0	gpio.c	/^	int rEINT24FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT24FLTCON1	gpio.c	/^	int rEINT24FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT24MASK	gpio.c	/^	int rEINT24MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT24PEND	gpio.c	/^	int rEINT24PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT25CON	gpio.c	/^	int rEINT25CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT25FIXPRI	gpio.c	/^	int rEINT25FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT25FLTCON0	gpio.c	/^	int rEINT25FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT25FLTCON1	gpio.c	/^	int rEINT25FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT25MASK	gpio.c	/^	int rEINT25MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT25PEND	gpio.c	/^	int rEINT25PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT26CON	gpio.c	/^	int rEINT26CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT26FIXPRI	gpio.c	/^	int rEINT26FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT26FLTCON0	gpio.c	/^	int rEINT26FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT26FLTCON1	gpio.c	/^	int rEINT26FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT26MASK	gpio.c	/^	int rEINT26MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT26PEND	gpio.c	/^	int rEINT26PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT27CON	gpio.c	/^	int rEINT27CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT27FIXPRI	gpio.c	/^	int rEINT27FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT27FLTCON0	gpio.c	/^	int rEINT27FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT27FLTCON1	gpio.c	/^	int rEINT27FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT27MASK	gpio.c	/^	int rEINT27MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT27PEND	gpio.c	/^	int rEINT27PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT28CON	gpio.c	/^	int rEINT28CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT28FIXPRI	gpio.c	/^	int rEINT28FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT28FLTCON0	gpio.c	/^	int rEINT28FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT28FLTCON1	gpio.c	/^	int rEINT28FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT28MASK	gpio.c	/^	int rEINT28MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT28PEND	gpio.c	/^	int rEINT28PEND;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT29CON	gpio.c	/^	int rEINT29CON;                                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT29FIXPRI	gpio.c	/^	int rEINT29FIXPRI;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT29FLTCON0	gpio.c	/^	int rEINT29FLTCON0;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT29FLTCON1	gpio.c	/^	int rEINT29FLTCON1;                                               $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT29MASK	gpio.c	/^	int rEINT29MASK;                                                  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT29PEND	gpio.c	/^	int rEINT29PEND;                                                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT2CON	gpio.c	/^	int rEINT2CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT2FIXPRI	gpio.c	/^	int rEINT2FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT2FLTCON0	gpio.c	/^	int rEINT2FLTCON0;                   	   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT2FLTCON1	gpio.c	/^	int rEINT2FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT2MASK	gpio.c	/^	int rEINT2MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT2PEND	gpio.c	/^	int rEINT2PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT3CON	gpio.c	/^	int rEINT3CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT3FIXPRI	gpio.c	/^	int rEINT3FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT3FLTCON0	gpio.c	/^	int rEINT3FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT3FLTCON1	gpio.c	/^	int rEINT3FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT3MASK	gpio.c	/^	int rEINT3MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT3PEND	gpio.c	/^	int rEINT3PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT40CON	gpio.c	/^	int rEINT40CON;	   	\/\/0x1100_0E00                 $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT40FLTCON0	gpio.c	/^	int rEINT40FLTCON0;	\/\/0x1100_0E80                 $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT40FLTCON1	gpio.c	/^	int rEINT40FLTCON1;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT40MASK	gpio.c	/^	int rEINT40MASK;		\/\/0x1100_0F00         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT40PEND	gpio.c	/^	int rEINT40PEND;		\/\/0x1100_0F40         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT41CON	gpio.c	/^	int rEINT41CON;                                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT41FLTCON0	gpio.c	/^	int rEINT41FLTCON0;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT41FLTCON1	gpio.c	/^	int rEINT41FLTCON1;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT41MASK	gpio.c	/^	int rEINT41MASK;                                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT41PEND	gpio.c	/^	int rEINT41PEND;                                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT42CON	gpio.c	/^	int rEINT42CON;                                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT42FLTCON0	gpio.c	/^	int rEINT42FLTCON0;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT42FLTCON1	gpio.c	/^	int rEINT42FLTCON1;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT42MASK	gpio.c	/^	int rEINT42MASK;                                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT42PEND	gpio.c	/^	int rEINT42PEND;                                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT43CON	gpio.c	/^	int rEINT43CON;                                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT43FLTCON0	gpio.c	/^	int rEINT43FLTCON0;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT43FLTCON1	gpio.c	/^	int rEINT43FLTCON1;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT43MASK	gpio.c	/^	int rEINT43MASK;                                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT43PEND	gpio.c	/^	int rEINT43PEND;                                      $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT4CON	gpio.c	/^	int rEINT4CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT4FIXPRI	gpio.c	/^	int rEINT4FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT4FLTCON0	gpio.c	/^	int rEINT4FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT4FLTCON1	gpio.c	/^	int rEINT4FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT4MASK	gpio.c	/^	int rEINT4MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT4PEND	gpio.c	/^	int rEINT4PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT5CON	gpio.c	/^	int rEINT5CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT5FIXPRI	gpio.c	/^	int rEINT5FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT5FLTCON0	gpio.c	/^	int rEINT5FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT5FLTCON1	gpio.c	/^	int rEINT5FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT5MASK	gpio.c	/^	int rEINT5MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT5PEND	gpio.c	/^	int rEINT5PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT6CON	gpio.c	/^	int rEINT6CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT6FIXPRI	gpio.c	/^	int rEINT6FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT6FLTCON0	gpio.c	/^	int rEINT6FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT6FLTCON1	gpio.c	/^	int rEINT6FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT6MASK	gpio.c	/^	int rEINT6MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT6PEND	gpio.c	/^	int rEINT6PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT7CON	gpio.c	/^	int rEINT7CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT7FIXPRI	gpio.c	/^	int rEINT7FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT7FLTCON0	gpio.c	/^	int rEINT7FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT7FLTCON1	gpio.c	/^	int rEINT7FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT7MASK	gpio.c	/^	int rEINT7MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT7PEND	gpio.c	/^	int rEINT7PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT8CON	gpio.c	/^	int rEINT8CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT8FIXPRI	gpio.c	/^	int rEINT8FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT8FLTCON0	gpio.c	/^	int rEINT8FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT8FLTCON1	gpio.c	/^	int rEINT8FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT8MASK	gpio.c	/^	int rEINT8MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT8PEND	gpio.c	/^	int rEINT8PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT9CON	gpio.c	/^	int rEINT9CON;                          $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT9FIXPRI	gpio.c	/^	int rEINT9FIXPRI;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT9FLTCON0	gpio.c	/^	int rEINT9FLTCON0;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT9FLTCON1	gpio.c	/^	int rEINT9FLTCON1;                         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT9MASK	gpio.c	/^	int rEINT9MASK;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINT9PEND	gpio.c	/^	int rEINT9PEND;                       $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTGRPFIXPRIXA	gpio.c	/^	int rEINTGRPFIXPRIXA;                                   $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTGRPFIXPRIXB	gpio.c	/^	int rEINTGRPFIXPRIXB;  $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTGRPPRIXA	gpio.c	/^	int rEINTGRPPRIXA;		\/\/ 0x11000B00         $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTGRPPRIXB	gpio.c	/^	int rEINTGRPPRIXB;		\/\/0x1100_0B00                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTPRIORITYXA	gpio.c	/^	int rEINTPRIORITYXA;                                    $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTPRIORITYXB	gpio.c	/^	int rEINTPRIORITYXB;                                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTSERVICEPENDXA	gpio.c	/^	int rEINTSERVICEPENDXA;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTSERVICEPENDXB	gpio.c	/^	int rEINTSERVICEPENDXB;                                            $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTSERVICEXA	gpio.c	/^	int rEINTSERVICEXA;                                     $/;"	m	struct:tag_GPIO_REGS	file:
+rEINTSERVICEXB	gpio.c	/^	int rEINTSERVICEXB;                                                 $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA0CON	gpio.c	/^	int rGPIOA0CON;			\/\/0x11400000$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA0CONPDN	gpio.c	/^	int rGPIOA0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA0DAT	gpio.c	/^	int rGPIOA0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA0DRV_SR	gpio.c	/^	int rGPIOA0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA0PUD	gpio.c	/^	int rGPIOA0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA0PUDPDN	gpio.c	/^	int rGPIOA0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA1CON	gpio.c	/^	int rGPIOA1CON;			\/\/0x11400020$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA1CONPDN	gpio.c	/^	int rGPIOA1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA1DAT	gpio.c	/^	int rGPIOA1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA1DRV_SR	gpio.c	/^	int rGPIOA1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA1PUD	gpio.c	/^	int rGPIOA1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOA1PUDPDN	gpio.c	/^	int rGPIOA1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOBCON	gpio.c	/^	int rGPIOBCON;			\/\/0x11400040$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOBCONPDN	gpio.c	/^	int rGPIOBCONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOBDAT	gpio.c	/^	int rGPIOBDAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOBDRV_SR	gpio.c	/^	int rGPIOBDRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOBPUD	gpio.c	/^	int rGPIOBPUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOBPUDPDN	gpio.c	/^	int rGPIOBPUDPDN;	$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC0CON	gpio.c	/^	int rGPIOC0CON;			\/\/0x11400060$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC0CONPDN	gpio.c	/^	int rGPIOC0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC0DAT	gpio.c	/^	int rGPIOC0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC0DRV_SR	gpio.c	/^	int rGPIOC0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC0PUD	gpio.c	/^	int rGPIOC0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC0PUDPDN	gpio.c	/^	int rGPIOC0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC1CON	gpio.c	/^	int rGPIOC1CON;			\/\/0x11400080$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC1CONPDN	gpio.c	/^	int rGPIOC1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC1DAT	gpio.c	/^	int rGPIOC1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC1DRV_SR	gpio.c	/^	int rGPIOC1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC1PUD	gpio.c	/^	int rGPIOC1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOC1PUDPDN	gpio.c	/^	int rGPIOC1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD0CON	gpio.c	/^	int rGPIOD0CON;			\/\/0x114000A0$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD0CONPDN	gpio.c	/^	int rGPIOD0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD0DAT	gpio.c	/^	int rGPIOD0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD0DRV_SR	gpio.c	/^	int rGPIOD0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD0PUD	gpio.c	/^	int rGPIOD0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD0PUDPDN	gpio.c	/^	int rGPIOD0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD1CON	gpio.c	/^	int rGPIOD1CON;			\/\/0x114000C0$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD1CONPDN	gpio.c	/^	int rGPIOD1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD1DAT	gpio.c	/^	int rGPIOD1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD1DRV_SR	gpio.c	/^	int rGPIOD1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD1PUD	gpio.c	/^	int rGPIOD1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOD1PUDPDN	gpio.c	/^	int rGPIOD1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE0CON	gpio.c	/^	int rGPIOE0CON;			\/\/0x114000E0$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE0CONPDN	gpio.c	/^	int rGPIOE0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE0DAT	gpio.c	/^	int rGPIOE0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE0DRV_SR	gpio.c	/^	int rGPIOE0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE0PUD	gpio.c	/^	int rGPIOE0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE0PUDPDN	gpio.c	/^	int rGPIOE0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE1CON	gpio.c	/^	int rGPIOE1CON;			\/\/0x11400100$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE1CONPDN	gpio.c	/^	int rGPIOE1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE1DAT	gpio.c	/^	int rGPIOE1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE1DRV_SR	gpio.c	/^	int rGPIOE1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE1PUD	gpio.c	/^	int rGPIOE1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE1PUDPDN	gpio.c	/^	int rGPIOE1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE2CON	gpio.c	/^	int rGPIOE2CON;			\/\/0x11400120$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE2CONPDN	gpio.c	/^	int rGPIOE2CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE2DAT	gpio.c	/^	int rGPIOE2DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE2DRV_SR	gpio.c	/^	int rGPIOE2DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE2PUD	gpio.c	/^	int rGPIOE2PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE2PUDPDN	gpio.c	/^	int rGPIOE2PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE3CON	gpio.c	/^	int rGPIOE3CON;			\/\/0x11400140$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE3CONPDN	gpio.c	/^	int rGPIOE3CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE3DAT	gpio.c	/^	int rGPIOE3DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE3DRV_SR	gpio.c	/^	int rGPIOE3DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE3PUD	gpio.c	/^	int rGPIOE3PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE3PUDPDN	gpio.c	/^	int rGPIOE3PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE4CON	gpio.c	/^	int rGPIOE4CON;			\/\/0x11400160$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE4CONPDN	gpio.c	/^	int rGPIOE4CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE4DAT	gpio.c	/^	int rGPIOE4DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE4DRV_SR	gpio.c	/^	int rGPIOE4DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE4PUD	gpio.c	/^	int rGPIOE4PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOE4PUDPDN	gpio.c	/^	int rGPIOE4PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC0DRV_SR	gpio.c	/^	int rGPIOETC0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC0PUD	gpio.c	/^	int rGPIOETC0PUD;		\/\/0x11400208$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC1DRV_SR	gpio.c	/^	int rGPIOETC1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC1PUD	gpio.c	/^	int rGPIOETC1PUD;		\/\/0x11400228$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC6DRV_SR	gpio.c	/^	int rGPIOETC6DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC6PUD	gpio.c	/^	int rGPIOETC6PUD;		\/\/0x11000208$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC8DRV_SR	gpio.c	/^	int rGPIOETC8DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOETC8PUD	gpio.c	/^	int rGPIOETC8PUD;		\/\/0x11000228$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF0CON	gpio.c	/^	int rGPIOF0CON;			\/\/0x11400180$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF0CONPDN	gpio.c	/^	int rGPIOF0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF0DAT	gpio.c	/^	int rGPIOF0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF0DRV_SR	gpio.c	/^	int rGPIOF0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF0PUD	gpio.c	/^	int rGPIOF0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF0PUDPDN	gpio.c	/^	int rGPIOF0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF1CON	gpio.c	/^	int rGPIOF1CON;			\/\/0x114001A0$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF1CONPDN	gpio.c	/^	int rGPIOF1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF1DAT	gpio.c	/^	int rGPIOF1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF1DRV_SR	gpio.c	/^	int rGPIOF1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF1PUD	gpio.c	/^	int rGPIOF1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF1PUDPDN	gpio.c	/^	int rGPIOF1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF2CON	gpio.c	/^	int rGPIOF2CON;			\/\/0x114001C0$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF2CONPDN	gpio.c	/^	int rGPIOF2CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF2DAT	gpio.c	/^	int rGPIOF2DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF2DRV_SR	gpio.c	/^	int rGPIOF2DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF2PUD	gpio.c	/^	int rGPIOF2PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF2PUDPDN	gpio.c	/^	int rGPIOF2PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF3CON	gpio.c	/^	int rGPIOF3CON;			\/\/0x114001E0$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF3CONPDN	gpio.c	/^	int rGPIOF3CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF3DAT	gpio.c	/^	int rGPIOF3DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF3DRV_SR	gpio.c	/^	int rGPIOF3DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF3PUD	gpio.c	/^	int rGPIOF3PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOF3PUDPDN	gpio.c	/^	int rGPIOF3PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ0CON	gpio.c	/^	int rGPIOJ0CON;			\/\/0x11000000$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ0CONPDN	gpio.c	/^	int rGPIOJ0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ0DAT	gpio.c	/^	int rGPIOJ0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ0DRV_SR	gpio.c	/^	int rGPIOJ0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ0PUD	gpio.c	/^	int rGPIOJ0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ0PUDPDN	gpio.c	/^	int rGPIOJ0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ1CON	gpio.c	/^	int rGPIOJ1CON;			\/\/0x11000020$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ1CONPDN	gpio.c	/^	int rGPIOJ1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ1DAT	gpio.c	/^	int rGPIOJ1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ1DRV_SR	gpio.c	/^	int rGPIOJ1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ1PUD	gpio.c	/^	int rGPIOJ1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOJ1PUDPDN	gpio.c	/^	int rGPIOJ1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK0CON	gpio.c	/^	int rGPIOK0CON;			\/\/0x11000040  $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK0CONPDN	gpio.c	/^	int rGPIOK0CONPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK0DAT	gpio.c	/^	int rGPIOK0DAT;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK0DRV_SR	gpio.c	/^	int rGPIOK0DRV_SR;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK0PUD	gpio.c	/^	int rGPIOK0PUD;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK0PUDPDN	gpio.c	/^	int rGPIOK0PUDPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK1CON	gpio.c	/^	int rGPIOK1CON;			\/\/0x11000060    $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK1CONPDN	gpio.c	/^	int rGPIOK1CONPDN;                              $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK1DAT	gpio.c	/^	int rGPIOK1DAT;                                 $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK1DRV_SR	gpio.c	/^	int rGPIOK1DRV_SR;                              $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK1PUD	gpio.c	/^	int rGPIOK1PUD;                                 $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK1PUDPDN	gpio.c	/^	int rGPIOK1PUDPDN;                              $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK2CON	gpio.c	/^	int rGPIOK2CON;			\/\/0x11000080   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK2CONPDN	gpio.c	/^	int rGPIOK2CONPDN;                             $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK2DAT	gpio.c	/^	int rGPIOK2DAT;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK2DRV_SR	gpio.c	/^	int rGPIOK2DRV_SR;                             $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK2PUD	gpio.c	/^	int rGPIOK2PUD;                                $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK2PUDPDN	gpio.c	/^	int rGPIOK2PUDPDN;                             $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK3CON	gpio.c	/^	int rGPIOK3CON;			\/\/0x110000A0 $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK3CONPDN	gpio.c	/^	int rGPIOK3CONPDN;                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK3DAT	gpio.c	/^	int rGPIOK3DAT;                              $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK3DRV_SR	gpio.c	/^	int rGPIOK3DRV_SR;                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK3PUD	gpio.c	/^	int rGPIOK3PUD;                              $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOK3PUDPDN	gpio.c	/^	int rGPIOK3PUDPDN;                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL0CON	gpio.c	/^	int rGPIOL0CON;			\/\/0x110000C0  $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL0CONPDN	gpio.c	/^	int rGPIOL0CONPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL0DAT	gpio.c	/^	int rGPIOL0DAT;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL0DRV_SR	gpio.c	/^	int rGPIOL0DRV_SR;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL0PUD	gpio.c	/^	int rGPIOL0PUD;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL0PUDPDN	gpio.c	/^	int rGPIOL0PUDPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL1CON	gpio.c	/^	int rGPIOL1CON;			\/\/0x110000E0  $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL1CONPDN	gpio.c	/^	int rGPIOL1CONPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL1DAT	gpio.c	/^	int rGPIOL1DAT;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL1DRV_SR	gpio.c	/^	int rGPIOL1DRV_SR;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL1PUD	gpio.c	/^	int rGPIOL1PUD;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL1PUDPDN	gpio.c	/^	int rGPIOL1PUDPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL2CON	gpio.c	/^	int rGPIOL2CON;			\/\/0x11000100  $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL2CONPDN	gpio.c	/^	int rGPIOL2CONPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL2DAT	gpio.c	/^	int rGPIOL2DAT;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL2DRV_SR	gpio.c	/^	int rGPIOL2DRV_SR;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL2PUD	gpio.c	/^	int rGPIOL2PUD;                               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOL2PUDPDN	gpio.c	/^	int rGPIOL2PUDPDN;                            $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP0CON	gpio.c	/^    	int rGPIOMP0CON;		\/\/0x11000120$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP0CONPDN	gpio.c	/^	int rGPIOMP0CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP0DAT	gpio.c	/^	int rGPIOMP0DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP0DRV_SR	gpio.c	/^	int rGPIOMP0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP0PUD	gpio.c	/^	int rGPIOMP0PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP0PUDPDN	gpio.c	/^	int rGPIOMP0PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP1CON	gpio.c	/^    	int rGPIOMP1CON;		\/\/0x11000140$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP1CONPDN	gpio.c	/^	int rGPIOMP1CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP1DAT	gpio.c	/^	int rGPIOMP1DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP1DRV_SR	gpio.c	/^	int rGPIOMP1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP1PUD	gpio.c	/^	int rGPIOMP1PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP1PUDPDN	gpio.c	/^	int rGPIOMP1PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP2CON	gpio.c	/^	int rGPIOMP2CON;		\/\/0x11000160$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP2CONPDN	gpio.c	/^	int rGPIOMP2CONPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP2DAT	gpio.c	/^	int rGPIOMP2DAT;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP2DRV_SR	gpio.c	/^	int rGPIOMP2DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP2PUD	gpio.c	/^	int rGPIOMP2PUD;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP2PUDPDN	gpio.c	/^	int rGPIOMP2PUDPDN;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP3CON	gpio.c	/^	int rGPIOMP3CON;		\/\/0x11000180               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP3CONPDN	gpio.c	/^	int rGPIOMP3CONPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP3DAT	gpio.c	/^	int rGPIOMP3DAT;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP3DRVSR	gpio.c	/^	int rGPIOMP3DRVSR;                                         $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP3PUD	gpio.c	/^	int rGPIOMP3PUD;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP3PUDPDN	gpio.c	/^	int rGPIOMP3PUDPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP4CON	gpio.c	/^	int rGPIOMP4CON;		\/\/0x110001A0               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP4CONPDN	gpio.c	/^	int rGPIOMP4CONPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP4DAT	gpio.c	/^	int rGPIOMP4DAT;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP4DRV_SR	gpio.c	/^	int rGPIOMP4DRV_SR;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP4PUD	gpio.c	/^	int rGPIOMP4PUD;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP4PUDPDN	gpio.c	/^	int rGPIOMP4PUDPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP5CON	gpio.c	/^	int rGPIOMP5CON;		\/\/0x110001C0               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP5CONPDN	gpio.c	/^	int rGPIOMP5CONPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP5DAT	gpio.c	/^	int rGPIOMP5DAT;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP5DRV_SR	gpio.c	/^	int rGPIOMP5DRV_SR;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP5PUD	gpio.c	/^	int rGPIOMP5PUD;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP5PUDPDN	gpio.c	/^	int rGPIOMP5PUDPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP6CON	gpio.c	/^	int rGPIOMP6CON;		\/\/0x110001E0               $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP6CONPDN	gpio.c	/^	int rGPIOMP6CONPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP6DAT	gpio.c	/^	int rGPIOMP6DAT;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP6DRV_SR	gpio.c	/^	int rGPIOMP6DRV_SR;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP6PUD	gpio.c	/^	int rGPIOMP6PUD;                                           $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOMP6PUDPDN	gpio.c	/^	int rGPIOMP6PUDPDN;                                        $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX0CON	gpio.c	/^	int rGPIOX0CON;	   		\/\/0x1100_0C00      $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX0DAT	gpio.c	/^	int rGPIOX0DAT;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX0DRV_SR	gpio.c	/^	int rGPIOX0DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX0PUD	gpio.c	/^	int rGPIOX0PUD;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX1CON	gpio.c	/^	int rGPIOX1CON;	   		\/\/0x1100_0C20   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX1DAT	gpio.c	/^	int rGPIOX1DAT;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX1DRV_SR	gpio.c	/^	int rGPIOX1DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX1PUD	gpio.c	/^	int rGPIOX1PUD;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX2CON	gpio.c	/^	int rGPIOX2CON;	   		\/\/0x1100_0C40   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX2DAT	gpio.c	/^	int rGPIOX2DAT;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX2DRV_SR	gpio.c	/^	int rGPIOX2DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX2PUD	gpio.c	/^	int rGPIOX2PUD;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX3CON	gpio.c	/^	int rGPIOX3CON;	   		\/\/0x1100_0C60   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX3DAT	gpio.c	/^	int rGPIOX3DAT;   $/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX3DRV_SR	gpio.c	/^	int rGPIOX3DRV_SR;$/;"	m	struct:tag_GPIO_REGS	file:
+rGPIOX3PUD	gpio.c	/^	int rGPIOX3PUD;   $/;"	m	struct:tag_GPIO_REGS	file:
+readb	res.h	226;"	d
+readl	res.h	228;"	d
+readw	res.h	227;"	d
+res1	gpio.h	/^	unsigned char	res1[8];$/;"	m	struct:s5p_gpio_bank
+res1	uart.h	/^	unsigned char	res1[3];$/;"	m	struct:s5p_uart
+res2	uart.h	/^	unsigned char	res2[3];$/;"	m	struct:s5p_uart
+res3	uart.h	/^	unsigned char	res3[0x3d0];$/;"	m	struct:s5p_uart
+reserveEINTFLTCON	gpio.c	/^	int reserveEINTFLTCON[46];                                        $/;"	m	struct:tag_GPIO_REGS	file:
+reserved1	gpio.c	/^	int reserved1[304];		\/\/ 0x1100_0240 ~ 0x1100_06FC$/;"	m	struct:tag_GPIO_REGS	file:
+reservedA0	gpio.c	/^	int reservedA0[2];		\/\/ 0x11400018 ~ 0x1140001C$/;"	m	struct:tag_GPIO_REGS	file:
+reservedA1	gpio.c	/^	int reservedA1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedB	gpio.c	/^	int reservedB[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedC0	gpio.c	/^	int reservedC0[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedC1	gpio.c	/^	int reservedC1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedD0	gpio.c	/^	int reservedD0[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedD1	gpio.c	/^	int reservedD1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedE0	gpio.c	/^	int reservedE0[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedE1	gpio.c	/^	int reservedE1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedE2	gpio.c	/^	int reservedE2[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedE3	gpio.c	/^	int reservedE3[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedE4	gpio.c	/^	int reservedE4[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTCON_1	gpio.c	/^	int reservedEINTCON_1[55];                                        $/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTCON_2	gpio.c	/^	int reservedEINTCON_2[28];                              $/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTCON_3	gpio.c	/^	int reservedEINTCON_3[48];\/\/0x11400740 ~ 0x114007FC$/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTFIXPRI	gpio.c	/^	int reservedEINTFIXPRI[50];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTFLTCON	gpio.c	/^	int reservedEINTFLTCON[24];                           $/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTMASK_1	gpio.c	/^	int reservedEINTMASK_1[55];                                         $/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTMASK_2	gpio.c	/^	int reservedEINTMASK_2[12];                             $/;"	m	struct:tag_GPIO_REGS	file:
+reservedEINTPEND	gpio.c	/^	int reservedEINTPEND[55];                                         $/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC	gpio.c	/^	int reservedETC[304];	\/\/0x11400240 ~ 0x114006FC$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC0_1	gpio.c	/^	int reservedETC0_1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC0_2	gpio.c	/^	int reservedETC0_2[4];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC1_1	gpio.c	/^	int reservedETC1_1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC1_2	gpio.c	/^	int reservedETC1_2[4];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC6_1	gpio.c	/^	int reservedETC6_1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC6_2	gpio.c	/^	int reservedETC6_2[4];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC8_1	gpio.c	/^	int reservedETC8_1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedETC8_2	gpio.c	/^	int reservedETC8_2[4];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedF0	gpio.c	/^	int reservedF0[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedF1	gpio.c	/^	int reservedF1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedF2	gpio.c	/^	int reservedF2[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedF3	gpio.c	/^	int reservedF3[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedFIXPRI	gpio.c	/^	int reservedFIXPRI[267];\/\/0x11400B54 ~ 0x11400F7C                    $/;"	m	struct:tag_GPIO_REGS	file:
+reservedFLTCON	gpio.c	/^	int reservedFLTCON[32];	\/\/0x11400880 ~ 0x114008FC$/;"	m	struct:tag_GPIO_REGS	file:
+reservedGPIOX0	gpio.c	/^	int reservedGPIOX0[4];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedGPIOX1	gpio.c	/^	int reservedGPIOX1[4];	$/;"	m	struct:tag_GPIO_REGS	file:
+reservedGPIOX2	gpio.c	/^	int reservedGPIOX2[4];	$/;"	m	struct:tag_GPIO_REGS	file:
+reservedGPIOX3_1	gpio.c	/^	int reservedGPIOX3_1[4];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedGPIOX3_2	gpio.c	/^	int reservedGPIOX3_2[96];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedJ0	gpio.c	/^	int reservedJ0[2];		\/\/ 0x11000018 ~ 0x1100001C$/;"	m	struct:tag_GPIO_REGS	file:
+reservedJ1	gpio.c	/^	int reservedJ1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedK0	gpio.c	/^	int reservedK0[2];                            $/;"	m	struct:tag_GPIO_REGS	file:
+reservedK1	gpio.c	/^	int reservedK1[2];                              $/;"	m	struct:tag_GPIO_REGS	file:
+reservedK2	gpio.c	/^	int reservedK2[2];                             $/;"	m	struct:tag_GPIO_REGS	file:
+reservedK3	gpio.c	/^	int reservedK3[2];                           $/;"	m	struct:tag_GPIO_REGS	file:
+reservedL0	gpio.c	/^	int reservedL0[2];                            $/;"	m	struct:tag_GPIO_REGS	file:
+reservedL1	gpio.c	/^	int reservedL1[2];                            $/;"	m	struct:tag_GPIO_REGS	file:
+reservedL2	gpio.c	/^	int reservedL2[2];                            $/;"	m	struct:tag_GPIO_REGS	file:
+reservedMASK	gpio.c	/^	int reservedMASK[48];	\/\/0x11400940 ~ 0x114009FC$/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP0	gpio.c	/^	int reservedMP0[2];                          $/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP1	gpio.c	/^	int reservedMP1[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP2	gpio.c	/^	int reservedMP2[2];$/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP3	gpio.c	/^	int reservedMP3[2];                                        $/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP4	gpio.c	/^	int reservedMP4[2];                                        $/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP5	gpio.c	/^	int reservedMP5[2];                                        $/;"	m	struct:tag_GPIO_REGS	file:
+reservedMP6	gpio.c	/^	int reservedMP6[2];                                        $/;"	m	struct:tag_GPIO_REGS	file:
+reservedPEND	gpio.c	/^	int reservedPEND[48];	\/\/0x11400A40 ~ 0x11400AFC$/;"	m	struct:tag_GPIO_REGS	file:
+reservedRT	gpio.c	/^	int reservedRT[1047596];	\/\/ 0x1100_F50 ~ 0x113F_FFFC	$/;"	m	struct:tag_GPIO_REGS	file:
+reset_timer	timer.c	/^void reset_timer(void)$/;"	f
+reset_timer_masked	timer.c	/^void reset_timer_masked(void)$/;"	f
+rest	uart.h	/^	union br_rest	rest;$/;"	m	struct:s5p_uart	typeref:union:s5p_uart::br_rest
+result	udiv.S	/^result		.req	r2$/;"	l
+rtc_get	s3c44b0_rtc.c	/^int rtc_get (struct rtc_time* tm)$/;"	f
+rtc_reset	s3c44b0_rtc.c	/^void rtc_reset (void)$/;"	f
+rtc_set	s3c44b0_rtc.c	/^int rtc_set (struct rtc_time* tm)$/;"	f
+rtc_time	rtc.h	/^struct rtc_time {$/;"	s
+rtcbase	res.h	30;"	d
+s5p_get_base_timer	timer.c	/^static inline struct s5p_timer *s5p_get_base_timer(void)$/;"	f	file:
+s5p_get_base_uart	serial_s5p.c	/^static inline struct s5p_uart *s5p_get_base_uart(int dev_index)$/;"	f	file:
+s5p_gpio_bank	gpio.h	/^struct s5p_gpio_bank {$/;"	s
+s5p_serial0_device	serial_s5p.c	/^struct serial_device s5p_serial0_device =    \/\/2015$/;"	v	typeref:struct:serial_device
+s5p_serial1_device	serial_s5p.c	/^struct serial_device s5p_serial1_device =$/;"	v	typeref:struct:serial_device
+s5p_serial2_device	serial_s5p.c	/^struct serial_device s5p_serial2_device =$/;"	v	typeref:struct:serial_device
+s5p_serial3_device	serial_s5p.c	/^struct serial_device s5p_serial3_device =$/;"	v	typeref:struct:serial_device
+s5p_timer	pwm.h	/^struct s5p_timer {$/;"	s
+s5p_uart	uart.h	/^struct s5p_uart {$/;"	s
+send_internal_irq	irq.c	/^void send_internal_irq(unsigned int irqno)$/;"	f
+serial_device	serial.h	/^struct serial_device {$/;"	s
+serial_err_check	serial_s5p.c	/^static int serial_err_check(const int dev_index, int op)$/;"	f	file:
+serial_getc_dev	serial_s5p.c	/^int serial_getc_dev(const int dev_index)$/;"	f
+serial_init_dev	serial_s5p.c	/^int serial_init_dev(const int dev_index)$/;"	f
+serial_putc_dev	serial_s5p.c	/^void serial_putc_dev(const char c, const int dev_index)$/;"	f
+serial_puts_dev	serial_s5p.c	/^void serial_puts_dev(const char *s, const int dev_index)$/;"	f
+serial_setbrg_dev	serial_s5p.c	/^void serial_setbrg_dev(const int dev_index)$/;"	f
+serial_tstc_dev	serial_s5p.c	/^int serial_tstc_dev(const int dev_index)$/;"	f
+set_timer	timer.c	/^void set_timer(unsigned long t)$/;"	f
+setbrg	serial.h	/^	void (*setbrg) (void);$/;"	m	struct:serial_device
+size_t	string.h	/^typedef   unsigned int  size_t ; $/;"	t
+slot	uart.h	/^	unsigned short	slot;		\/* udivslot *\/$/;"	m	union:br_rest
+start	vector.S	/^start:$/;"	l
+strcat	string.c	/^char * strcat(char * dest, const char * src)$/;"	f
+strchr	string.c	/^char * strchr(const char * s, int c)$/;"	f
+strcmp	string.c	/^int strcmp(const char * cs,const char * ct)$/;"	f
+strcpy	string.c	/^char * strcpy(char * dest,const char *src)$/;"	f
+strlen	string.c	/^size_t strlen(const char * s)$/;"	f
+strncat	string.c	/^char * strncat(char *dest, const char *src, size_t count)$/;"	f
+strncmp	string.c	/^int strncmp(const char * cs,const char * ct,size_t count)$/;"	f
+strncpy	string.c	/^char * strncpy(char * dest,const char *src,size_t count)$/;"	f
+strnlen	string.c	/^size_t strnlen(const char * s, size_t count)$/;"	f
+strpbrk	string.c	/^char * strpbrk(const char * cs,const char * ct)$/;"	f
+strrchr	string.c	/^char * strrchr(const char * s, int c)$/;"	f
+strsep	string.c	/^char * strsep(char **s, const char *ct)$/;"	f
+strspn	string.c	/^size_t strspn(const char *s, const char *accept)$/;"	f
+strstr	string.c	/^char * strstr(const char * s1,const char * s2)$/;"	f
+strswab	string.c	/^char *strswab(const char *s)$/;"	f
+strtok	string.c	/^char * strtok(char * s,const char * ct)$/;"	f
+tag_GPIO_REGS	gpio.c	/^typedef struct tag_GPIO_REGS$/;"	s	file:
+tcfg0	pwm.h	/^	unsigned int	tcfg0;$/;"	m	struct:s5p_timer
+tcfg1	pwm.h	/^	unsigned int	tcfg1;$/;"	m	struct:s5p_timer
+tcmpb0	pwm.h	/^	unsigned int	tcmpb0;$/;"	m	struct:s5p_timer
+tcmpb1	pwm.h	/^	unsigned int	tcmpb1;$/;"	m	struct:s5p_timer
+tcmpb2	pwm.h	/^	unsigned int	tcmpb2;$/;"	m	struct:s5p_timer
+tcmpb3	pwm.h	/^	unsigned int	tcmpb3;$/;"	m	struct:s5p_timer
+tcntb0	pwm.h	/^	unsigned int	tcntb0;$/;"	m	struct:s5p_timer
+tcntb1	pwm.h	/^	unsigned int	tcntb1;$/;"	m	struct:s5p_timer
+tcntb2	pwm.h	/^	unsigned int	tcntb2;$/;"	m	struct:s5p_timer
+tcntb3	pwm.h	/^	unsigned int	tcntb3;$/;"	m	struct:s5p_timer
+tcntb4	pwm.h	/^	unsigned int	tcntb4;$/;"	m	struct:s5p_timer
+tcnto0	pwm.h	/^	unsigned int	tcnto0;$/;"	m	struct:s5p_timer
+tcnto1	pwm.h	/^	unsigned int	tcnto1;$/;"	m	struct:s5p_timer
+tcnto2	pwm.h	/^	unsigned int	tcnto2;$/;"	m	struct:s5p_timer
+tcnto3	pwm.h	/^	unsigned int	tcnto3;$/;"	m	struct:s5p_timer
+tcnto4	pwm.h	/^	unsigned int	tcnto4;$/;"	m	struct:s5p_timer
+tcon	pwm.h	/^	unsigned int	tcon;$/;"	m	struct:s5p_timer
+timer_init	timer.c	/^int timer_init(void)$/;"	f
+timestamp	timer.c	/^static unsigned long long timestamp;	\/* Monotonic incrementing timer *\/$/;"	v	file:
+tintcstat	pwm.h	/^	unsigned int	tintcstat;$/;"	m	struct:s5p_timer
+tm_hour	rtc.h	/^	int tm_hour;$/;"	m	struct:rtc_time
+tm_isdst	rtc.h	/^	int tm_isdst;$/;"	m	struct:rtc_time
+tm_mday	rtc.h	/^	int tm_mday;$/;"	m	struct:rtc_time
+tm_min	rtc.h	/^	int tm_min;$/;"	m	struct:rtc_time
+tm_mon	rtc.h	/^	int tm_mon;$/;"	m	struct:rtc_time
+tm_sec	rtc.h	/^	int tm_sec;$/;"	m	struct:rtc_time
+tm_wday	rtc.h	/^	int tm_wday;$/;"	m	struct:rtc_time
+tm_yday	rtc.h	/^	int tm_yday;$/;"	m	struct:rtc_time
+tm_year	rtc.h	/^	int tm_year;$/;"	m	struct:rtc_time
+tstc	serial.h	/^	int (*tstc) (void);$/;"	m	struct:serial_device
+u32	serial.h	/^typedef unsigned int u32 ; $/;"	t
+u32	timer.c	/^typedef  unsigned int u32 ; $/;"	t	file:
+u8	bcd.h	/^typedef   unsigned  char  u8 ; $/;"	t
+uBase	i2c.h	/^	int uBase;$/;"	m	struct:__anon7
+uartbase	res.h	52;"	d
+ubrdiv	uart.h	/^	unsigned int	ubrdiv;$/;"	m	struct:s5p_uart
+ucon	uart.h	/^	unsigned int	ucon;$/;"	m	struct:s5p_uart
+udivslot	serial_s5p.c	/^static const int udivslot[] = {$/;"	v	file:
+uerstat	uart.h	/^	unsigned int	uerstat;$/;"	m	struct:s5p_uart
+ufcon	uart.h	/^	unsigned int	ufcon;$/;"	m	struct:s5p_uart
+ufstat	uart.h	/^	unsigned int	ufstat;$/;"	m	struct:s5p_uart
+ulcon	uart.h	/^	unsigned int	ulcon;$/;"	m	struct:s5p_uart
+ulong	string.h	/^typedef   unsigned long  ulong ; $/;"	t
+umcon	uart.h	/^	unsigned int	umcon;$/;"	m	struct:s5p_uart
+umstat	uart.h	/^	unsigned int	umstat;$/;"	m	struct:s5p_uart
+uninit	serial.h	/^	int  (*uninit) (void);$/;"	m	struct:serial_device
+uprintf	Uart.c	/^int uprintf(const char *fmt , ...)$/;"	f
+urxh	uart.h	/^	unsigned char	urxh;$/;"	m	struct:s5p_uart
+use_divslot	uart.h	/^static int use_divslot = 1;$/;"	v
+utrstat	uart.h	/^	unsigned int	utrstat;$/;"	m	struct:s5p_uart
+utxh	uart.h	/^	unsigned char	utxh;$/;"	m	struct:s5p_uart
+va_arg	Uart.h	19;"	d
+va_end	Uart.h	20;"	d
+va_list	Uart.h	/^typedef char *va_list;$/;"	t
+va_start	Uart.h	21;"	d
+value	uart.h	/^	unsigned char	value;		\/* ufracval *\/$/;"	m	union:br_rest
+vector_copy	irq.c	/^void vector_copy(void)$/;"	f
+wdtbase	res.h	451;"	d
+writeb	res.h	221;"	d
+writel	res.h	223;"	d
+writew	res.h	222;"	d

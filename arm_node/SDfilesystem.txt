@@ -1,0 +1,33 @@
+
+
+pc:
+
+1>
+	cd /disk/A9/filesystem
+
+2>
+	tar -cf nfs.tar *
+
+
+minicom FS : 
+
+	fidks -l 
+	
+	mount /dev/mmcblk0p2  /mnt	
+
+	tar -xvf  nfs.tar -C  /mnt
+
+	umount /mnt	
+
+minicom UB:
+
+	set nfsbootargs  $bootargs
+	save
+
+	set bootargs "root=/dev/mmcblk0p2 console=ttySAC0,115200 lcd=S70 ctp=2"
+	save
+
+	reset
+	将网线断开看是否可以进入文件系统
+
+	

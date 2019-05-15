@@ -1,0 +1,29 @@
+
+
+//RTC
+int a ; 
+int b = 0 ;
+int c = 1 ; 
+
+int buffer[2000] = {0};
+
+int (*printf)(const char *fmt,...) = (void *)0xC3E11ad0 ; 
+
+
+int _start(void)
+{
+    int d = 0 ; 
+    int e = 1 ; 
+    //int buffer1[100] = {0};
+
+    printf("a:%d b:%d c:%d d:%d e:%d \n" , a , b , c , d , e);
+
+    int i ; 
+    for(i = 0 ; i < 2000 ; i++)
+        printf("%d " , buffer[i]);
+
+
+	return 0 ; 
+}
+
+

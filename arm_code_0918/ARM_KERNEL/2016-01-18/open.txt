@@ -1,0 +1,43 @@
+
+系统调用号的头文件
+/disk/A9/linux-3.5/arch/arm/include/asm/unistd.h
+
+系统调用表的头文件
+/disk/A9/linux-3.5/include/linux/syscalls.h  定义
+
+入口文件在
+/disk/A9/linux-3.5/fs/open.c       实现部分
+
+
+
+1.  sys_open
+SYSCALL_DEFINE3(open , .............) ; 
+
+2.  do_sys_open
+    
+3.  do_filp_open
+
+4.  path_openat
+
+5.  do_last
+
+6.  may_open
+
+7.  nameidata_to_filp
+
+8.  do_entry_open
+
+获取file_operations
+
+struct file *f ; 
+f = nd->intent.open.file ;  //默认的filp
+
+dentry = nd->path.dentry->d_inode->i_fop  (key)
+inode =  dentry->d_inode
+f->f_op = fops_get(inode->i_fop);   //拿到驱动的filp
+open = f->f_op->open
+open(inode , f)
+
+static int myopen(struct inode *inode , struct file *filp);
+
+

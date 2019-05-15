@@ -1,0 +1,301 @@
+/********************
+ * 虚拟文件系统VFS
+ ********************/
+
+(1)VFS介绍
+虚拟文件系统VFS作为内核的子系统，为用户空间程序提供了文件系统的相关接口。
+VFS使得用户可以直接使用open()等系统调用而无需考虑具体文件系统和实际物理介质。
+VFS提供了一个通用的文件系统模型，该模型囊括了我们所能想到的文件系统的常用功能和行为。通过这个抽象层，就可以实现利用通用接口对所有类新的文件系统进行操作。
+
+a.调用模型
+write(): 用户空间 -->
+sys_write(): VFS -->
+文件系统的写方法: 文件系统 -->
+物理介质
+
+
+(2)VFS采用的主要对象
+VFS采用了面向对象的思路，采用一组数据结构来代表通用的文件对象。
+这些结构体在包含数据的同时也包含了操作这些数据的指针。
+VFS中包括了四个主要的对象类型。
+
+a.超级块对象super_block
+所有文件系统都必须实现超级块，该对象用于存储特定文件系统的信息，通常存储在磁盘的特定扇区中，每个文件系统只有一个超级块。
+对于不基于磁盘的文件系统，比如基于内存的文件系统sysfs，linux会在使用现场创建超级块并将其保存到内存中。
+
+超级块的结构体为super_block，定义在<linux/fs.h>。
+超级块的操作方法结构体为super_operations，也定义在fs.h中。
+创建、管理和销毁超级块对象的代码位于/fs/super.c。
+在文件系统安装时，内核会调用alloc_super()函数从磁盘读取文件系统超级块，并将其信息填充到内存中的超级块对象中。
+
+
+b.索引节点对象inode
+索引节点对象包含了内核在操作文件或目录是需要的全部信息，如文件的访问控制权限，大小，拥有者，创建时间等。
+系统把这些信息存储在一个单独的数据结构中，称为索引节点。
+一个文件在内存中只有一个索引节点对象，特殊文件(比如管道和设备文件)也有其对应的索引节点。
+inode结构体定义在<linux/fs.h>，其对应的操作函数结构体为inode_operations
+
+
+c.目录项对象dentry
+每个目录项对象代表一个路径中的特定部分，比如路径/bin/vi，/、bin和vi都属于目录项对象。
+目录项对象没有对应的磁盘结构，VFS根据字符串形式的路径名现场创建。每个文件只对应一个dentry对象。
+
+dentry结构体定义在<linux/dcache.h>中，对应的目录项操作函数结构体dentry_operations也定义在<linux/dcache.h>中。
+
+
+d.文件对象file
+文件对象表示进程已经打开的文件。这个对象在open的时候创建，在close的时候销毁。
+因为多个进程可以同时打开和操作一个文件，所以一个文件可能在内存中有多个file对象。
+
+文件对象由file结构体表示，定义在<linux/fs.h>中。file对象的操作函数结构体为file_operations，定义在<linux/fs.h>中。
+这个函数集非常重要，其中包括了对文件的实际操作函数，用户空间调用write，最终会调用到file_operations里的write。
+我们要实现一个char类型的字符设备，也就是要实现file_operations中支持的函数。
+
+
+
+/********************
+ * 字符设备驱动
+ ********************/
+  
+(1)字符设备驱动介绍
+字符设备是指那些按字节流访问的设备，针对字符设备的驱动称为字符设备驱动。
+此类驱动适合于大多数简单的硬件设备。比如并口打印机，我们通过在/dev下建立一个设备文件(如/dev/printer)来访问它。
+用户应用程序用标准的open函数打开dev/printer，然后用write向文件中写入数据，用read从里面读数据。
+
+调用流程：
+write(): 用户空间 -->
+sys_write(): VFS -->
+f_op->write: 特定设备的写方法
+
+所谓驱动，就是提供最后的write函数，通过访问打印机硬件的寄存器直接和打印机对话
+
+
+(2)主设备号和次设备号
+a.设备编号介绍
+对字符设备的访问是通过文件系统内的设备文件进行的。这些文件位于/dev。用"ls -l"查看。
+
+设备通过设备号来标识。设备号分两部分，主设备号和次设备号。
+通常，主设备号标示设备对应的驱动程序，linux允许多个驱动共用一个主设备号；
+而次设备号用于确定设备文件所指的设备。
+
+在内核中，用dev_t类型<linux/types.h>保存设备编号。
+2.4内核中采用16位设备号(8位主，8位从)，而2.6采用32位，12位主，20位从。
+在驱动中访问设备号应该用<linux/kdev_t.h>中定义的宏。
+获取设备号：
+MAJOR(dev_t dev)
+MINOR(dev_t dev)
+MKDEV(int major, int minor)
+
+b.分配和释放设备编号
+在建立一个字符设备前，驱动需要先获得设备编号。
+分配：
+#include <linux/fs.h>
+int register_chrdev_region(dev_t first, unsigned int count, char *name);
+first:要分配的设备编号范围的起始值(次设备号常设为0)
+count: 所请求的连续编号范围
+name: 和编号关联的设备名称(见/proc/devices)
+
+也可以要求内核动态分配：
+int alloc_chrdev_region(dev_t *dev, unsigned int firstminor, unsigned int count, char *name);
+firstminor: 通常为0
+*dev: 存放内核返回的设备号
+
+释放:
+void unregister_chrdev_region(dev_t first, unsigned int count);
+在模块的清除函数中调用
+
+在Documentation/devices.txt中可以找到内核已经分配的设备号。
+
+c.建立设备文件
+当设备驱动模块向系统申请了主设备号和次设备号，并且已经通过insmod加载到内核中后，我们就可以通过在/dev下创建设备文件来访问这个设备了。
+
+字符设备的创建：
+$>mknod /dev/mychar c major minor
+
+我们在驱动中常常采用动态分配主次设备号的方法，这样不会和系统中已有的设备号冲突。
+动态分配时，/dev下的设备文件也需要通过分析/proc/devices动态建立。
+见char_load和char_unload脚本。
+
+
+
+(3)字符设备的基本数据结构
+和字符设备驱动关系最紧密的3个基本的数据结构是：
+file, file_oepeations和inode
+
+a.file_operations数据结构
+结构中包含了若干函数指针。这些函数就是实际和硬件打交道的函数。
+用户空间调用的open，write等函数最终会调用这里面的指针所指向的函数。每个打开的文件和一组函数关联。
+见<linux/fs.h>和驱动书的p54
+
+2.6内核结构的初始化：
+struct file_operations my_fops = {
+	.owner = THIS_MODULE,
+	.llseek = my_llseek,
+	.read = my_read,
+	.write = my_write,
+	.ioctl = my_ioctl,
+	.open = my_open,
+	.release = my_release,
+}
+
+2.4内核结构的初始化：
+struct file_operations my_fops = {
+	owner: THIS_MODULE,
+	llseek: my_llseek,
+...
+}
+
+
+b.file结构<linux/fs.h>
+file是一个内核结构体，实际上和用户open文件后返回的文件描述符fd对应。
+file结构代表一个打开的文件，系统中每个打开的文件在内核空间都有一个对应的file结构。
+它由内核在open时创建，并传递给在该文件上进行操作的所有函数，直到最后的close函数，在文件的所有实例都被关闭后，内核会释放这个结构。
+
+用户空间进程fork一个新进程后，新老进程会共享打开的文件描述符fd，这个操作不会在内核空间创建新的file结构，只会增加已创建file结构的计数。
+
+见<linux/fs.h>
+mode_t f_mode;
+通过FMODE_READ和FMODE_WRITE标示文件是否可读或可写。
+
+loff_t f_pos;
+当前的读写位置，loff_t为64位
+
+unsigned int f_flags;
+文件标志，如O_RDONLY, O_NONBLOCK, O_SYNC。标志都定义在<linux/fcntl.h>
+
+struct file_operations *f_op;
+与文件相关的操作。内核在执行open时对这个指针赋值。可以在驱动的open方法中根据次设备号赋予不同的f_op
+
+void *private;
+通常将表示硬件设备的结构体赋给private.
+
+struct dentry *f_dentry;
+文件对应的目录项(dentry)结构。可通过filp->f_dentry->d_inode访问索引节点。
+
+file中其他的内容和驱动关系不大。
+
+
+c.inode结构
+内核用inode结构表示一个实际的文件，可以是一个普通的文件，也可以是一个设备文件。
+每个文件只有一个inode结构，而和文件描述符对应的file结构可以有多个(多次进行open调用)。这些file都指向同一个inode。
+
+inode定义在<linux/fs.h>
+dev_t i_rdev;
+对于表示设备文件的inode结构，i_rdev里包含了真正的设备编号
+
+struct cdev *i_cdev
+cdev是表示字符设备的内核的内部结构。当inode表示一个字符设备时，i_cdev指向内核中的struct cdev.
+
+其他结构和设备驱动关系不大。
+
+用如下宏从inode获取设备号：
+unsigned int iminor(struct inode *inode)
+unsigned int imajor(struct inode *inode)
+
+
+
+(4)字符设备的注册
+内核内部使用struct cdev结构来表示一个字符设备。
+我们的驱动要把自己的cdev注册到内核中去。见 <linux/cdev.h>
+
+a.通常在设备的结构中加入cdev
+struct scull_dev{
+	...
+	struct cdev cdev; /* 字符设备结构 */
+}
+
+b.初始化
+void cdev_init(struct cdev *cdev, struct file_operations *fops)
+
+c.设定cdev中的内容
+dev->cdev.owner = THIS_MODULE;
+dev->cdev.ops = &scull_fops;
+
+d.向内核添加设定好的cdev
+int cdev_add(struct cdev *dev, dev_t num, unsigned int count);
+num: 设备对应的第一个编号
+count: 和设备关联的设备编号的数量，常取1
+一旦cdev_add返回，内核就认为设备可以使用了，所以要在调用之前完成设备的硬件初始化。
+
+
+(5)老式的注册函数
+2.4中的老式注册函数仍然在驱动函数中大量存在，但新的代码不应该使用这些代码。
+注册：
+int register_chrdev(unsigned int major,
+    const char *name,
+    struct file_operations *fops);
+为给定的主设备号注册0~255作为次设备号，并为每个设备建立一个对应的默认cdev结构
+
+注销：
+int unregister_chrdev(unsigned int major,
+    const char *name);
+
+
+
+(6)open和release
+a.open
+在驱动的open方法中完成设备的初始化工作，open完成后，硬件就可以使用，用户程序可以通过write等访问设备，open的工作有：
+*检查设备的特定错误
+*如果设备首次打开，则对其进行初始化(有可能多次调用open)
+*如有必要，更新f_op指针
+*分配并填写置于filp->private_data中的数据
+
+open原型；
+int (*open) (struct inode *inode, struct file *filp);
+
+在open中通过inode获得dev指针，并将其赋给file->private_data
+struct scull_dev *dev;
+dev = contain_of(inode->i_cdev, struct scull_dev, cdev);
+filp->private_data = dev;
+(如果dev是静态分配的，则在open或write等方法中可以直接访问dev，但如果dev是在module_init时动态分配的，则只能通过上面的方法获得其指针)
+
+b.release
+并不是每个close调用都会引起对release方法的调用，只有当file的计数器归零时，才会调用release，从而释放dev结构)
+
+
+
+(7)read和write
+read和write的工作是从用户空间拷贝数据到内核，或是将内核数据拷贝到用户空间。
+其原型为：
+ssize_t read(struct file *filp, char __user *buff, size_t count, loff_t *offp);
+ssize_t write(struct file *filp, const char __user *buff, size_t count, loff_t *offp);
+
+buff: 用户空间的缓冲区指针
+offp: 用户在文件中进行存取操作的位置
+
+在read和write中，拷贝完数据后，应该更新offp，并将实际完成的拷贝字节数返回。
+
+
+(8)和用户空间交换数据
+read和write中的__user *buff 是用户空间的指针，内核不能直接引用其中的内容(也就是不能直接对buff进行取值操作)，需要通过内核提供的函数进行数据拷贝。
+其原因是：
+a.在不同架构下，在内核模式中运行时，用户空间的指针可能是无效的。
+b.用户空间的内存是分页的，系统调用执行时，buff指向的内存可能根本不在RAM中(被交换到磁盘中了)
+c.这可能是个无效或者恶意指针(比如指向内核空间)
+
+内核和用户空间交换数据的函数见<asm/uaccess.h>
+
+如：
+1. unsigned long copy_to_user(
+      void __user *to, 
+      const void *from, 
+      unsigned long count);
+向用户空间拷贝数据
+      
+2. unsigned long copy_from_user(
+      void *to, 
+      const void __user *from, 
+      unsigned long count);
+从用户空间获得数据
+
+3. int put_user(datum, ptr)
+向用户空间拷贝数据。字节数由sizeof(*ptr)决定
+返回值为0成功，为负错误。
+
+4. int get_user(local, ptr);
+从用户空间获得数据。字节数由sizeof(*ptr)决定
+返回值和local都是从用户空间获得的数据
+
+任何访问用户空间的函数都必须是可睡眠的，这些函数需要可重入。
+copy_to_user等函数如果返回值不等于0，则read或write应向用户空间返回-EFAULT
+

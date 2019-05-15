@@ -1,0 +1,258 @@
+-------------------------------------
+/**********************
+ * linux的内存管理
+ **********************/
+
+到目前为止，内存管理是unix内核中最复杂的活动。我们简单介绍一下内存管理，并通过实例说明如何在内核态获得内存。
+
+(1)各种地址
+对于x86处理器，需要区分以下三种地址：
+*逻辑地址(logical address)
+只有x86支持。每个逻辑地址都由一个段(segment)和一个偏移量(offset)组成，偏移量指明了从段的开始到实际地址之间的距离。
+逻辑地址共48位，段选择符16位，偏移量32位。linux对逻辑地址的支持很有限
+
+*线性地址(linear address)
+也称为虚拟地址(virtual address)。
+32位无符号整数，从0x0000,0000到0xffff,ffff，共4GB的地址范围。无论是应用程序还是驱动程序，我们在程序中使用的地址都是虚拟地址。
+
+*物理地址(physical address)
+32位无符号整数，与从CPU的地址引脚发送到存储器总线上的电信号相对应。用于存储器寻址。
+
+找一个程序，如scanf.c，运行两个，然后执行下面指令观察：
+$>pmap $(pid)
+$>cat /proc/$(pid)/maps
+
+
+(2)物理内存和虚拟内存
+a.物理内存
+就是系统中实际存在的RAM，比如我们常说的一条256兆RAM。x86处理器和物理内存之间是通过实际的物理线路连接的。
+另外，x86处理器还通过主板连接了很多的外设，这些外设也通过实际的物理线路和处理器相连。
+对于处理器来说，多数的外设和RAM的访问方式是一致的，都是由程序发出物理地址访问实际的物理器件。
+外设和RAM共享一个4G大小的物理内存空间。
+
+b.虚拟内存
+是在物理内存之上为每个进程构架的一种逻辑内存，处于应用程序的内存请求与硬件内存管理单元(Memory Management Unit, MMU) 之间.
+MMU将应用程序使用的虚拟内存根据预先定义好的页表转化为物理地址，然后通过物理地址对实际的外设或RAM进行访问。
+
+
+虚拟内存有很多用途和优点：
+*若干个进程可以并发地执行
+*应用程序所需内存大于物理内存时也可以运行
+*程序只有部分代码装入内存时进程可以执行它
+*允许每个进程访问可用物理内存的一个子集
+*进程可以共享库函数或程序的一个单独内存映像
+*程序是可重定位的，也就是说，可以把程序放在物理内存的任何地方
+*编程者可以编写与机器无关的代码，不必关心物理内存的组织结构
+
+
+(3)RAM的使用
+linux将实际的物理RAM划分为两部分使用，其中若干兆字节专门用于存放内核映像(也就是内核代码和内核静态数据结构)，RAM的其余部分通常由虚拟内存系统来处理，并用在以下3种可能的方面：
+*满足内核对缓存，描述符和其他动态内核数据结构的请求
+*满足进程对一般内存区的请求及对文件内存映射的请求
+*借助于高速缓存从磁盘及其他缓冲设备获得较好的性能
+
+虚拟内存必须解决的一个主要问题是内存碎片，因为通常内核使用连续的物理内存，所以碎片过多可能导致请求失败。
+
+
+
+/**********************
+ * 在内核中获取内存
+ **********************/
+
+和在用户空间中一样，在内核中也可以动态分配和释放内存，但受到的限制要比用户空间多一些。
+
+(1)内核中的内存管理
+内核把物理页作为内存管理的基本单位。这主要是因为内存管理单元(MMU)是以页为单位进行虚拟地址和物理地址转换的，从虚拟内存的角度来看，页就是最小单位。大多数32位体系结构支持4KB的页。
+
+a.页
+内核用struct page表示系统中的每个物理页。
+包括<linux/mm.h>就可以使用page，其实际定义在<linux/mm_types.h>
+
+struct page{
+  page_flags_t flags;
+  atomic_t _count;
+  atomic_t _mapcount;
+  unsigned long private;
+  struct address_space *mapping;
+  pgoff_t index;
+  struct list_head lru;
+  void *virtual;
+};
+
+flags用于存放页的状态，定义在<linux/page-flags.h>，状态包括页是不是脏的，是不是被锁定在内存中等等。_count存放页的引用计数。
+
+page结构与物理页相关，并非与虚拟页相关。结构的目的再于描述物理内存本身，而不是其中的数据。
+
+内核根据page结构来管理系统中所有的页，内核通过page可以知道一个页是否空闲(也就是页有没有被分配)。
+如果页已经被分配，内核还需要知道谁拥有这个页。
+拥有者可能是用户空间进程，动态分配的内核数据，静态内核代码，或页高速缓存等。
+
+系统中的每个物理页都要分配这样一个结构。如果结构体40字节大小，则128MB物理内存(4K的页)需要分配1MB多用于page结构。
+
+
+b.区
+由于硬件的限制，内核不能对所有的页一视同仁。内核使用区(zone)对具有相似特性的页进行分组。这些特性包括：
+*一些硬件只能用某些特定的内存地址来执行DMA
+*一些体系结构其内存的物理寻址范围远大于虚拟寻址范围，这样，就有一些内存不能永久地映射到内核空间
+*
+针对这些限制，linux采用了三种区(<linux/mmzone.h>)：
+ZONE_DMA:这个区包含的页能执行DMA操作
+ZONE_NORMAL：这个区包含的都是能正常映射的页
+ZONE_HIGHMEM：这个区包含高端内存(大于896M)，其中的页不能永久地映射到内核的地址空间
+
+对于x86，这3个区对于的物理内存分别是：
+ZONE_DMA: <16MB
+ZONE_NORMAL： 16~896MB
+ZONE_HIGHMEM： >896MB
+
+见<linux/mmzone.h>中的struct zone。
+系统中只有3个这样的区结构。
+
+
+
+(2)页分配
+内核是使用页进行内存管理的，因此，我们在内核中也可以要求系统以页为单位给我们分配内存。当然，以页为单位分配可能造成内存浪费，因此，只有在我们确定需要整页内存时才调用他们。
+
+a.分配
+#include <linux/gfp.h>
+1. struct page * alloc_pages(
+        unsigned int gfp_mask, 
+        unsigned int order);
+分配2的order次方个连续的物理页。
+
+2. void *page_address(
+        struct page *page);
+返回一个指针，指向给定物理页当前的虚拟地址
+
+3. unsigned long __get_free_pages(
+        unsigned int gfp_mask, 
+        unsigned int order);
+相当于上两个函数结合
+
+4. struct page * alloc_page(
+        unsigned int gfp_mask);
+5. unsigned long __get_free_page(
+        unsigned int gfp_mask);
+6. unsigned long get_zeroed_page(
+        unsigned int gfp_mask);
+只分配一页
+
+
+b.gfp_mask标志
+这个标志决定了内核在分配内存时的行为，以及从哪里分配内存。
+#include <linux/gfp.h>
+#define GFP_ATOMIC
+原子分配，不会休眠，可用于中断处理。
+#define GFP_KERNEL 
+首选，内核可能会睡眠，用在进程上下文中
+
+
+c.释放页
+void __free_pages(struct page *page,
+        unsigned int order);
+void free_pages(unsigned long addr,
+        unsigned int order);
+void free_page(unsigned long addr);
+
+注意！只能释放属于你的页。错误的参数可能导致内核崩溃。
+
+
+
+(3)通过kmalloc获取内存
+kmalloc和malloc很象，是内核中最常用的内存分配函数。
+kmalloc不会对分配的内存区域清0，分配的区域在物理内存中是连续的。
+
+a.分配
+#include <linux/slab.h>
+void *kmalloc(size_t size, int flags)
+size是要求分配的内存的大小
+
+kmalloc的参数flags可以控制kmalloc分配时的行为。和alloc_page时使用的标志是一致的。注意，kmalloc不能分配高端内存
+
+b.释放
+#include <linux/slab.h>
+  void kfree(const void *ptr);
+如果要释放的内存已经被释放了，或者释放属于内核其他部分的内存，则会产生严重的后果。调用kfree(NULL)是安全的。
+
+要注意！内核只能分配一些预定义的，固定大小的字节数组。kmalloc能处理的最小内存块是32或64。
+由于kmalloc分配的内存在物理上连续，所以有分配上限，通常不要超过128KB。
+
+
+
+(4)通过vmalloc获得内存
+vmalloc()分配的内存虚拟地址是连续的，但物理地址不需要连续。这也是malloc()的分配方式。vmalloc分配非连续的内存块，再修改页表，把内存映射到逻辑空间连续的区域内。
+
+大多数情况下，只有硬件设备需要得到物理地址连续的内存，内核可以使用通过vmalloc获得的内存。但内核中多采用kmalloc，这主要是考虑性能，因为vmalloc会引起较大的TLB抖动，除非映射大块内存时采用vmalloc。例如模块动态加载时，就是加载到通过vmalloc分配的内存。
+
+vmalloc在<linux/vmalloc.h>声明，在<mm/vmalloc.c>定义，用法和malloc()相同。
+  void* vmalloc(unsigned long size);
+  void vfree(void *addr);
+
+vmalloc会引起睡眠  
+
+
+
+(5)通过slab机制获得内存
+分配和释放数据结构是内核最普遍的操作之一。
+一种常用的方法是构建一个空闲链表，其中包含有可供使用的，已经分配好的数据结构块。
+每次要分配数据结构就不用再申请内存，而是直接从这个空闲链表中分配数据块，释放结构时将内存还回这个链表。
+这实际上是一种对象高速缓存(缓存对象).
+
+linux针对这种要求提供了一个slab分配器来完成这一工作。
+slab分配器要在几个基本原则之间寻求平衡：
+*频繁使用的数据结构会频繁分配和释放，需要缓存
+*频繁分配和回收必然导致内存碎片，为避免这一现象，空闲链表中的缓存会连续存放，从而避免碎片
+*分配器可以根据对象大小，页大小和总的高速缓存大小来进行优化
+
+kmalloc就建立在slab之上。
+
+a.创建一个新的高速缓存
+#include <linux/slab.h>
+struct kmem_cache *kmem_cache_create(
+      const char *name, 
+      size_t size,
+      size_t align,
+      unsigned long flags,
+      void(*ctor)(...));
+name: 高速缓存的名字。出现在/proc/slabinfo
+size: 缓存中每个元素的大小
+align: 缓存中第一个对象的偏移，常用0
+flags:分配标志。常用SLAB_HWCACHE_ALIGH，表明按cache行对齐,见slab.h
+
+
+b.销毁高速缓存
+#include <linux/slab.h>
+void kmem_cache_destroy(struct kmem_cache *cachep);
+必须在缓存中的所有对象都被释放后才能调用。
+
+
+c.从高速缓存中获得对象
+void *kmem_cache_alloc(
+      struct kmem_cache *cachep, int flags);
+flags:
+      GFP_KERNEL
+
+
+d.将对象释放回高速缓存
+void kmem_cache_free(
+      struct kmem_cache *cachep, void *objp);
+      
+可参见kernel/fork.c
+
+
+(6)高端内存的映射
+在高端内存中的页不能永久地映射到内核地址空间，因此，通过alloc_pages()函数以__GFP_HIGHMEM标志获得的页不可能有虚拟地址。需要通过函数为其动态分配。
+
+a.映射
+要映射一个给定的page结构到内核地址空间，可以使用：
+void *kmap(struct page *page);
+函数可以睡眠
+
+b.解除映射
+void kunmap(struct page* page);
+
+
+
+作业：
+1.熟悉上面各种内存分配机制的特点和使用函数
+2.自行实现一个例子，测验学到的内存分配函数

@@ -1,0 +1,61 @@
+
+1.移殖wifi  zd1211  到A9板子上       
+
+
+
+1> 内核配置驱动   开启内核zd1211驱动
+cd $KERN
+make menuconfig  
+	==>   [*] Networking support  ---> 
+		==>   -*-   Wireless  --->  
+			==>     <*>   cfg80211 - wireless configuration API
+	
+
+	==>   Device Drivers  --->
+		==> [*] Network device support  ---> 
+			==>  [*]   Wireless LAN  --->
+				==>  <*>   USB ZD1201 based Wireless device support
+				==>  <*>   ZyDAS ZD1211/ZD1211B USB-wireless support
+				==>  [*]     ZyDAS ZD1211 debugging
+
+配置完之后保存并重新编译内核
+更新板子上的内核
+
+
+开机启动板子 确认以下事情
+ifconfig  -a    查看是否有wlan0的网卡   
+如果有这张网卡的话，则说明了驱动安装成功，如若没有这张网卡，
+则说明驱动不正确，得重新配置内核并编译内核，更新再来
+
+2>固件的移殖
+首先得找到相应版本的wifi的固件，并且移殖
+xxxx.firmware.tar.gz
+解压   并装所属的固件考到板子文件系统目录    /lib/firmware/xxxx    //xxxx==>wifi型号
+
+
+3>wifi工具   wifi  tool
+xxxx.wifi.tool.tar.gz
+
+tar -xvf  xxx.wifi.tool.tar.gz
+cd    xxx.wifi.tool
+vim  Makefile     修改交叉编译器    cc=arm-linux-gcc
+make   ==> 在该目录下会生成一系列的wifi工具
+iwconfig  iwevent   iwgetid   iwlist    iwpriv    iwspy
+将这些工具考到文件系统目录bin下
+
+
+在板子上连接wifi
+
+iwlist  scanning
+iwlist
+找到相应的连接id  XXX
+
+iwconfig  wlan0  essid "XXX"
+
+配置相应的wifi IP
+ifconfig wlan0    192.168.88.88
+
+测试ping其它IP.如果ping得通则说明连接上wifi
+
+
+

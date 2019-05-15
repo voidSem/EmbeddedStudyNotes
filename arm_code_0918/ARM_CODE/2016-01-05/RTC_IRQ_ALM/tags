@@ -1,0 +1,149 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALMDAY	res.h	34;"	d
+ALMHOUR	res.h	33;"	d
+ALMMIN	res.h	32;"	d
+ALMMON	res.h	35;"	d
+ALMSEC	res.h	31;"	d
+ALMYEAR	res.h	36;"	d
+BCDDAY	res.h	41;"	d
+BCDDAYWEEK	res.h	40;"	d
+BCDHOUR	res.h	39;"	d
+BCDMIN	res.h	38;"	d
+BCDMON	res.h	42;"	d
+BCDSEC	res.h	37;"	d
+BCDYEAR	res.h	43;"	d
+BGPD0CON	res.h	57;"	d
+BGPD0DAT	res.h	58;"	d
+BGPM4CON	res.h	54;"	d
+BGPM4DAT	res.h	55;"	d
+BGPX3CON	res.h	60;"	d
+BGPX3DAT	res.h	61;"	d
+CON_MASK	s5p_gpio.c	40;"	d	file:
+CON_SFR	s5p_gpio.c	41;"	d	file:
+DAT_MASK	s5p_gpio.c	43;"	d	file:
+DAT_SET	s5p_gpio.c	44;"	d	file:
+DRV_MASK	s5p_gpio.c	49;"	d	file:
+DRV_SET	s5p_gpio.c	50;"	d	file:
+GPD0CON	res.h	19;"	d
+GPD0DAT	res.h	20;"	d
+GPIO_DRV_1X	res.h	117;"	d
+GPIO_DRV_2X	res.h	118;"	d
+GPIO_DRV_3X	res.h	119;"	d
+GPIO_DRV_4X	res.h	120;"	d
+GPIO_DRV_FAST	res.h	121;"	d
+GPIO_DRV_SLOW	res.h	122;"	d
+GPIO_FUNC	res.h	109;"	d
+GPIO_HIGHT	res.h	101;"	d
+GPIO_INPUT	res.h	106;"	d
+GPIO_IRQ	res.h	108;"	d
+GPIO_LOW	res.h	102;"	d
+GPIO_OUTPUT	res.h	107;"	d
+GPIO_PULL_DOWN	res.h	113;"	d
+GPIO_PULL_NONE	res.h	112;"	d
+GPIO_PULL_UP	res.h	114;"	d
+GPM4CON	res.h	16;"	d
+GPM4DAT	res.h	17;"	d
+GPX3CON	res.h	22;"	d
+GPX3DAT	res.h	23;"	d
+Lbignum	udiv.S	/^Lbignum:$/;"	l
+Ldiv0	div.S	/^Ldiv0:$/;"	l
+Ldiv0	udiv.S	/^Ldiv0:$/;"	l
+Lgot_result	udiv.S	/^Lgot_result:$/;"	l
+Loop1	udiv.S	/^Loop1:$/;"	l
+Loop3	udiv.S	/^Loop3:$/;"	l
+PULL_MASK	s5p_gpio.c	46;"	d	file:
+PULL_MODE	s5p_gpio.c	47;"	d	file:
+RATE_MASK	s5p_gpio.c	51;"	d	file:
+RATE_SET	s5p_gpio.c	52;"	d	file:
+RTCALM	res.h	30;"	d
+RTCCON	res.h	28;"	d
+TICCNT	res.h	29;"	d
+U16	res.h	/^typedef   volatile unsigned short U16 ; $/;"	t
+U32	res.h	/^typedef   volatile unsigned int   U32 ; $/;"	t
+U8	res.h	/^typedef   volatile unsigned char  U8 ;$/;"	t
+_BCD_H	bcd.h	11;"	d
+_RES_H	res.h	3;"	d
+_RTC_H_	rtc.h	6;"	d
+__aeabi_idiv	div.S	/^__aeabi_idiv:$/;"	l
+__aeabi_idivmod	udiv.S	/^__aeabi_idivmod:$/;"	l
+__aeabi_uidiv	udiv.S	/^ __aeabi_uidiv:$/;"	l
+__aeabi_uidivmod	udiv.S	/^__aeabi_uidivmod:$/;"	l
+__arch_getb	s5p_gpio.c	13;"	d	file:
+__arch_getl	s5p_gpio.c	15;"	d	file:
+__arch_getw	s5p_gpio.c	14;"	d	file:
+__arch_putb	s5p_gpio.c	17;"	d	file:
+__arch_putl	s5p_gpio.c	19;"	d	file:
+__arch_putw	s5p_gpio.c	18;"	d	file:
+__div0	basedevice.c	/^void __div0(void)$/;"	f
+__div0	div0.c	/^void __div0 (void)$/;"	f
+__divsi3	div.S	/^__divsi3:$/;"	l
+__raw_readb	s5p_gpio.c	27;"	d	file:
+__raw_readl	s5p_gpio.c	29;"	d	file:
+__raw_readw	s5p_gpio.c	28;"	d	file:
+__raw_writeb	s5p_gpio.c	23;"	d	file:
+__raw_writel	s5p_gpio.c	25;"	d	file:
+__raw_writew	s5p_gpio.c	24;"	d	file:
+__udivsi3	udiv.S	/^ __udivsi3:$/;"	l
+_start	test.c	/^int _start(void)$/;"	f
+bcd2bin	bcd.c	/^unsigned int bcd2bin(u8 val)$/;"	f
+bin2bcd	bcd.c	/^u8 bin2bcd (unsigned int val)$/;"	f
+buzzer_configure	basedevice.c	/^int buzzer_configure(void)$/;"	f
+buzzer_off	basedevice.c	/^int buzzer_off(void)$/;"	f
+buzzer_on	basedevice.c	/^int buzzer_on(void)$/;"	f
+con	res.h	/^	unsigned int	con;$/;"	m	struct:s5p_gpio_bank
+curbit	udiv.S	/^curbit		.req	r3$/;"	l
+dat	res.h	/^	unsigned int	dat;$/;"	m	struct:s5p_gpio_bank
+delay	basedevice.c	/^int delay(unsigned int val)$/;"	f
+dividend	udiv.S	/^dividend	.req	r0$/;"	l
+divisor	udiv.S	/^divisor		.req	r1$/;"	l
+drv	res.h	/^	unsigned int	drv;$/;"	m	struct:s5p_gpio_bank
+get_key	basedevice.c	/^int get_key(void)$/;"	f
+gpio_cfg_pin	s5p_gpio.c	/^void gpio_cfg_pin(struct s5p_gpio_bank *bank, int gpio, int cfg)$/;"	f
+gpio_direction_input	s5p_gpio.c	/^void gpio_direction_input(struct s5p_gpio_bank *bank, int gpio)$/;"	f
+gpio_direction_output	s5p_gpio.c	/^void gpio_direction_output(struct s5p_gpio_bank *bank, int gpio, int en)$/;"	f
+gpio_get_value	s5p_gpio.c	/^unsigned int gpio_get_value(struct s5p_gpio_bank *bank, int gpio)$/;"	f
+gpio_set_drv	s5p_gpio.c	/^void gpio_set_drv(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_pull	s5p_gpio.c	/^void gpio_set_pull(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_rate	s5p_gpio.c	/^void gpio_set_rate(struct s5p_gpio_bank *bank, int gpio, int mode)$/;"	f
+gpio_set_value	s5p_gpio.c	/^void gpio_set_value(struct s5p_gpio_bank *bank, int gpio, int en)$/;"	f
+key_configure	basedevice.c	/^int key_configure(void)$/;"	f
+led_all_off	basedevice.c	/^int led_all_off(void)$/;"	f
+led_all_on	basedevice.c	/^int led_all_on(void)$/;"	f
+led_configure	basedevice.c	/^int led_configure(void)$/;"	f
+led_flash	basedevice.c	/^int led_flash(void)$/;"	f
+led_run	basedevice.c	/^int led_run(void)$/;"	f
+led_which_on	basedevice.c	/^int led_which_on(int which)$/;"	f
+pdn_con	res.h	/^	unsigned int	pdn_con;$/;"	m	struct:s5p_gpio_bank
+pdn_pull	res.h	/^	unsigned int	pdn_pull;$/;"	m	struct:s5p_gpio_bank
+print_t	res.h	/^typedef   int (*print_t)(const char *,...) ; $/;"	t
+printf	test.c	/^print_t  printf = (void *)0xC3E11ad0 ; $/;"	v
+pull	res.h	/^	unsigned int	pull;$/;"	m	struct:s5p_gpio_bank
+readb	s5p_gpio.c	35;"	d	file:
+readl	s5p_gpio.c	37;"	d	file:
+readw	s5p_gpio.c	36;"	d	file:
+res1	res.h	/^	unsigned char	res1[8];$/;"	m	struct:s5p_gpio_bank
+result	udiv.S	/^result		.req	r2$/;"	l
+rtc_get	s3c44b0_rtc.c	/^int rtc_get (struct rtc_time* tm)$/;"	f
+rtc_reset	s3c44b0_rtc.c	/^void rtc_reset (void)$/;"	f
+rtc_set	s3c44b0_rtc.c	/^int rtc_set (struct rtc_time* tm)$/;"	f
+rtc_time	rtc.h	/^struct rtc_time {$/;"	s
+rtcbase	res.h	27;"	d
+s5p_gpio_bank	res.h	/^struct s5p_gpio_bank {$/;"	s
+tm_hour	rtc.h	/^	int tm_hour;$/;"	m	struct:rtc_time
+tm_isdst	rtc.h	/^	int tm_isdst;$/;"	m	struct:rtc_time
+tm_mday	rtc.h	/^	int tm_mday;$/;"	m	struct:rtc_time
+tm_min	rtc.h	/^	int tm_min;$/;"	m	struct:rtc_time
+tm_mon	rtc.h	/^	int tm_mon;$/;"	m	struct:rtc_time
+tm_sec	rtc.h	/^	int tm_sec;$/;"	m	struct:rtc_time
+tm_wday	rtc.h	/^	int tm_wday;$/;"	m	struct:rtc_time
+tm_yday	rtc.h	/^	int tm_yday;$/;"	m	struct:rtc_time
+tm_year	rtc.h	/^	int tm_year;$/;"	m	struct:rtc_time
+u8	bcd.h	/^typedef   unsigned  char  u8 ; $/;"	t
+writeb	s5p_gpio.c	31;"	d	file:
+writel	s5p_gpio.c	33;"	d	file:
+writew	s5p_gpio.c	32;"	d	file:

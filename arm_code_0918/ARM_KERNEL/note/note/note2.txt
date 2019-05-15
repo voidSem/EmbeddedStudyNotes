@@ -1,0 +1,241 @@
+-----------
+(1)什么是操作系统内核   （管理所有的软硬件资源）
+通过例子说明系统的运行流程
+
+内核是整个操作系统的核心，通常要完成如下功能：
+a.进程管理
+b.内存管理
+c.提供文件系统支持
+d.设备控制
+e.中断和异常响应
+f.网络功能
+
+*内核态和用户态
+用户进程需要与硬件交互，一些操作系统允许所有的用户程序都直接与硬件部分交互(如MS-DOS)。
+相反，类unix操作系统把与物理硬件相关的访问都对用户程序隐藏起来，当用户想使用硬件资源时，需要向内核发出请求，内核代表应用程序与
+相关的硬件进行交互。
+
+为了实现这种机制，现代操作系统通过特殊的硬件特性禁止用户程序直接与底层硬件交互，或者禁止直接访问任意的物理地址。
+
+内核态
+内核在此时运行，拥有受保护的内存空间和访问硬件的所有权限。
+
+用户态
+用户应用程序在此时运行，它们只能看到允许它们使用的部分系统资源，不能直接访问硬件，还有一些其他限制。
+
+硬件处理器常常提供多种状态，比如x86有4种，arm有7种，但所有标准的unix内核只用了内核态和用户态。
+
+*进程上下文和中断上下文
+
+cpu在任意时间只可能运行在下面三种情况：
+*运行于内核空间，处于进程上下文，代表某个特定的进程执行
+*运行于内核空间，处于中断上下文，与任何进程无关，处理某个特定的中断
+*运行于用户空间，执行用户进程
+
+
+(2)linux内核的特点(主要相对于UNIX)
+linux内核属于单内核，以单个静态二进制文件的形式存放于磁盘，参见/boot目录。运行在单独的内核地址空间。并具有以下特点：
+*模块化设计
+*抢占式内核(可满足较高的实时要求)
+*支持内核线程
+*支持对称多处理机制(SMP)
+*可动态装载和卸载内核模块
+
+(3)linux内核版本
+可以在http://vger.kernel.org订阅内核开发的邮件
+1991  0.2
+1992  0.95 X
+1994  1.0  加入网络功能
+1995  1.2  非X86体系架构的支持
+1996  2.0  对称多处理器SMP
+1999  2.2  M68K PowerPC
+2001  2.4  热拔插 蓝牙 LVM RAID
+2003  2.6  统一设备模型
+2011  3.0  二十周年纪念
+
+(4)如何获得linux内核代码
+内核的官方网站是http://www.kernel.org
+解压缩如下：
+$>tar xjvf linux-<x.y.z>.tar.bz2
+$>tar xzvf linux-<x.y.z>.tar.gz
+
+通常安装在/usr/src/linux下。不要把这个源代码树用于开发，在编译自己的C库时所用的内核版本就链接到这棵树。开发内核时，建立自己的>主目录，只在安装时使用root身份。
+
+(5)如何使用内核的补丁
+*创建补丁
+通常，被修改过的内核树为linux/，而原始的内核树为linux-2.6.28/，按如下指令构建补丁：
+$>diff -urN linux-2.6.28/ linux/ >my-patch
+/* diff命令见man diff */
+
+*使用补丁
+进入源代码树linux-2.6.28/，键入如下指令：
+$>patch -p1 < ../my-patch
+就可以构建出被修改过的内核树linux/中的内容了
+
+可以使用diffstat工具查看补丁的信息：
+$>diffstat -f0 my-patch
+
+(6)内核源代码树的介绍
+/arch：包含和硬件体系结构相关的代码，每种平台占一个相应的目录。和32位PC相关的代码存放在i386目录下，其中比较重要的包括:
+kernel（内核核心部分）
+mm（内存管理）
+math-emu（浮点单元仿真）
+lib（硬件相关工具函数）
+boot（引导程序）
+pci（PCI总线）
+power（CPU相关状态）
+
+/crypto：常用加密和散列算法（如AES、SHA等），还有一些压缩和CRC校验算法。
+
+/Documentation：关于内核各部分的通用解释和注释
+参见00-Index
+/arm
+kernel-docs.txt
+/kbuild
+
+/drivers：设备驱动程序，每个不同的驱动占用一个子目录。
+/fs：各种支持的文件系统，如ext、fat等
+/include：头文件。其中，和系统相关的头文件被放置在linux子目录下。
+/init：内核初始化代码（注意不是系统引导代码）。
+/ipc：进程间通信的代码。
+/kernel：内核的最核心部分，包括进程调度、定时器等，和平台相关的一部分代码放在arch/*/kernel目录下。
+/lib：库文件代码。
+/mm：内存管理代码，和平台相关的一部分代码放在arch/*/mm目录下。
+/net：网络相关代码，实现了各种常见的网络协议。
+/scripts：编译内核所用的脚本。
+/security：主要是一个SELinux的模块。
+/sound：常用音频设备的驱动程序等。
+/usr：早期用户空间代码(所谓的initramfs)
+在i386体系下，系统引导将从arch/i386/kernel/head.s开始执行，并进而转移到init/main.c中的start_kernel()函数初始化内核。
+
+. Makefile & Kconfig
+(7)配置内核
+编译内核分为配置和编译两部分，首先要通过配置决定将哪些功能编译进内核，哪些功能编译为模块，在系统启动后动态加载。
+配置是通过scripts/下的脚本文件和各个目录下的Kconfig文件完成的。要增加新的配置选项需要修改对应的Kconfig文件
+==================================
+        Documentation/kbuild/makefiles.txt 
+
+        . top Makefile
+			ARCH		:= arm
+			CROSS_COMPILE	:= arm-linux-
+
+			CC		= $(CROSS_COMPILE)gcc
+			CFLAGS_KERNEL	=
+
+			include $(srctree)/arch/$(SRCARCH)/Makefile
+
+			init-y      := $(patsubst %/, %/built-in.o, $(init-y))
+			// init-y   := init/built-in.o
+
+        . arch Makefile
+        . sub Makefile
+==================================
+        Documentation/kbuild/kconfig-language.txt
+
+        entry:
+                arch/arm/Kconfig
+                source "drivers/test/Kconfig"
+==================================
+
+
+可以采用的配置方式有：
+a.基于文本配置
+$>make config
+
+b.基于ncurse库配置
+$>make menuconfig
+
+c.基于X11的图形工具配置
+$>make xconfig
+
+d.基于gtk+的图形工具配置
+$>make gconfig
+
+e.采用默认配置
+$>make defconfig
+
+f.采用其他平台的默认配置
+$>make ARCH=ppc defconfig
+
+g.采用针对特点开发板的配置(用于嵌入式系统)
+$>make ARCH=arm smdk2410_defconfig
+h.手工修改.config文件配置
+$>vi .config
+$>make oldconfig
+/*将.config被修改的内容反映到autoconf.h中*/
+
+配置完毕后，在根目录下生成文件.config，其中记录了所有的CONFIG配置选项，需要包括进内核的模块在.config文件中记录为：
+CONFIG_ISA=y //将ISA功能模块编译进内核
+CONFIG_PCMCIA=m //将PCMCIA功能以模块形式编译
+#CONFIG_ISA_DMA //没有被选中的选项被注释掉
+
+makefile会通过include将.config包括进来，这样，就可以在make时确定编译哪些模块。
+
+配置完毕后，还会自动在include/linux/下生成文件autoconf.h，该文件被包括在include/linux/config.h中。autoconf.h中的内容和.config>是一一对应的，上面三项标记如下：
+#define CONFIG_ISA 1
+#define CONFIG_PCMCIA_MODULE 1
+#undef CONFIG_ISA_DMA
+
+内核中很多的c文件都会include<linux/config.h>，通过ifdef决定编译哪些代码。参见/kernel/panic.c
+
+注意！在内核2.6.18之前，都是采用这种生成<linux/config.h>文件的方法，并在用户的驱动程序中包含config.h文件。但到2.6.19后，make系
+统不再生成config.h文件，而是在编译每个.o文件的同时生成一个.cmd文件，该cmd文件中包含了编译这个文件是采用的gcc参数，其中加入了include /linux/autoconf.h ，这样，驱动程序将默认包含autoconf.h，不用再人工添加include <linux/config.h>了。
+
+另外，这个.xxx.o.cmd文件在其他的2.6内核中也有出现，只不过其中没有包括autoconf.h。
+
+
+(8)编译/安装内核
+配置完毕后，就可以通过make编译出一个可运行的内核vmlinux以及对应的压缩文件。
+
+a.编译
+$>make
+或 $>make >../make_info
+   $>make > /dev/null
+在2.6之前，还需要运行make dep。
+后两种方式可以保存编译信息或直接将其丢弃。但错误和警告仍然会在屏幕上显示。make后还会在根目录下创建一个system.map文件，这是一个
+内核符合表，将内核符号和起始地址对应起来。
+
+b.安装模块
+以root身份运行
+$>make modules_install
+将所有已编译的模块安装到系统的/lib目录下。模块文件以.ko结尾，通过对其执行insmod或rmmod可以在运行时动态安装或卸载。
+
+c.安装内核
+以root身份运行
+$>make install
+将新编译的内核安装到系统的/boot目录下。重启后可以选择采用新内核启动
+
+(9)内核开发的特点
+内核开发和用户空间应用程序开发的主要差异包括：
+
+a.内核编程时不能访问C库
+b.内核编程时必须使用GNU C
+c.内核编程时缺乏用户空间那样的内存保护机制
+d.内核编程时浮点数很难使用
+e.内核只有很小的定长堆栈
+f.同步和并发
+g.要考虑可移植性
+
+
+(10)驱动的相关概念
+设备驱动是为用户访问特定的硬件设备提供一套标准的内部编程接口。
+
+应用程序－－>系统调用－－>驱动接口
+
+驱动的作用在于提供机制，而不是提供策略，也就是说，驱动程序应该处理如何使硬件可以的问题，而将怎样使用硬件的问题留给上层应用程序
+。
+
+linux将设备分成三种基本类型。
+*字符设备
+char设备是能够按字节流访问的设备。例如串口设备(dev/ttyS0)。字符设备可以通过文件系统节点访问，比如/dev/tty1或/dev/lp0。字符设备
+常常不支持ramdom访问。
+
+*块设备
+block设备是按块(如512字节)读取数据的设备，如磁盘，在块设备上能够容纳文件系统。在内核中，char设备和block设备的接口完全不同。
+
+*网络接口
+网络接口通常是个硬件设备，如网卡。网络接口由内核中的网络子系统驱动，负责发送和接收数据包。
+网络接口驱动程序不需要对数据包的内容进行解析，它只负责收发数据包。
+由于不是面向数据流，因此很难映射到文件系统中的节点，用户程序是通过分配一个名字，如eth0访问网络接口的。
+
+还有一种模块划分方法，即按功能划分。如USB模块，串行模块，SCSI模块等。

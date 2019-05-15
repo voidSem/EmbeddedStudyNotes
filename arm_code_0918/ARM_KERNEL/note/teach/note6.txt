@@ -1,0 +1,230 @@
+
+主设备号用来表示设备驱动， 次设备号表示使用该驱动的设备
+
+在内核dev_t 表示设备号， 设备号由主设备号和次设备号组成
+#include <linux/kdev_t.h>
+#define MAJOR(dev)	((unsigned int) ((dev) >> MINORBITS)) //根据设备号获取主设备号
+#define MINOR(dev)	((unsigned int) ((dev) & MINORMASK))  //获取次设备号
+#define MKDEV(ma,mi)	(((ma) << MINORBITS) | (mi))          //根据指定的主设备和次设备号生成设备号
+	 
+#include <linux/fs.h>	 
+//静态：申请指定的设备号, from指设备号, count指使用该驱动有多少个设备(次设备号), 设备名 
+int register_chrdev_region(dev_t from, unsigned count, const char *name);
+name的长度不能超过64字节	
+	
+
+//动态申请设备号, 由内核分配没有使用的主设备号, 分配好的设备存在dev, baseminor指次设备号从多少开始, count指设备数， name设备名 
+int alloc_chrdev_region(dev_t *dev, unsigned baseminor, unsigned count,
+			const char *name)
+
+//释放设备号, from指设备号， count指设备数
+void unregister_chrdev_region(dev_t from, unsigned count)
+
+//cat /proc/devices 可查看设备使用情况
+在内核源码的documentations/devices.txt可查看设备号的静态分配情况
+
+///内核里使用struct cdev来描述一个字符设备驱动 
+#include <linux/cdev.h>
+struct cdev {
+	struct kobject kobj;       //内核用于管理字符设备驱动 
+	struct module *owner;      //通常设为THIS_MODULE, 用于防止驱动在使用中时卸载驱动模块
+	const struct file_operations *ops;  //怎样操作(vfs)
+	struct list_head list;     //因多个设备可以使用同一个驱动， 用链表来记录
+	dev_t dev;                 //设备号
+	unsigned int count;        //设备数
+};
+
+////////字符设备驱动//////////
+1. 申请设备号
+	
+2. 定义一个cdev的设备驱动对象
+	struct cdev mycdev;
+	
+   定义一个file_operations的文件操作对象
+	struct file_operations fops = {
+		.owner = THIS_MODULE,
+		.read = 读函数
+		....
+	};
+
+3. 把fops对象与mycdev关联起来
+	cdev_init(&mycdev, &fops); //mycdev.ops = &fops;
+	mycdev.owner = THIS_MODULE;		
+
+4. 把设备驱动加入内核里, 并指定该驱动对应的设备号
+	cdev_add(&mycdev, 设备号, 次设备号的个数);
+
+5. 卸载模块时， 要把设备驱动从内核里移除, 并把设备号反注册
+	cdev_del(&mycdev);
+
+///////////创建设备文件
+mknod /dev/设备文件名  c 主设备号 次设备号
+
+
+////////inode节点对象描述一个文件/设备文件, 包括权限，设备号等信息
+struct inode {
+	...
+	dev_t  i_rdev;     //设备文件对应的设备号
+	struct cdev *i_cdev; //指向对应的设备驱动对象的地址
+	...
+};
+
+
+////file对象描述文件描述符, 在文件打开时创建, 关闭时销毁
+struct file {
+	...
+	const struct file_operations	*f_op; //对应的文件操作对象的地址
+	unsigned int 		f_flags; //文件打开的标志
+	fmode_t			f_mode;  //权限
+	loff_t			f_pos;   //文件描述符的偏移
+	struct fown_struct	f_owner; //属于哪个进程
+	unsigned int		f_uid, f_gid; 
+	void			*private_data; //给驱动程序员使用
+
+	...
+};
+通file里的成员f_path.dentry->d_inode->i_rdev可以获取到设备文件的设备号
+
+///错误码在<asm/errno.h> ////
+
+/////////struct file_operations ////
+     inode表示应用程序打开的文件的节点对象,  file表示打开文件获取到的文件描述符
+     成功返回0, 失败返回错误码
+int (*open) (struct inode *, struct file *);
+
+     
+     buf指向用户进程里的缓冲区, len表示buf的大小(由用户调用read时传进来的)
+     off表示fl文件描述符的操作偏移, 返回值为实际给用户的数据字节数.
+ssize_t (*read) (struct file *fl, char __user *buf, size_t len, loff_t *off);
+
+
+     用户进程把数据给驱动
+ssize_t (*write) (struct file *, const char __user *, size_t, loff_t *);
+
+////////////////
+	to指用户进程的缓冲区, from指驱动里装数据的缓冲区, n多少字节, 返回值是0
+extern inline long copy_to_user(void __user *to, const void *from, long n)
+	to指驱动的...   from用户...    n多少字节, ....
+	
+static inline unsigned long __must_check copy_to_user(void __user *to, const
+void *from, unsigned long n)
+{
+	if (access_ok(VERIFY_WRITE, to, n))
+		n = __copy_to_user(to, from, n);
+	return n; //返回值为剩下多少字节没拷贝
+}
+///////
+
+
+extern inline long copy_from_user(void *to, const void __user *from, long n)
+
+如果与用户进程交互的数据是1,2,4,8字节的话， 可用
+  put_user(x,p) //x为值， p为地址
+
+如果从用户进程获取1,2,4字节的话， 可用
+  get_user(x,p) 
+
+///////////
+
+
+///动态申请内存, 并清零. size为申请多大(不要超过128K),
+//flags为标志(常为GFP_KERNEL). 成功返回地址， 失败返回NULL
+//		GFP_ATOMIC, 使用系统的内存紧急池
+
+void *kmalloc(size_t size, gfp_t flags);//申请后要内存要清零
+void *kzalloc(size_t size, gfp_t flags); //申请出来的内存已清零
+void kfree(const void *objp); //回收kmalloc/kzalloc的内存
+
+void *vmalloc(unsigned long size); //申请大内存空间
+void vfree(const void *addr); //回收vmalloc的内存
+
+// kmalloc申请出来的内存是物理地址连续的, vmalloc不一定是连续的
+
+
+///// container_of(ptr, type, member) type包括member成员的结构体,
+//ptr是type类型 结构体的member成员的地址.
+//此宏根据结构体成员的地址获取结构体变量的首地址
+
+#define container_of(ptr, type, member) ({			\
+	const typeof( ((type *)0)->member ) *__mptr = (ptr);	\
+	(type *)( (char *)__mptr - offsetof(type,member) );})
+
+#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+
+ 15 typedef struct led_dev_t {
+ 16         dev_t mydevid;
+ 17         unsigned int *rLEDCON;
+ 18         unsigned int *rLEDDAT;
+ 19         struct cdev mycdev;
+ 20 }LED_DEV;
+
+ LED_DEV myled;
+ 
+ ind->i_cdev是指向myled.mycdev成员的地址
+ 结构体变量myled首地址可由container_of(ind->i_cdev, LED_DEV, mycdev)获取;
+
+
+/////// 自动创建设备文件 ////
+#include <linux/device.h>
+1.  struct class *cl; 
+    cl = class_create(owner, name) ; //owner指属于哪个模块, name类名
+	//创建出来后可以查看  /sys/class/类名
+    void class_destroy(struct class *cls); //用于销毁创建出来的类
+
+
+2. 创建设备文件
+struct device *device_create(struct class *cls, struct device *parent,
+				    dev_t devt, void *drvdata,
+				    const char *fmt, ...)
+				    __attribute__((format(printf, 5, 6)));
+
+ device_create(所属的类, NULL, 设备号, NULL, "mydev%d", 88); //在/dev/目录下产生名字为mydev88的设备文件
+ void device_destroy(struct class *cls, dev_t devt); //用于销毁创建出来的设备文件
+
+////////
+int register_chrdev(unsigned int major, const char *name,
+		    const struct file_operations *fops) ; //注册设备号并创建驱动对象
+
+void unregister_chrdev(unsigned int major, const char *name); //反注册设备号并删除驱动对象
+
+static inline int register_chrdev(unsigned int major, const char *name,
+				  const struct file_operations *fops)
+{
+	return __register_chrdev(major, 0, 256, name, fops);
+}
+int __register_chrdev(unsigned int major, unsigned int baseminor,
+		      unsigned int count, const char *name,
+		      const struct file_operations *fops)
+{
+	struct char_device_struct *cd;
+	struct cdev *cdev;
+	int err = -ENOMEM;
+
+	cd = __register_chrdev_region(major, baseminor, count, name);
+	if (IS_ERR(cd))
+		return PTR_ERR(cd);
+	
+	cdev = cdev_alloc();
+	if (!cdev)
+		goto out2;
+
+	cdev->owner = fops->owner;
+	cdev->ops = fops;
+	kobject_set_name(&cdev->kobj, "%s", name);
+		
+	err = cdev_add(cdev, MKDEV(cd->major, baseminor), count);
+	if (err)
+		goto out;
+
+	cd->cdev = cdev;
+
+	return major ? 0 : cd->major;
+out:
+	kobject_put(&cdev->kobj);
+out2:
+	kfree(__unregister_chrdev_region(cd->major, baseminor, count));
+	return err;
+}
+
+
+	

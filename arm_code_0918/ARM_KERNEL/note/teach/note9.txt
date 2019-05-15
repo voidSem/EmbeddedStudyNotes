@@ -1,0 +1,120 @@
+
+<linux/input.h>
+
+1. struct input_dev 一个对象表示一个输入设备, 硬件相关
+
+struct input_dev {
+	const char *name;
+	
+	unsigned long evbit[BITS_TO_LONGS(EV_CNT)]; //支持的事件类型[1]
+	unsigned long keybit[BITS_TO_LONGS(KEY_CNT)]; //支持的键码[24]
+	unsigned long relbit[BITS_TO_LONGS(REL_CNT)]; //相对坐标值
+	unsigned long absbit[BITS_TO_LONGS(ABS_CNT)]; //绝对坐标
+	...
+};
+
+evbit:
+#define EV_SYN			0x00 //同步
+#define EV_KEY			0x01 //按键
+#define EV_REL			0x02 //相对坐标
+#define EV_ABS			0x03 //绝对坐标
+#define EV_REP			0x14 //重复提给按键时使用
+
+struct input_dev *input_allocate_device(void);
+//必须调用此函数创建一个输入设备对象
+void input_free_device(struct input_dev *dev);//释放对象
+
+input_register_device(struct input_dev *); //注册设备
+// list_add_tail(&dev->node, &input_dev_list); //注册设备时把设备增加到设备链表里去
+
+void input_unregister_device(struct input_dev *); //反注册设备
+
+2. 输入事件 , 是input_handler驱动与用户程序交互的数据单元
+ struct input_event {
+	struct timeval time;
+	__u16 type; //事件类型， EV_KEY ...
+	__u16 code; //编码
+	__s32 value; //
+};
+
+3.输入事件处理接口, 通常的操作函数方法
+ struct input_handler;
+static struct input_handler evdev_handler = {
+	.event		= evdev_event, // 唤醒等待队列
+	.connect	= evdev_connect,  //指input_handler对象跟input_dev相配对时调用的函数
+	.disconnect	= evdev_disconnect,
+	.fops		= &evdev_fops, //操作函数
+	.minor		= EVDEV_MINOR_BASE,
+	.name		= "evdev",
+	.id_table	= evdev_ids, //记录支持的input_dev设备ID
+};
+
+struct input_handler kbd_handler;
+struct input_handler joydev_handler;
+
+input_register_handler(&evdev_handler) = list_add_tail(&handler->node, &input_handler_list);
+
+
+
+
+内核里已具有对象evdev_handler专处理/dev/input/eventX设备文件的驱动接口
+joydev_handler对应摇杆的设备文件驱动接口/dev/input/js
+
+4. input.c 实现用户最外层的统一接口， 用户程序open时调用input_fops的input_open_file函数
+	根据用户打开的设备文件的次设备号, 查找相应handler, 把 file->f_op=handler里的fops
+
+
+5. input_handle //用来描述input_dev与input_handler的对应关系
+struct input_handle {
+	....
+	const char *name;
+	struct input_dev *dev;
+	struct input_handler *handler;
+	...
+};
+
+
+   用户程序->>打开设备文件(/dev/input/js, /dev/input/event0) -->> input_handler(joydev_handler, evdev_handler) <<-- 设备驱动 <<-- 硬件
+
+驱动使用以下接口把数据传递给input_handler
+input_report_key(struct input_dev *dev, unsigned int code, int value)
+			code为键码, value非0为pressed, 0为released
+
+input_report_rel(struct input_dev *dev, unsigned int code, int value)
+input_report_abs(struct input_dev *dev, unsigned int code, int value)
+input_sync(struct input_dev *dev)
+//每次report后要用input_sync同步一次
+
+
+
+
+
+
+
+
+
+
+4. touch screen 的驱动
+	input_dev初始化
+mydev->name = "my ts";
+mydev->evbit[0] = BIT_MASK(EV_KEY)|BIT_MASK(EV_ABS); //支持事件类型 
+mydev->keybit[BIT_WORD(BTN_TOUCH)] |= BIT_MASK(BTN_TOUCH);
+//是否按下的按键支持
+input_set_abs_params(mydev, ABS_X, 最小值, 最大值, 物理误差, 误差); //x轴的最小/大值
+input_set_abs_params(mydev, ABS_Y, 0, 0x3ff, 0, 0);
+input_set_abs_params(mydev, ABS_PRESSURE, 0, 1, 0, 0);
+   
+
+	采到坐标数据后：
+        input_report_abs(mydev, ABS_X, x); //汇报坐标值
+        input_report_abs(mydev, ABS_Y, y);
+        input_report_key(mydev, BTN_TOUCH, 1); //汇报按下
+        input_report_abs(mydev, ABS_PRESSURE, 1);
+        input_sync(mydev);
+	注意汇报坐标值时得要汇报按下
+	
+
+	收到up的中断后
+	input_report_key(mydev, BTN_TOUCH, 0); //汇报松手
+	input_report_abs(mydev, ABS_PRESSURE, 0);
+	input_sync(mydev);

@@ -1,0 +1,153 @@
+
+/****************************
+ * 模块的构建
+ ****************************/
+
+(1)模块的含义
+linux是采用模块化的方式构成的，允许内核在运行时动态地向其中插入或从中删除代码，这些代码(包括函数，数据，模块入口函数，模块出口函数)被一并组合在一个单独的二进制镜像，就是所谓的可装载内核模块，或简称模块。
+
+模块可以使基本的内核镜像尽可能小，同时可以方便地对新功能进行调试，还可以实现新设备的热插拔。
+
+
+(2)hello world模块
+和内核的核心子系统不一样，模块文件需要有入口点和出口点。
+
+
+(3)模块与应用程序的对比
+a.模块和库函数有些类似，一个模块通常包含若干函数和数据，每个函数提供特定的服务。决定完成哪些功能是应用程序的事情，模块用来提供服务。
+
+b.模块的注册函数只是把模块注册到内核中，模块中的函数如何被调用是应用程序的事情。
+
+c.应用程序在退出时可以不管资源的释放和其他的清理工作，但模块的退出函数必须仔细撤销初始化函数所作的一切。
+
+d.模块被链接到内核，它只能调用那些被内核导出的函数，使用的头文件是内核源代码树中include/目录下的头文件。如:
+#include <linux/init.h>
+指的是include/linux/init.h
+
+e.模块不会和任何库链接。
+
+f.模块编程必须慎重考虑并发问题，通常必须是可重入的。
+
+
+(4)模块的编译，装载和卸载
+参加Documentation/kbuild下的文档
+
+a.首先运行makefile编译模块
+make -C 
+将目录改变到内核源代码所在的目录，其中有内核的顶层makefile文件
+
+M=`pwd`
+要求顶层makefile在构造modules目标之前返回到模块的源代码目录。
+
+modules
+指向obj-m变量中设定的模块
+
+b.insmod
+通过insmod将模块的代码和数据安装到系统正在运行的内核中。一旦安装成功，则模块就可以访问内核的公共符号(包括函数和变量)。insmod和ld类似，但insmod不会修改模块的磁盘文件，只会修改内存中的副本。
+
+c.rmmod
+通过rmmod卸载模块，注意，只有root权限才可以安装和卸载模块。如果内核认为模块仍然处于使用状态，有可能无法卸载。在编译内核时需要将Loadable module support-->Module unloading选中，否则内核不支持模块卸载。
+
+d.lsmod
+lsmod程序列出了当前装载到内核中的所以模块，还列出了其他信息，如其他模块是否在使用某个特点模块。lsmod通过读取/proc/modules获得这些信息。
+
+e.安装失败
+查看系统日志/var/log/messages，可以看到导致模块装载失败的具体原因
+
+
+(5)内核符合表
+公共内核符号表就是内核make以后生成的System.map文件，insmod用它来解释模块中未定义的符号。公共内核符号表中包含了所有的全局内核项(函数和变量)的地址，当模块被装入内核后，他所导出的任何符号都会变成内核符号表的一部分。可以通过/proc/kallsyms查看。
+
+内核中常常使用模块的层叠，如每个usb输入设备模块都层叠在usbcore和input模块上。
+
+为了避免命令空间的污染，需要用宏导出模块符号：
+EXPORT_SYMBOL(name);
+EXPORT_SYMBOL_GPL(name);
+
+
+(6)与模块注册相关的宏
+<linux/module.h>中有大量和可装载模块相关的符号和宏定义：
+MODULE_LICENSE()
+指定模块代码使用的许可证。常用的有"GPL"，"Dual BSD/GPL", "GPL v2"等
+
+MODULE_AUTHOR(author)
+描述模块的作者
+
+MODULE_DESCRIPTION(description)
+模块用途的描述
+
+MODULE_VERSION(version_string)
+模块的版本信息
+
+MODULE_DEVICE_TALBE(table_info)
+模块所支持的设备
+
+MODUULE_ALIAS
+模块的别名
+
+这些宏可以在目标文件中添加关于模块的文档信息
+
+加入例子
+
+
+(7)模块的初始化和清除
+<linux/init.h>中包含了和模块的初始化和清除相关的信息。
+
+初始化
+a.module_init
+用于注册模块的初始化函数
+module_init(hello_init);
+
+b.__init
+用于修饰模块的初始化函数，表明该函数只在模块的初始化期间使用。初始化完成后，这个函数所占的内存会被释放。
+static int __init hello_init(void)
+{
+  ...
+}
+
+c.__initdata
+用于修饰模块的初始化数据结构。
+int __initdata array[100];
+
+
+清除
+a.module_exit
+用于注册模块的清除函数
+module_exit(hello_exit);
+
+b.__exit
+static void __exit hello_exit(void)
+{
+  ...
+}
+清除函数没有返回值，被__exit修饰的模块只能用于模块卸载(编译器会把该函数放在特殊的ELF段中)，其他时候调用清除函数都是错的。
+
+c.__exitdata
+用于修饰清除阶段使用的数据结构
+int __exitdata array[100];
+
+
+(8)在模块装载时向模块传递参数
+linux支持在装载模块的同时传入参数。如：
+$>insmod hello_mod2 howmany=10 whom="Mom"
+
+模块参数必须用module_param宏声明，该宏定义在<linux/moduleparam.h>，如：
+static char *whom = "world";
+static int howmany = 1;
+module_param(howmany, int, S_IRUGO);
+module_param(whom, charp, S_IRUGO);
+
+内核支持的模块参数类型有：
+bool
+invbool (true变为false, false变为true)
+charp 字符指针
+int
+long
+short
+uint
+ulong
+ushort
+
+S_IRUGO是访问许可值，参见<linux/stat.h>中的定义。
+
+信息可以在/proc/module和/sys/module下观察

@@ -1,0 +1,38 @@
+		      funstick API Documentation                -*-Text-*-
+
+		      MD in China  
+			  hahaha
+
+			    2016-01-18  
+
+1. Initialization
+~~~~~~~~~~~~~~~~~
+
+Open the funstick device following the usual semantics (that is, with open).
+Since the driver now reports events instead of polling for changes,
+immediately after the open it will issue a series of synthetic events
+ that you can read to check the initial state of the
+funstick.
+
+By default, the device is opened in blocking mode.
+
+	int fd = open ("DEVICE", O_RDONLY);
+
+
+2. Event Reading
+~~~~~~~~~~~~~~~~
+
+If the read is successful, it will return nothing
+
+
+2.1 ioctl type
+~~~~~~~~~~~~~~~~~
+
+The possible values of ``type'' are
+
+#define   LED_ON     _IO(MAGIC , 0)   /* led on  */
+#define   LED_OFF    _IO(MAGIC , 1)   /* led off */
+#define   BUZZER_ON  _IO(MAGIC , 2)   /* buzzer on */
+#define   BUZZER_OFF _IO(MAGIC , 3)   /* buzzer off */
+
+

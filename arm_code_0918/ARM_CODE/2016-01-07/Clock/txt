@@ -1,0 +1,29 @@
+
+APLL P : 3  M : 175  S:0  
+MPLL P : 3  M : 100  S:0  
+EPLL P : 2  M : 64  S:3  
+VPLL P : 2  M : 72  S:3  
+MUXAPLL : 1  MUXCORE: 0  MUXHPM: 0 MUXMPLL: 1 
+CORE:0     COREM0:3     COREM1:7     PERIPH:7      
+ATB:6      PCLK_DBUG:1  APLL:2       CORE2:0       
+COPY:6     HPM:0        CORES:5    
+*****************************************
+ONENAND_1:0     EPLL:1  VPLL:0  ACLK_200:0  ACLK_100:1     ACLK_
+160:0  ACLK_133:0 ONENAND:1  
+266_GPS:1  400_MCUISP:0 MPLL:0 266_GPS_SUB:1      200_SUB:0  400
+_MCUISP_SUB:0 
+
+APLL P : 3  M : 175  S:0                                        
+MPLL P : 3  M : 100  S:0                                        
+EPLL P : 2  M : 64  S:3                                         
+VPLL P : 2  M : 72  S:3                                         
+MUXAPLL : 1  MUXCORE: 0  MUXHPM: 0 MUXMPLL: 1                   
+CORE:0     COREM0:3     COREM1:7     PERIPH:7                   
+ATB:6      PCLK_DBUG:1  APLL:2       CORE2:0                    
+COPY:6     HPM:0        CORES:5                                 
+*****************************************                       
+ONENAND_1:0     EPLL:1  VPLL:0  ACLK_200:0  ACLK_100:1     ACLK_
+160:0  ACLK_133:0 ONENAND:1                                     
+266_GPS:1  400_MCUISP:0 MPLL:0 266_GPS_SUB:1      200_SUB:0  400
+_MCUISP_SUB:0                                                   
+## Application terminated, rc = 0x0         

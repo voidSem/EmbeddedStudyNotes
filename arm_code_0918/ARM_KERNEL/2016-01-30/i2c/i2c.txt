@@ -1,0 +1,17 @@
+
+//i2c驱动所在位置
+drivers/i2c/i2c-dev.c
+
+//i2c所属头文件
+include/linux/i2c.h
+
+//板子的i2c设备
+drivers/i2c/busses/i2c-s3c2410.c
+
+//MMA7660重力感应驱动 
+drivers/hwmon/mma7660.c
+
+//触模屏的驱动
+drivers/input/touchscreen/ft5x06_ts.c
+
+

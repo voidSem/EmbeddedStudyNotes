@@ -1,0 +1,19 @@
+
+=== udev
+在设备被发现时自动加载对应驱动模块。(热插拔，设备被发现时，自动创建dev文件，并加载驱动模块)
+1.	vim /udev/Makefile	修改 安装路径和编译器
+	prefix = /nfsroot/
+	CROSS_COMPILE = arm-linux-
+
+	make;
+	make install;
+
+	[pc]
+		cp udevd udevstart /nfsroot/sbin
+	
+
+2.	vim /nfsroot/etc/init.d/rcS 加上
+	mount -t tmpfs tmpfs /dev
+	/sbin/udevd -d
+	/sbin/udevstart
+	开机自动挂载

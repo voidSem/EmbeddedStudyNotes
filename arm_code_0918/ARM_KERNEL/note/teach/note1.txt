@@ -1,0 +1,89 @@
+
+
+类型: bool  tristate  hex  string  int
+
+1. 语法
+     A:
+	config 关键字
+	depends on 关键字 && 关键字 && 关键字
+	类型    "提示字符"
+    B:	
+	config 关键字
+	类型    "提示字符" if 关键字	
+
+	default y/m   //默认值 y编进内核 m编为模块 n不编译
+	help
+	帮助信息
+
+      ----------------
+	menu "菜单名"  //增加一个菜单
+	
+	config ...
+
+	config ...
+
+	endmenu  
+      ------------------
+
+
+       menuconfig 与config用法一样
+	区别在: menuconfig如有子项依赖的话， 则子项在下级菜单里
+		config不管依赖关系怎样， 都是在并列的菜单项里
+
+	
+      ------------------
+	choice 
+		prompt "选项名"
+	
+		default 关键字	
+
+		config 关键字
+		bool/tristate  "提示"  	
+
+		config ....
+
+	endchoice
+      ----------------------
+
+2.  在上级目录里的Kconfig文件增加
+	source "内核源码所在目录/文件所在目录/Kconfig"
+
+	如是在drivers下新加目录的话， 则修改arch/arm/Kconfig
+
+3.  修改makefile
+    在上级的makefile里加
+	obj-y	+= 文件目录名/
+
+    在代码所在目录下加makefile
+	obj-$(CONFIG_关键字)  += test.o
+	如test.o是a.o b.o生成的, 则加上
+	test-objs := a.o b.o
+	
+///////////////////////////
+   8 menu "Mymenu"
+   9         config MYLED
+  10                 tristate "myled selection"
+  11                 default n
+  12                 help
+  13                  "myled "
+  14 
+  15         config ULED
+  16                 depends on MYLED
+  17                 tristate "uled usb"
+  18 
+  19         choice
+  20                 prompt "my choice"
+  21                 default BBB
+  22                 depends on MYLED
+  23 
+  24                 config AAA
+  25                         bool "aaa"
+  26 
+  27                 config BBB
+  28                         bool "bbb"
+  29 
+  30         endchoice
+  31 endmenu
+
+
+	

@@ -1,0 +1,164 @@
+
+uboot入口文件
+
+cd /disk/A9/uboot_tiny4412-master
+arch/arm/cpu/armv7/start.S
+
+ctags -R   建立ctags
+
+
+uboot的启动过程
+
+1>  配置CPSR使进入SVC模式并且关闭中断跟快中断
+
+2>  CPU初始化   cpu_init_crit
+
+    1> 配置协处理器CP15关闭MMU   
+
+    2> CPU初级初始化  lowlevel_init
+    //board/samsung/tiny4412/lowlevel_init.S
+    
+        1> 设置栈顶在iram最高地址(0x02060000)
+        //从此以后如果没有再度配置栈地址SP，那么压栈就默认压在iram的最高地址上
+        
+        2> 判断是否复位  
+        //查看INFORM1 register 是否为 0x00000BAD 检查是否睡眠模式，如果是睡眠模式则要启动复位
+        
+        3> 拉低MMA中断引角  EINT25
+
+        4> 配置LED灯第一个灯亮
+
+        5> 读取OM引角  将OM引角的值写入 INFORM3 register
+            
+        6> 判断uboot是否已经拷到ram内存之内，第一次运行时没有拷，第二次运时才直接跳到after_copy  通过判断PC指针的位置
+            
+
+        7> cpu时钟初始化 CPU升频
+        //APLL  MPLL EPLL VPLL
+        
+        8> 内存初始化，DRAM初始化
+        
+        9> 初始化串口  打印一个‘O’
+
+        10> trustzone初始化 , 在系统初始化时只能运行一次且只有一次有效
+        //将所有区域设置成非安全模式，也就是自由访问模式
+
+        11> load_uboot  不会返回了  加载u-boot.bin 到 DRAM
+
+    1>设置SDMMC的时钟源为50M  最高的速度
+
+bl  movi_uboot_copy   这个是调用了bl1内的函数进行搬运   0x02020030
+
+b   after_copy
+
+    亮LED的最后两个灯
+
+    2> 开启ＭＭＵ　　(这个被我们禁掉了)
+
+    3> 打印一个‘k’   //已经进入u-boot.bin
+
+
+board_init_f   //初始化  //C语言 复杂
+
+    bd_t   //boardData   起动数据结构体   
+
+    // =  可以自动对齐
+    typedef struct bd_info {
+        int         bi_baudrate;    /* serial console baudrate */
+        unsigned long   bi_ip_addr; /* IP Address */
+        ulong           bi_arch_number; /* unique id for this board */
+        ulong        bi_boot_params; /*where this board expects params */
+        struct                          /* RAM configuration */
+        {   
+            ulong start;
+            ulong size;
+        }bi_dram[CONFIG_NR_DRAM_BANKS];
+    } bd_t;
+
+
+    gd_t   //globalData  全局数据结构体
+
+/*
+ * The following data structure is placed in some memory wich is
+ * available very early after boot (like DPRAM on MPC8xx/MPC82xx, or
+ * some locked parts of the data cache) to allow for a minimum set of
+ * global variables during system initialization (until we have set
+ * up the memory controller so that we can use RAM).
+ *
+ * Keep it *SMALL* and remember to set GENERATED_GBL_DATA_SIZE > sizeof(gd_t)
+ */
+
+typedef	struct	global_data {
+	bd_t		*bd;
+	unsigned long	flags;
+	unsigned long	baudrate;
+	unsigned long	have_console;	/* serial_init() was called */
+	unsigned long	env_addr;	/* Address  of Environment struct */
+	unsigned long	env_valid;	/* Checksum of Environment valid? */
+	unsigned long	fb_base;	/* base address of frame buffer */
+#ifdef CONFIG_VFD
+	unsigned char	vfd_type;	/* display type */
+#endif
+#ifdef CONFIG_FSL_ESDHC
+	unsigned long	sdhc_clk;
+#endif
+#ifdef CONFIG_AT91FAMILY
+	/* "static data" needed by at91's clock.c */
+	unsigned long	cpu_clk_rate_hz;
+	unsigned long	main_clk_rate_hz;
+	unsigned long	mck_rate_hz;
+	unsigned long	plla_rate_hz;
+	unsigned long	pllb_rate_hz;
+	unsigned long	at91_pllb_usb_init;
+#endif
+#ifdef CONFIG_ARM
+	/* "static data" needed by most of timer.c on ARM platforms */
+	unsigned long	timer_rate_hz;
+	unsigned long	tbl;
+	unsigned long	tbu;
+	unsigned long long	timer_reset_value;
+	unsigned long	lastinc;
+#endif
+	unsigned long	relocaddr;	/* Start address of U-Boot in RAM */
+	phys_size_t	ram_size;	/* RAM size */
+	unsigned long	mon_len;	/* monitor len */
+	unsigned long	irq_sp;		/* irq stack pointer */
+	unsigned long	start_addr_sp;	/* start_addr_stackpointer */
+	unsigned long	reloc_off;
+#if !(defined(CONFIG_SYS_NO_ICACHE) && defined(CONFIG_SYS_NO_DCACHE))
+	unsigned long	tlb_addr;
+#endif
+	void		**jt;		/* jump table */
+	char		env_buf[32];	/* buffer for getenv() before reloc. */
+} gd_t;
+
+
+    //uboot起动的流程表　（函数指针表）
+
+    1> 定时器初始化
+
+    2> 打印uboot基本信息
+
+    3> //在内存的最后１Ｍ是默认开trustzone保护的，只读
+        不可以写
+
+//relocate_code
+
+
+//board_init_r
+
+     打印信息
+    .
+    .
+    .
+    .
+
+
+
+
+
+
+
+
+
+
